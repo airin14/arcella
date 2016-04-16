@@ -30,6 +30,8 @@ before_script:
 
 script:
   - vendor/bin/phpunit --coverage-text
-  - vendor/bin/phpcs src
+  - vendor/bin/phpcs src -v --standard=PSR1
+  - vendor/bin/phpcs src -v --standard=PSR2
+  - vendor/bin/phpcs src -v --standard=Symfony2
 
 after_script:
