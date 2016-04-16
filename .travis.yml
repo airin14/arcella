@@ -23,6 +23,7 @@ matrix:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+  - travis_retry vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
 
 script:
   - vendor/bin/phpunit --coverage-text
