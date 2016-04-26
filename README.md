@@ -45,7 +45,7 @@ The web is all about publishing and distributing content. Unfortunately most of 
 
 # Contributing
 
-See [CONTRIBUTING](CONTRIBUTING.md).
+See [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT_.md).
 
 ## Run the Tests
 
