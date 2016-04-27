@@ -49,7 +49,8 @@ However you should follow these simple guidelines for your contribution to be pr
 To make a long story short you should at first fork and install Arcella from this repo. Now you make sure all the tests pass. Make your changes to the code and add tests for your changes. If all the tests pass push to your fork and submit a pull request to the `development` branch.
 
 * **Add tests** - None of your code will be accepted if it doesn't have proper tests.
-* **Document any change in behaviour** - - Make sure the [Readme](README.md) and any other relevant documentation are kept up-to-date.
+* **Stick to the standards** - Make sure to follow the [Symfony coding standards](http://symfony.com/doc/current/contributing/code/standards.html).
+* **Document any change in behaviour** - Make sure the [Readme](README.md) and any other relevant documentation are kept up-to-date.
 * **Create feature branches** - Don't ever ask us to pull from your master branch.
 * **One pull request per feature** - If you want to contribute more than one thing, please send multiple pull requests.
 * **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](http://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
@@ -60,3 +61,10 @@ As Arcella uses [PHPUnit](https://phpunit.de/) for testing it's quite easy to ru
 
     $ cd ~/webroot/arcella
     $ php vendor/bin/phpunit
+    
+## Validate the Code
+
+To make sure that our code does not violate the [Symfony coding standards](http://symfony.com/doc/current/contributing/code/standards.html) we're using [PHPCodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) that automatically detects violations to these coding standards.
+
+    $ cd ~/webroot/arcella
+    $ php vendor/bin/phpcs src -v --standard=Symfony2
