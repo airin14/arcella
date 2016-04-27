@@ -59,4 +59,4 @@ To make a long story short you should at first fork and install Arcella from thi
 As Arcella uses [PHPUnit](https://phpunit.de/) for testing it's quite easy to run the tests. Just navigate to the project folder, e.g. `~/webroot/arcella` and run PHPunit.
 
     $ cd ~/webroot/arcella
-    $ php bin/phpunit
+    $ php vendor/bin/phpunit

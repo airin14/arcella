@@ -52,7 +52,7 @@ See [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT_.md).
 As Arcella uses [PHPUnit](https://phpunit.de/) for testing it's quite easy to run the tests. Just navigate to the project folder, e.g. `~/webroot/arcella` and run PHPunit.
 
     $ cd ~/webroot/arcella
-    $ php bin/phpunit
+    $ php vendor/bin/phpunit
 
 # License
 
