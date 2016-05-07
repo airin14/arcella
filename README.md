@@ -4,6 +4,7 @@ Arcella
 Arcella is yet another symfony3 based content management system. 
 
 [![Build Status](https://travis-ci.org/nplhse/arcella.svg?branch=master)](https://travis-ci.org/nplhse/arcella) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/6b32d7e1-9a7f-41fb-8cdc-d5810aefdccc/mini.png)](https://insight.sensiolabs.com/projects/6b32d7e1-9a7f-41fb-8cdc-d5810aefdccc) 
+[![overv.io](https://img.shields.io/badge/overv.io-Arcella-blue.svg)](https://overv.io/nplhse/arcella/)
 
 The web is all about publishing and distributing content. Unfortunately most of the time you end up fighting against a content management system, rather than enjoying your content. The idea behind Arcella is to provide an easy to use environment that allows the user to focus on publishing and distributing their content. 
 
