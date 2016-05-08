@@ -4,7 +4,7 @@ AppBundle/Controller/Default
 Class DefaultController
 =======================
 
-.. phpautoclass::
+.. phpautomodule::
    :filename: ../src/AppBundle/Controller/DefaultController.php
    :members:
    :undoc-members:

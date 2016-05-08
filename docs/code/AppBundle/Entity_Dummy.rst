@@ -4,7 +4,7 @@ AppBundle/Entity/Dummy.php
 Class User
 ==========
 
-.. phpautoclass::
+.. phpautomodule::
    :filename: ../src/AppBundle/Entity/Dummy.php
    :members:
    :undoc-members:

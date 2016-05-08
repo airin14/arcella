@@ -18,7 +18,6 @@ The main documentation for Arcella is organized into a couple sections:
 
    concept/architecture
 
-
 .. _dev-docs:
 
 .. toctree::
@@ -28,20 +27,18 @@ The main documentation for Arcella is organized into a couple sections:
    dev/install
    dev/contribute
    dev/pull_requests
-   dev/code_of_conduct
-   dev/tests
    dev/quality_assurance
+   dev/code_of_conduct
    dev/license
-
 
 .. _code-docs:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Source Documentation
    :glob:
 
-   code/*
+   code/AppBundle/*
 
 
 Indices and tables
