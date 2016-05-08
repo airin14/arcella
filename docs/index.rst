@@ -1,12 +1,7 @@
-.. Arcella documentation master file, created by
-   sphinx-quickstart on Sat May  7 13:34:20 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to Arcella's documentation!
 ===================================
 
-Contents:
+The web is all about publishing and distributing content. Unfortunately most of the time you end up fighting against a content management system, rather than enjoying your content. The idea behind Arcella is to provide an easy to use environment that allows the user to focus on publishing and distributing their content.
 
 .. toctree::
    :caption: Table of Contents
@@ -14,12 +9,12 @@ Contents:
    :maxdepth: 2
    :glob:
 
-   Source documentation <code/*>
+   install
+   code/*
 
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
