@@ -1,5 +1,5 @@
-AppBundle/Entity/Dummy.php
-**************************
+AppBundle/Entity/Dummy
+**********************
 
 Class User
 ==========
