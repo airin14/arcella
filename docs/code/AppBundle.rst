@@ -1,3 +1,6 @@
+Source: AppBundle/AppBundle.php
+*******************************
+
 .. header:: Documentation from AppBundle.php
 
 .. phpautomodule::

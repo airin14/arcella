@@ -11,8 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   class_app_bundle
-
+   Source documentation <code/*>
 
 
 Indices and tables
