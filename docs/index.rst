@@ -9,7 +9,10 @@ Welcome to Arcella's documentation!
 Contents:
 
 .. toctree::
+   :caption: Table of Contents
+   :name: mastertoc
    :maxdepth: 2
+   :glob:
 
    Source documentation <code/*>
 
