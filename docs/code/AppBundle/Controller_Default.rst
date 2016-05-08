@@ -1,10 +1,10 @@
-Source: AppBundle/Controller/DefaultController.php
-**************************************************
+AppBundle/Controller/Default
+****************************
 
 Class DefaultController
 =======================
 
-.. phpautomodule::
+.. phpautoclass::
    :filename: ../src/AppBundle/Controller/DefaultController.php
    :members:
    :undoc-members:

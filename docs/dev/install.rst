@@ -1,5 +1,5 @@
-Getting started with Arcella: Installation
-******************************************
+Installation
+************
 
 From GitHub
 ===========

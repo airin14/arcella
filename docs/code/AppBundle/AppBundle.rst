@@ -1,10 +1,10 @@
-Source: AppBundle/AppBundle.php
-*******************************
+AppBundle/AppBundle
+*******************
 
 Class AppBundle
 ===============
 
-.. phpautomodule::
+.. phpautoclass::
    :filename: ../src/AppBundle/AppBundle.php
    :members:
    :undoc-members:
