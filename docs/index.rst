@@ -46,4 +46,4 @@ Indices and tables
    :maxdepth: 1
    :caption: Source Documentation
 
-   code/AppBundle/*
+   code/*
