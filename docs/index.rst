@@ -5,8 +5,8 @@ The web is all about publishing and distributing content. Unfortunately most of 
 
 The main documentation for Arcella is organized into a couple sections:
 
-* :ref:`dev-docs`
 * :ref:`concept-docs`
+* :ref:`dev-docs`
 * :ref:`code-docs`
 
 
@@ -46,5 +46,6 @@ Indices and tables
 .. toctree::
    :maxdepth: 2
    :caption: Source Documentation
+   :glob:
 
    code/*

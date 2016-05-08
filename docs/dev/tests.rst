@@ -1,5 +1,5 @@
-Run the Tests
-*************
+Testing
+*******
 
 As Arcella uses PHPUnit for testing it's quite easy to run the tests. Just navigate to the project folder, e.g. ~/webroot/arcella and run PHPunit.
 
