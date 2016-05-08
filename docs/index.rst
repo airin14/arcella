@@ -37,9 +37,8 @@ The main documentation for Arcella is organized into some sections:
 .. toctree::
    :maxdepth: 2
    :caption: Source Documentation
-   :glob:
 
-   code/AppBundle
+   code/AppBundle/index
 
 
 Indices and tables
