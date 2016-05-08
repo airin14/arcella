@@ -6,7 +6,7 @@ AppBundle
    :caption: Classes
    :glob:
 
-   code/AppBundle/Class_*
+   Class_*
 
 
 .. toctree::
@@ -14,7 +14,7 @@ AppBundle
    :caption: Interface
    :glob:
 
-   code/AppBundle/Interface_*
+   Interface_*
 
 
 .. toctree::
@@ -22,4 +22,4 @@ AppBundle
    :caption: Trait
    :glob:
 
-   code/AppBundle/Trait_*
+   Trait_*
