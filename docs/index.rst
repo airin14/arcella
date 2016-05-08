@@ -38,12 +38,13 @@ Indices and tables
    dev/code_of_conduct
    dev/tests
    dev/quality_assurance
+   dev/license
 
 
 .. _code-docs:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Source Documentation
 
    code/*
