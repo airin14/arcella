@@ -10,13 +10,6 @@ The main documentation for Arcella is organized into a couple sections:
 * :ref:`code-docs`
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`search`
-
-
 .. _concept-docs:
 
 .. toctree::
@@ -49,3 +42,10 @@ Indices and tables
    :glob:
 
    code/*
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`search`
