@@ -11,7 +11,7 @@ AppBundle
 
 .. toctree::
    :maxdepth: 1
-   :caption: Interface
+   :caption: Interfaces
    :glob:
 
    Interface_*
@@ -19,7 +19,7 @@ AppBundle
 
 .. toctree::
    :maxdepth: 1
-   :caption: Trait
+   :caption: Traits
    :glob:
 
    Trait_*

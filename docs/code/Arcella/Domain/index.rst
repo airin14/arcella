@@ -2,24 +2,24 @@ Domain
 ******
 
 .. toctree::
-:maxdepth: 1
-       :caption: Classes
-       :glob:
+   :maxdepth: 1
+   :caption: Classes
+   :glob:
 
-       Class_*
-
-
-.. toctree::
-:maxdepth: 1
-       :caption: Interface
-       :glob:
-
-       Interface_*
+   Class_*
 
 
 .. toctree::
-:maxdepth: 1
-       :caption: Trait
-       :glob:
+   :maxdepth: 1
+   :caption: Interfaces
+   :glob:
 
-       Trait_*
+   Interface_*
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Traits
+   :glob:
+
+   Trait_*
