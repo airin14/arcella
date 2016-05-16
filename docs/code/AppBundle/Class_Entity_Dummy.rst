@@ -1,8 +1,8 @@
 AppBundle/Entity/Dummy
 **********************
 
-Class User
-==========
+Class Dummy
+===========
 
 .. phpautomodule::
    :filename: ../src/AppBundle/Entity/Dummy.php
