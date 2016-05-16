@@ -1,7 +1,8 @@
 How to contribute
 *****************
 
-Any contribution to Arcella is appreciated, whether it is related to fixing bugs, suggestions or improvements. Feel free to take your part in the development of Arcella!
+Any contribution to Arcella is appreciated, whether it is related to fixing bugs, suggestions or improvements. Feel free
+to take your part in the development of Arcella!
 
 However you should follow these simple guidelines for your contribution to be properly recived:
 
