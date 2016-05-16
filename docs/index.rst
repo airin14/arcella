@@ -10,7 +10,6 @@ The main documentation for Arcella is organized into some sections:
 * :ref:`code-docs`
 
 .. _concept-docs:
-
 .. toctree::
    :maxdepth: 2
    :caption: Concept Documentation
@@ -19,7 +18,6 @@ The main documentation for Arcella is organized into some sections:
 
 
 .. _dev-docs:
-
 .. toctree::
    :maxdepth: 2
    :caption: Developer Documentation
@@ -33,7 +31,6 @@ The main documentation for Arcella is organized into some sections:
 
 
 .. _code-docs:
-
 .. toctree::
    :maxdepth: 2
    :caption: Source Documentation
