@@ -36,6 +36,7 @@ The main documentation for Arcella is organized into some sections:
    :caption: Source Documentation
 
    code/AppBundle/index
+   code/Arcella/Domain/index
 
 
 Indices and tables
