@@ -1,5 +1,9 @@
+======
 Domain
-******
+======
+
+This section of Arcellas documentation provides information about the source code within the **Domain**, which defines
+the code functionality of Arcella.
 
 .. toctree::
    :maxdepth: 1
@@ -15,11 +19,3 @@ Domain
    :glob:
 
    Interface_*
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Traits
-   :glob:
-
-   Trait_*

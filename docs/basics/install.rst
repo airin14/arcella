@@ -4,28 +4,29 @@ Installation
 From GitHub
 ===========
 
-Launch a terminal or console and navigate to the webroot folder. Clone the Arcella repository from https://github.com/nplhse/Arcella to a folder in the webroot of your server, e.g. ~/webroot/arcella.
+1. Launch a terminal or console and navigate to the webroot folder. Clone the Arcella repository from
+   https://github.com/nplhse/Arcella to a folder in the webroot of your server, e.g. ~/webroot/arcella.
 
 .. code-block:: bash
 
     cd ~/webroot
     git clone https://github.com/nplhse/Arcella.git
 
-Install the vendor bundles by using Composer:
+2. Install the vendor bundles by using Composer:
 
 .. code-block:: bash
 
     cd ~/webroot/arcella
     composer install
 
-Setup the database
+3. Setup the database
 
 .. code-block:: bash
 
     php bin/console doctrine:database:create
     php bin/console doctrine:schema:create
 
-And finally you might want to populate the database with some (fake) data, but this is an totally optional step
+4. And finally you might want to populate the database with some (fake) data, but this is an totally optional step
 
 .. code-block:: bash
 

@@ -1,5 +1,6 @@
+=============
 Pull requests
-*************
+=============
 
 To make a long story short you should at first fork and install Arcella from this repo. Now you make sure all the tests
 pass. Make your changes to the code and add tests for your changes. If all the tests pass push to your fork and submit a

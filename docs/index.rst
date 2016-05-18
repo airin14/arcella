@@ -1,3 +1,4 @@
+===================================
 Welcome to Arcella's documentation!
 ===================================
 
@@ -28,8 +29,8 @@ The main documentation for Arcella is organized into some sections:
    :maxdepth: 2
    :caption: Concept Documentation
 
-   concept/components
    concept/architecture
+   concept/building_blocks
 
 
 .. _dev-docs:

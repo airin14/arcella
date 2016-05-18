@@ -1,8 +1,6 @@
-AppBundle/Controller/Default
-****************************
-
-Class DefaultController
-=======================
+==================
+Controller/Default
+==================
 
 .. phpautomodule::
    :filename: ../src/AppBundle/Controller/DefaultController.php

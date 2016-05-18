@@ -1,8 +1,6 @@
-AppBundle/AppBundle
-*******************
-
-Class AppBundle
-===============
+=========
+AppBundle
+=========
 
 .. phpautomodule::
    :filename: ../src/AppBundle/AppBundle.php

@@ -1,5 +1,6 @@
+=================
 How to contribute
-*****************
+=================
 
 Any contribution to Arcella is appreciated, whether it is related to fixing bugs, suggestions or improvements. Feel free
 to take your part in the development of Arcella!

@@ -1,8 +1,6 @@
-AppBundle/Repository/Dummy
-**************************
-
-Class User
-==========
+================
+Repository/Dummy
+================
 
 .. phpautomodule::
    :filename: ../src/AppBundle/Repository/DummyRepository.php
