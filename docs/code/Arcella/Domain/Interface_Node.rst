@@ -1,8 +1,8 @@
-==============
-Interface Node
-==============
+=============
+NodeInterface
+=============
 
 .. phpautomodule::
-   :filename: ../src/Arcella/Domain/Node.php
+   :filename: ../src/Arcella/Domain/NodeInterface.php
    :members:
    :undoc-members:

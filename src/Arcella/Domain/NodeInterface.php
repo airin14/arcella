@@ -10,15 +10,13 @@
 namespace Arcella\Domain;
 
 /**
- * Interface Node
- *
  * Nodes are the main structure that holds contents within Arcella, they consist of an numeric Id, a title and an array
  * containing the contents, where "text" is the default content. Also there are timestamps from the creation and the
  * last update included.
  *
  * @package Arcella\Domain
  */
-interface Node
+interface NodeInterface
 {
     /**
      * Returns the Id of the node.
@@ -38,6 +36,7 @@ interface Node
      * Updates the Title of the node and returns the changed node with the new title.
      *
      * @param string $title The new title for the node.
+     *
      * @return mixed The node with the new title.
      */
     public function setTitle(string $title);
@@ -53,6 +52,7 @@ interface Node
      * Updates the Slug of the node and returns the changed node with the new slug.
      *
      * @param string $slug The new slug for the node.
+     *
      * @return mixed The node with the new slug.
      */
     public function setSlug(string $slug);
@@ -68,6 +68,7 @@ interface Node
      * Sets Content of the node.
      *
      * @param array $content The new content for the node.
+     *
      * @return mixed The node with the new content.
      */
     public function setConcent(array $content);
