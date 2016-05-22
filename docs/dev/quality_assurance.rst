@@ -2,6 +2,20 @@
 Quality assurance
 =================
 
+Make use of Gulp
+================
+
+Of cause you can run the tests and validate the code manually, but there is a also more elegant way: Arcella supports
+`Gulp`_ with automates and enhances the workflow. And there are a lot of useful standard tasks included with Arcella.
+The most simple way is just to execute the default task and then gulp will run all tests, validate the code and watch
+if something changes. And if you make some changes to the code it will automatically run all the tests and validate all
+the code again. Pretty awsome, isn't it?
+
+.. code-block:: bash
+
+    cd ~/webroot/arcella
+    gulp
+
 Run the tests
 =============
 
@@ -30,3 +44,6 @@ following command:
 
 .. code-block:: bash
     php vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
+
+
+.. _Gulp: http://gulpjs.com/

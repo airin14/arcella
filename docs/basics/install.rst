@@ -26,7 +26,13 @@ From GitHub
     php bin/console doctrine:database:create
     php bin/console doctrine:schema:create
 
-4. And finally you might want to populate the database with some (fake) data, but this is an totally optional step
+4. Install all the node bundles by using npm
+
+.. code-block:: bash
+
+    npm install
+
+5. And finally you might want to populate the database with some (fake) data, but this is an totally optional step
 
 .. code-block:: bash
 
