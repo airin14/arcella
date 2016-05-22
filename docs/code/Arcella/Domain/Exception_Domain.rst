@@ -3,6 +3,6 @@ Domain Exception
 ================
 
 .. phpautomodule::
-   :filename: ../src/Arcella/Domain/Entity/Node.php
+   :filename: ../src/Arcella/Domain/Exception/DomainException.php
    :members:
    :undoc-members:

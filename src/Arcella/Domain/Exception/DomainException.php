@@ -16,5 +16,4 @@ namespace Arcella\Domain\Exception;
  */
 class DomainException extends \Exception
 {
-
 }
