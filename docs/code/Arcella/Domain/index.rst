@@ -18,3 +18,10 @@ the code functionality of Arcella.
    :glob:
 
    Exception_*
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Repositories
+   :glob:
+
+   Repository_*
