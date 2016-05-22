@@ -7,15 +7,14 @@ the code functionality of Arcella.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Classes
+   :caption: Entities
    :glob:
 
-   Class_*
-
+   Entity_*
 
 .. toctree::
    :maxdepth: 1
-   :caption: Interfaces
+   :caption: Exceptions
    :glob:
 
-   Interface_*
+   Exception_*
