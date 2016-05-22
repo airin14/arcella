@@ -25,3 +25,10 @@ the code functionality of Arcella.
    :glob:
 
    Repository_*
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Additional classes
+   :glob:
+
+   Class_*
