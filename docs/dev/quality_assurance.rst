@@ -33,7 +33,7 @@ Or do the same thing with Gulp:
 .. code-block:: bash
 
     cd ~/webroot/arcella
-    gulp tests
+    gulp test
 
 
 Validate the code
