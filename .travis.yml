@@ -30,7 +30,7 @@ before_script:
   - bin/console hautelook_alice:doctrine:fixtures:load --no-interaction
 
 script:
-  - vendor/bin/phpunit -v
+  - vendor/bin/phpunit -v --coverage-text
   - vendor/bin/phpcs src -v --standard=Symfony2
 
 after_script:

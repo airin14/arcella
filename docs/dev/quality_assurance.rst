@@ -16,6 +16,7 @@ the code again. Pretty awsome, isn't it?
     cd ~/webroot/arcella
     gulp
 
+
 Run the tests
 =============
 
@@ -26,6 +27,13 @@ As Arcella uses PHPUnit for testing it's quite easy to run the tests. Just navig
 
     cd ~/webroot/arcella
     php vendor/bin/phpunit
+
+Or do the same thing with Gulp:
+
+.. code-block:: bash
+
+    cd ~/webroot/arcella
+    gulp tests
 
 
 Validate the code
@@ -38,6 +46,13 @@ detects violations to these coding standards.
 
     cd ~/webroot/arcella
     php vendor/bin/phpcs src -v --standard=Symfony2
+
+Or make use of Gulp for this task:
+
+.. code-block:: bash
+
+    cd ~/webroot/arcella
+    gulp validate
 
 If this command fails with an error, saying that the Symfony2 coding standard is not available than just add it with the
 following command:
