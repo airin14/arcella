@@ -12,7 +12,6 @@ gulp.task('coverage', function () {
             './vendor/bin/phpunit',
             {
                 debug: false,
-                configurationFile: './phpunit.xml',
                 coverageText: './var/build/coverage'
             }
         )).on('error', errorHandler);
@@ -26,7 +25,6 @@ gulp.task('test', function () {
             'vendor/bin/phpunit',
             {
                 debug: false,
-                configurationFile: 'phpunit.xml'
             }
         )).on('error', errorHandler);
 })
