@@ -1,5 +1,9 @@
+=========
 AppBundle
-*********
+=========
+
+This section of Arcellas documentation provides information about the source code of the **AppBundle**, which is a demo
+bundle that is included within the standard edition of the symfony framework.
 
 .. toctree::
    :maxdepth: 1
@@ -11,15 +15,7 @@ AppBundle
 
 .. toctree::
    :maxdepth: 1
-   :caption: Interface
+   :caption: Interfaces
    :glob:
 
    Interface_*
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Trait
-   :glob:
-
-   Trait_*

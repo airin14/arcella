@@ -1,0 +1,32 @@
+{
+  "name": "arcella",
+  "version": "0.0.1",
+  "description": "Yet another symfony3 content management system",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nplhse/arcella.git"
+  },
+  "keywords": [
+    "cms",
+    "symfony3"
+  ],
+  "author": "nplhse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nplhse/arcella/issues"
+  },
+  "homepage": "https://github.com/nplhse/arcella#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.2.2",
+    "gulp-phpcs": "^1.1.1",
+    "gulp-phpunit": "^0.14.0"
+  }
+}
