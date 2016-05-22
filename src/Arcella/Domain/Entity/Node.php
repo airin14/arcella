@@ -9,6 +9,8 @@
 
 namespace Arcella\Domain\Entity;
 
+use Symfony\Component\PropertyAccess\Exception\NoSuchIndexException;
+
 /**
  * Nodes are the main structure that holds contents within Arcella, they consist of an numeric Id, a title and an array
  * containing the contents, where "text" is the default content. Also there are timestamps from the creation and the
@@ -54,7 +56,8 @@ class Node
      *
      * @return integer Id of the node.
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -63,7 +66,8 @@ class Node
      *
      * @return string Title of the node.
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
@@ -72,7 +76,8 @@ class Node
      *
      * @return string Slug of the node.
      */
-    public function getSlug() {
+    public function getSlug()
+    {
         return $this->slug;
     }
 
@@ -83,11 +88,11 @@ class Node
      *
      * @return array All the contents inside a associated array, with "text" as default.
      */
-    public function getContent($key = 'text') {
-        if (isset($key))
-        {
+    public function getContent($key = null)
+    {
+        if (isset($key)) {
             if (!array_key_exists($key, $this->content)) {
-                return $this->content[$key];
+                throw new NoSuchIndexException('No such $key in $this->content');
             }
 
             return $this->content[$key];
@@ -101,7 +106,8 @@ class Node
      *
      * @return integer Timestamp of the nodes creation.
      */
-    public function getCreated() {
+    public function getCreated()
+    {
         return $this->createdAt;
     }
 
@@ -110,7 +116,8 @@ class Node
      *
      * @return integer Timestamp of the nodes last update.
      */
-    public function getUpdated() {
+    public function getUpdated()
+    {
         return $this->updatedAt;
     }
 }
