@@ -46,7 +46,7 @@ gulp.task('watch', function () {
         console.log('File '+event.path+' has been '+event.type);
     };
 
-    gulp.watch(paths.php, ['test', 'checkstyle'])
+    gulp.watch(paths.php, ['test', 'validate'])
         .on('change', onChange);
 });
 
