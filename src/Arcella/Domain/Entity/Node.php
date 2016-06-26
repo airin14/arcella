@@ -36,9 +36,14 @@ class Node
     protected $slug;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $content;
+    protected $fields;
+
+    /**
+     * @var mixed
+     */
+    protected $fieldset;
 
     /**
      * @var timestamp
@@ -50,6 +55,20 @@ class Node
      */
     protected $updatedAt;
 
+    /**
+     * Node constructor.
+     *
+     * @param $id
+     * @param $title
+     * @param $slug
+     * @param $content
+     * @param $createdAt
+     * @param $updatedAt
+     */
+    private function __construct($id, $title, $slug, $fields, $fielset, $createdAt, $updatedAt)
+    {
+
+    }
 
     /**
      * Returns the Id of the node.
@@ -88,17 +107,17 @@ class Node
      *
      * @return array All the contents inside a associated array, with "text" as default.
      */
-    public function getContent($key = null)
+    public function getFields($key = null)
     {
         if (isset($key)) {
-            if (!array_key_exists($key, $this->content)) {
+            if (!array_key_exists($key, $this->fields)) {
                 throw new NoSuchIndexException('No such $key in $this->content');
             }
 
-            return $this->content[$key];
+            return $this->fields[$key];
         }
 
-        return $this->content;
+        return $this->fields;
     }
 
     /**
