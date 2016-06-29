@@ -27,7 +27,7 @@ before_script:
   - travis_retry vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
   - bin/console doctrine:database:create
   - bin/console doctrine:schema:create
-  - bin/console hautelook_alice:doctrine:fixtures:load --no-interaction
+  - bin/console doctrine:fixtures:load --no-interaction
 
 script:
   - vendor/bin/phpunit -v --coverage-text

@@ -39,7 +39,7 @@ However you should follow these simple guidelines for your contribution to be pr
 4. And finally you might want to populate the database with some (fake) data, but this is an totally optional step
  
     ```
-    $ php bin/console hautelook_alice:doctrine:fixtures:load
+    $ php bin/console doctrine:fixtures:load
     ```
 
 # Contributing

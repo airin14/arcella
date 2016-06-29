@@ -36,4 +36,4 @@ From GitHub
 
 .. code-block:: bash
 
-    php bin/console hautelook_alice:doctrine:fixtures:load
+    php bin/console doctrine:fixtures:load
