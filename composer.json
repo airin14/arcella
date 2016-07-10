@@ -35,8 +35,8 @@
         "phpunit/phpunit": "^5.3",
         "squizlabs/php_codesniffer": "^2.6",
         "escapestudios/symfony2-coding-standard": "^2.9",
-        "hautelook/alice-bundle": "^1.2",
-        "doctrine/data-fixtures": "^1.1"
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "nelmio/alice": "^2.1"
     },
     "scripts": {
         "post-install-cmd": [
