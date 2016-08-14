@@ -16,7 +16,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $name = "TestUser";
 
         $user = new User();
-        $user->setName = $name;
+        $user->setName($name);
 
         $this->assertEquals($name, $user->getName());
     }
