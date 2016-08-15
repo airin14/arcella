@@ -13,11 +13,41 @@ class UserTest extends \PHPUnit_Framework_TestCase
 {
     public function testSetUsername()
     {
-        $name = "TestUser";
+        $username = "TestUser";
 
         $user = new User();
-        $user->setName($name);
+        $user->setUsername($username);
 
-        $this->assertEquals($name, $user->getName());
+        $this->assertEquals($username, $user->getUsername());
+    }
+
+    public function testSetRoles()
+    {
+        $roles = "ROLE_USER";
+
+        $user = new User();
+        $user->setRoles($roles);
+
+        $this->assertEquals($roles, $user->getRoles());
+    }
+
+    public function testSetPassword()
+    {
+        $password = "foobar";
+
+        $user = new User();
+        $user->setPassword($password);
+
+        $this->assertEquals($password, $user->getPassword());
+    }
+
+    public function testSetSalt()
+    {
+        $salt = "salt";
+
+        $user = new User();
+        $user->setSalt($salt);
+
+        $this->assertEquals($salt, $user->getSalt());
     }
 }
