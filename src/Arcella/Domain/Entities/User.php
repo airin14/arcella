@@ -9,7 +9,10 @@
 
 namespace Arcella\Domain\Entities;
 
-
+/**
+ * Class User
+ * @package Arcella\Domain\Entities
+ */
 class User
 {
     private $name;
@@ -29,5 +32,4 @@ class User
     {
         $this->name = $name;
     }
-    
 }
