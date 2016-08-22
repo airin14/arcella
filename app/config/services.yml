@@ -4,6 +4,17 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    register_user_handler:
+        class: Arcella\Application\Handlers\RegisterUserHandler
+        tags:
+            - { name: command_handler, handles: Arcella\Application\Commands\RegisterUser }
+
+    arcella.userbundle.doctrine.hash_password_listener:
+        class: Arcella\UserBundle\Doctrine\HashPasswordListener
+        autowire: true
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    arcella.security.login_form_authenticator:
+        class: Arcella\UserBundle\Security\LoginFormAuthenticator
+        autowire: true

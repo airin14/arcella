@@ -7,33 +7,33 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\Domain\Entities;
+namespace Arcella\Domain\Entity;
 
 /**
  * Class User
- * @package Arcella\Domain\Entities
+ * @package Arcella\Domain\Entity
  */
 class User
 {
     /**
      * @var
      */
-    private $username;
+    protected $username;
 
     /**
      * @var
      */
-    private $roles;
+    protected $roles = array();
 
     /**
      * @var
      */
-    private $password;
+    protected $password;
 
     /**
      * @var
      */
-    private $salt;
+    protected $salt;
 
     /**
      * @return mixed
@@ -56,7 +56,11 @@ class User
      */
     public function getRoles()
     {
-        return $this->roles;
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
     }
 
     /**

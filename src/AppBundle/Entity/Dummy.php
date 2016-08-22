@@ -35,7 +35,6 @@ class Dummy
      */
     private $name;
 
-
     /**
      * Get id
      *
