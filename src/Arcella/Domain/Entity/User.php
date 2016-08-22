@@ -56,11 +56,11 @@ class User
      */
     public function getRoles()
     {
-        if (!in_array('ROLE_USER', $roles)) {
-            $roles[] = 'ROLE_USER';
+        if (!in_array('ROLE_USER', $this->roles)) {
+            $this->roles[] = 'ROLE_USER';
         }
 
-        return $roles;
+        return $this->roles;
     }
 
     /**

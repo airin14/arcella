@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\Domain\Entities;
+namespace Arcella\Domain\Entity;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,7 +23,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function testSetRoles()
     {
-        $roles = "ROLE_USER";
+        $roles = array('ROLE_ADMIN', 'ROLE_USER');
 
         $user = new User();
         $user->setRoles($roles);

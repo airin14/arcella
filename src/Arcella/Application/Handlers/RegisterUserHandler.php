@@ -9,7 +9,7 @@
 
 namespace Arcella\Application\Handlers;
 
-use Arcella\Domain\Entities\User;
+use Arcella\Domain\Entity\User;
 use Arcella\Application\Commands\RegisterUser;
 
 /**
