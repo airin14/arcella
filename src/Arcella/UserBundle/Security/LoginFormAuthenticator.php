@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the Arcella package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Arcella\UserBundle\Security;
 
 use Arcella\UserBundle\Form\LoginForm;
@@ -15,17 +22,34 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 
 /**
  * Class LoginFormAuthenticator
+ *
  * @package Arcella\UserBundle\Security
  */
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
+    /**
+     * @var EntityManager
+     */
     private $em;
+
+    /**
+     * @var FormFactoryInterface
+     */
     private $formFactory;
+
+    /**
+     * @var RouterInterface
+     */
     private $router;
+
+    /**
+     * @var UserPasswordEncoder
+     */
     private $passwordEncoder;
 
     /**
      * LoginFormAuthenticator constructor.
+     *
      * @param FormFactoryInterface $formFactory
      * @param EntityManager        $em
      * @param RouterInterface      $router
@@ -40,6 +64,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
+     * Get the credentials to be used in this login.
+     *
      * @param Request $request
      * @return mixed|null
      */
@@ -65,6 +91,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
+     * Get the user entity.
+     *
      * @param mixed                 $credentials
      * @param UserProviderInterface $userProvider
      * @return null|object
@@ -78,6 +106,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
+     * Checking if all the credentials are correct.
+     *
      * @param mixed         $credentials
      * @param UserInterface $user
      * @return bool
@@ -94,6 +124,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
+     * Get the URL to the UserController:loginAction
+     *
      * @return string
      */
     protected function getLoginUrl()
@@ -102,6 +134,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
+     * Get the URL where the user gets redirected after a successful login.
+     *
      * @return string
      */
     protected function getDefaultSuccessRedirectUrl()

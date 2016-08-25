@@ -16,11 +16,16 @@ use Nelmio\Alice\Fixtures;
 
 /**
  * Class LoadFixtures
+ *
+ * Implements all necessary logic to load some fixtures for the app.
+ *
  * @package Arcella\UserBundle\DataFixtures\ORM
  */
 class LoadFixtures implements FixtureInterface
 {
     /**
+     * Loads fixtures for the UserBundle
+     *
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)

@@ -24,6 +24,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User extends BaseUser implements UserInterface
 {
     /**
+     * Auto-generated ID of the user.
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
@@ -31,6 +33,8 @@ class User extends BaseUser implements UserInterface
     protected $id;
 
      /**
+      * The e-mail adress of the user.
+      *
       * @Assert\NotBlank()
       * @Assert\Email()
       * @ORM\Column(type="string", unique=true)
@@ -38,14 +42,14 @@ class User extends BaseUser implements UserInterface
     protected $email;
 
     /**
-     * The encoded password
+     * The encoded password of the user.
      *
      * @ORM\Column(type="string")
      */
     protected $password;
 
     /**
-     * A non-persisted field that's used to create the encoded password.
+     * A non-persisted field that's used to create the users encoded password.
      *
      * @Assert\NotBlank(groups={"Registration"})
      * @var string
@@ -53,7 +57,7 @@ class User extends BaseUser implements UserInterface
     protected $plainPassword;
 
     /**
-     *
+     * Erase all credentials from the entity for security purposes.
      */
     public function eraseCredentials()
     {
@@ -69,6 +73,8 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
+     * Returns the $email of the entity.
+     *
      * @return mixed
      */
     public function getEmail()
@@ -77,6 +83,8 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
+     * Set the $email of the entity.
+     *
      * @param string $email
      */
     public function setEmail($email)
@@ -85,7 +93,9 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return array
+     * Returns the $roles of the entity, while making sure it at least contains ROLE_User.
+     *
+     * @return array The roles of the user entity.
      */
     public function getRoles()
     {
@@ -100,7 +110,9 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @return string
+     * Returns the $plainPassword of the entity.
+     *
+     * @return string plainPassword
      */
     public function getPlainPassword()
     {
@@ -108,6 +120,8 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
+     * Set the $plainPassword of the entity.
+     *
      * @param string $plainPassword
      */
     public function setPlainPassword($plainPassword)

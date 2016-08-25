@@ -20,11 +20,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class UserRegistrationForm
+ *
+ * The Form used for registration of new users.
+ *
  * @package Arcella\UserBundle\Form
  */
 class UserRegistrationForm extends AbstractType
 {
     /**
+     * Building the actual Form.
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
@@ -38,6 +43,8 @@ class UserRegistrationForm extends AbstractType
     }
 
     /**
+     * Configuration of the Form.
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)

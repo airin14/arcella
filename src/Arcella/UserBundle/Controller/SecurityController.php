@@ -27,7 +27,6 @@ class SecurityController extends Controller
      * Manages the login of users.
      *
      * @Route("/login", name="security_login")
-     *
      * @return Response The response to be rendered
      */
     public function loginAction()
@@ -58,7 +57,6 @@ class SecurityController extends Controller
      * implemented by Symfony itself.)
      *
      * @Route("/logout", name="security_logout")
-     *
      * @throws \Exception When reached, because this is implemented by Symfony itself.
      */
     public function logoutAction()

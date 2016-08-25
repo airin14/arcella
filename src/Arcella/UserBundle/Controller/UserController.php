@@ -26,8 +26,11 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
     /**
+     * Manages the registration of users.
+     *
      * @Route("/register", name="user_register")
      * @param Request $request
+     *
      * @return Response The response to be rendered
      */
     public function registerAction(Request $request)

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the Arcella package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Arcella\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -9,11 +16,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class LoginForm
+ *
+ * This Form is used during the login process.
+ *
  * @package Arcella\UserBundle\Form
  */
 class LoginForm extends AbstractType
 {
     /**
+     * Building the actual Form.
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */

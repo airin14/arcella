@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityRepository;
 
 /**
  * Class DoctrineORMUserRepository
+ *
  * @package Arcella\UserBundle\Repository
  */
 class DoctrineORMUserRepository extends EntityRepository implements UserRepositoryInterface
