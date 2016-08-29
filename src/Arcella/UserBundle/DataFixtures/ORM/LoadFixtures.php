@@ -30,6 +30,16 @@ class LoadFixtures implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $objects = Fixtures::load(__DIR__.'/users.yml', $manager);
+        $objects = Fixtures::load(__DIR__.'/users.yml', $manager, ['providers' => [$this]]);
+    }
+
+    /**
+     * Just add the ROLE_USER role to a user
+     *
+     * @return array Containing only the ROLE_USER role
+     */
+    public function roleUser()
+    {
+        return array("ROLE_USER");
     }
 }

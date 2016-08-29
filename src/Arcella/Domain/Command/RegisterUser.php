@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\Application\Commands;
+namespace Arcella\Domain\Command;
 
 /**
  * Class RegisterUser
@@ -19,6 +19,11 @@ class RegisterUser
      * @var string The new users name
      */
     private $username;
+
+    /**
+     * @var string The new users email address
+     */
+    private $email;
 
     /**
      * @var array The new users roles
@@ -38,13 +43,15 @@ class RegisterUser
     /**
      * RegisterUser constructor.
      * @param string $username The new users name
-     * @param array  $roles    The new users roles
+     * @param string $email The new users email address
+     * @param array $roles The new users roles
      * @param string $password The new users password (in plaintext)
-     * @param string $salt     The new users salt
+     * @param string $salt The new users salt
      */
-    public function __construct($username, $roles, $password, $salt)
+    public function __construct($username, $email, $roles, $password, $salt)
     {
         $this->username = $username;
+        $this->email = $email;
         $this->roles = $roles;
         $this->password = $password;
         $this->salt = $salt;
@@ -56,6 +63,14 @@ class RegisterUser
     public function username()
     {
         return $this->username;
+    }
+
+    /**
+     * @return string The new users email address
+     */
+    public function email()
+    {
+        return $this->email;
     }
 
     /**

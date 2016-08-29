@@ -10,6 +10,7 @@
 namespace Arcella\UserBundle\Repository;
 
 use Arcella\Domain\Repository\UserRepositoryInterface;
+use Arcella\UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -19,5 +20,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class DoctrineORMUserRepository extends EntityRepository implements UserRepositoryInterface
 {
-
+    /**
+     * Add a User entity to the repository.
+     *
+     * @param User $user The entity to be added.
+     */
+    public function add(User $user)
+    {
+        $this->_em->persist($user);
+        $this->_em->flush();
+    }
 }

@@ -6,14 +6,21 @@ parameters:
 services:
     register_user_handler:
         class: Arcella\Application\Handlers\RegisterUserHandler
+        arguments: ['@arcella.userbundle.user_repository']
         tags:
-            - { name: command_handler, handles: Arcella\Application\Commands\RegisterUser }
+            - { name: command_handler, handles: Arcella\Domain\Command\RegisterUser }
 
     arcella.userbundle.doctrine.hash_password_listener:
         class: Arcella\UserBundle\Doctrine\HashPasswordListener
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }
+
+    arcella.userbundle.user_repository:
+        class: Arcella\UserBundle\Repository\DoctrineORMUserRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Arcella\UserBundle\Entity\User
 
     arcella.security.login_form_authenticator:
         class: Arcella\UserBundle\Security\LoginFormAuthenticator

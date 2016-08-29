@@ -23,6 +23,11 @@ class User
     /**
      * @var
      */
+    protected $email;
+
+    /**
+     * @var
+     */
     protected $roles = array();
 
     /**
@@ -52,14 +57,30 @@ class User
     }
 
     /**
+     * Returns the $email of the entity.
+     *
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the $email of the entity.
+     *
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
      * @return mixed
      */
     public function getRoles()
     {
-        if (!in_array('ROLE_USER', $this->roles)) {
-            $this->roles[] = 'ROLE_USER';
-        }
-
         return $this->roles;
     }
 

@@ -9,7 +9,7 @@
 
 namespace Arcella\UserBundle\Controller;
 
-use Arcella\Application\Commands\RegisterUser;
+use Arcella\Domain\Command\RegisterUser;
 use Arcella\UserBundle\Entity\User;
 use Arcella\UserBundle\Form\UserRegistrationForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,19 +35,17 @@ class UserController extends Controller
      */
     public function registerAction(Request $request)
     {
-        //return $this->get('command_bus')->handle($command);
-
         $form = $this->createForm(UserRegistrationForm::class);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            /** @var User $user */
-            $user = $form->getData();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            dump($form->getData());
+
+            $command = new RegisterUser($user->getUsername(), $user->getEmail(), $user->getPlainPassword(), $user->getRoles(), $user->getPassword(), "salt");
+
+            $this->get('command_bus')->handle($command);
 
             $this->addFlash('success', 'Welcome '.$user->getEmail());
 

@@ -19,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="Arcella\UserBundle\Repository\DoctrineORMUserRepository")
  * @UniqueEntity(fields={"email"}, message="It looks like your already have an account!")
  */
 class User extends BaseUser implements UserInterface
@@ -32,14 +33,36 @@ class User extends BaseUser implements UserInterface
      */
     protected $id;
 
+    /**
+     * The name of the user.
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", unique=true)
+     */
+    protected $username;
+
      /**
-      * The e-mail adress of the user.
+      * The email address of the user.
       *
       * @Assert\NotBlank()
       * @Assert\Email()
       * @ORM\Column(type="string", unique=true)
       */
     protected $email;
+
+    /**
+     * The roles of the user.
+     *
+     * @ORM\Column(type="array")
+     */
+    protected $roles;
+
+    /**
+     * The users custom salt for the password.
+     *
+     * @ORM\Column(type="string")
+     */
+    protected $salt;
 
     /**
      * The encoded password of the user.
@@ -62,51 +85,6 @@ class User extends BaseUser implements UserInterface
     public function eraseCredentials()
     {
         $this->plainPassword = null;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Returns the $email of the entity.
-     *
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set the $email of the entity.
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * Returns the $roles of the entity, while making sure it at least contains ROLE_User.
-     *
-     * @return array The roles of the user entity.
-     */
-    public function getRoles()
-    {
-        $roles = array('');
-
-        // give everyone ROLE_USER!
-        if (!in_array('ROLE_USER', $roles)) {
-            $roles[] = 'ROLE_USER';
-        }
-
-        return $roles;
     }
 
     /**

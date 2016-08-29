@@ -9,8 +9,9 @@
 
 namespace Arcella\Application\Handlers;
 
-use Arcella\Domain\Entity\User;
-use Arcella\Application\Commands\RegisterUser;
+use Arcella\UserBundle\Entity\User;
+use Arcella\Domain\Command\RegisterUser;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * Class RegisterUserHandler
@@ -19,14 +20,34 @@ use Arcella\Application\Commands\RegisterUser;
 class RegisterUserHandler
 {
     /**
+     * @var $userRepository UserRepository
+     */
+    private $userRepository;
+
+    /**
+     * RegisterUserHandler constructor.
+     *
+     * @param EntityRepository $userRepository
+     */
+    public function __construct(EntityRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+
+        //parent::__construct();
+    }
+
+    /**
      * @param RegisterUser $command
      */
     public function handle(RegisterUser $command)
     {
         $user = new User();
         $user->setUsername($command->username());
+        $user->setEmail($command->email());
         $user->setRoles($command->roles());
-        $user->setPassword($command->password());
-        $user->setSalt($command->salt());
+        $user->setPlainPassword($command->password());
+        $user->setSalt("salt");
+
+        $this->userRepository->add($user);
     }
 }
