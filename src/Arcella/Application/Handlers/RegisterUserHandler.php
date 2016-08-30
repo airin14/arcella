@@ -12,6 +12,8 @@ namespace Arcella\Application\Handlers;
 use Arcella\UserBundle\Entity\User;
 use Arcella\Domain\Command\RegisterUser;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
  * Class RegisterUserHandler
@@ -20,20 +22,25 @@ use Doctrine\ORM\EntityRepository;
 class RegisterUserHandler
 {
     /**
-     * @var $userRepository UserRepository
+     * @var $userRepository EntityRepository
      */
     private $userRepository;
 
     /**
+     * @var Validator
+     */
+    private $validator;
+
+    /**
      * RegisterUserHandler constructor.
      *
-     * @param EntityRepository $userRepository
+     * @param ValidatorInterface $validator
+     * @param EntityRepository   $userRepository
      */
-    public function __construct(EntityRepository $userRepository)
+    public function __construct(EntityRepository $userRepository, ValidatorInterface $validator)
     {
         $this->userRepository = $userRepository;
-
-        //parent::__construct();
+        $this->validator = $validator;
     }
 
     /**
@@ -41,13 +48,42 @@ class RegisterUserHandler
      */
     public function handle(RegisterUser $command)
     {
-        $user = new User();
-        $user->setUsername($command->username());
-        $user->setEmail($command->email());
-        $user->setRoles($command->roles());
-        $user->setPlainPassword($command->password());
-        $user->setSalt("salt");
+        $user = $command->user();
+
+        $errors = $this->validator->validate($user);
+
+        if (count($errors) > 0) {
+            /*
+             * Uses a __toString method on the $errors variable which is a
+             * ConstraintViolationList object. This gives us a nice string
+             * for debugging.
+             */
+            $errorsString = (string) $errors;
+
+            throw new ValidatorException($errorsString);
+        }
+
+        $user->setRoles(array("ROLE_USER"));
+
+        $user->setSalt($this->generateSalt(16));
 
         $this->userRepository->add($user);
+    }
+
+    /**
+     * @param $length
+     * @param string $keyspace
+     * @return string
+     */
+    private function generateSalt($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    {
+        $str = '';
+        $max = mb_strlen($keyspace, '8bit') - 1;
+
+        for ($i = 0; $i < $length; ++$i) {
+            $str .= $keyspace[random_int(0, $max)];
+        }
+
+        return $str;
     }
 }

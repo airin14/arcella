@@ -41,9 +41,9 @@ class UserController extends Controller
 
         if ($form->isValid()) {
 
-            dump($form->getData());
+            $user = $form->getData();
 
-            $command = new RegisterUser($user->getUsername(), $user->getEmail(), $user->getPlainPassword(), $user->getRoles(), $user->getPassword(), "salt");
+            $command = new RegisterUser($user);
 
             $this->get('command_bus')->handle($command);
 
