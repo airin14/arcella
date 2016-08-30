@@ -40,7 +40,6 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
             $user = $form->getData();
 
             $command = new RegisterUser($user);

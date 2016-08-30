@@ -27,15 +27,15 @@ class RegisterUserHandler
     private $userRepository;
 
     /**
-     * @var Validator
+     * @var $validator Validator
      */
     private $validator;
 
     /**
      * RegisterUserHandler constructor.
      *
-     * @param ValidatorInterface $validator
      * @param EntityRepository   $userRepository
+     * @param ValidatorInterface $validator
      */
     public function __construct(EntityRepository $userRepository, ValidatorInterface $validator)
     {
