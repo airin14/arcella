@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\Application\Handlers;
+namespace Arcella\Application\Handler;
 
 use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Event\UserRegisteredEvent;

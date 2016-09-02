@@ -50,4 +50,14 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($salt, $user->getSalt());
     }
+
+    public function testSetEmail()
+    {
+        $email = "foo@bar.tld";
+
+        $user = new User();
+        $user->setEmail($email);
+
+        $this->assertEquals($email, $user->getEmail());
+    }
 }
