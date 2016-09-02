@@ -6,7 +6,7 @@ parameters:
 services:
     register_user_handler:
         class: Arcella\Application\Handlers\RegisterUserHandler
-        arguments: ['@arcella.userbundle.user_repository', '@validator']
+        arguments: ['@arcella.userbundle.user_repository', '@validator', '%arcella.security.salt_length%', '%arcella.security.salt_keyspace%']
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\RegisterUser }
 

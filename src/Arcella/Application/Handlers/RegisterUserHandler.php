@@ -9,7 +9,6 @@
 
 namespace Arcella\Application\Handlers;
 
-use Arcella\UserBundle\Entity\User;
 use Arcella\Domain\Command\RegisterUser;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -32,15 +31,29 @@ class RegisterUserHandler
     private $validator;
 
     /**
+     * @var $saltLength int
+     */
+    private $saltLength;
+
+    /**
+     * @var $saltLeyspace string
+     */
+    private $saltKeyspace;
+
+    /**
      * RegisterUserHandler constructor.
      *
      * @param EntityRepository   $userRepository
      * @param ValidatorInterface $validator
+     * @param int                $saltLength
+     * @param string             $saltKeyspace
      */
-    public function __construct(EntityRepository $userRepository, ValidatorInterface $validator)
+    public function __construct(EntityRepository $userRepository, ValidatorInterface $validator, $saltLength, $saltKeyspace)
     {
         $this->userRepository = $userRepository;
         $this->validator = $validator;
+        $this->saltLength = $saltLength;
+        $this->saltKeyspace = $saltKeyspace;
     }
 
     /**
@@ -65,23 +78,21 @@ class RegisterUserHandler
 
         $user->setRoles(array("ROLE_USER"));
 
-        $user->setSalt($this->generateSalt(16));
+        $user->setSalt($this->generateSalt());
 
         $this->userRepository->add($user);
     }
 
     /**
-     * @param $length
-     * @param string $keyspace
      * @return string
      */
-    private function generateSalt($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    private function generateSalt()
     {
         $str = '';
-        $max = mb_strlen($keyspace, '8bit') - 1;
+        $max = mb_strlen($this->saltKeyspace, '8bit') - 1;
 
-        for ($i = 0; $i < $length; ++$i) {
-            $str .= $keyspace[random_int(0, $max)];
+        for ($i = 0; $i < $this->saltLength; ++$i) {
+            $str .= $this->saltKeyspace[random_int(0, $max)];
         }
 
         return $str;
