@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
-            new Arcella\UserBundle\UserBundle(),
+            new Arcella\UserBundle\ArcellaUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

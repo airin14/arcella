@@ -15,6 +15,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * Class UserBundle
  * @package Arcella\UserBundle
  */
-class UserBundle extends Bundle
+class ArcellaUserBundle extends Bundle
 {
 }
