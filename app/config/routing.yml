@@ -3,5 +3,5 @@ app:
     type:     annotation
 
 arcella_userbundle:
-    resource: "@UserBundle/Controller/"
+    resource: "@ArcellaUserBundle/Controller/"
     type:     annotation
