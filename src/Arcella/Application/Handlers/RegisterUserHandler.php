@@ -10,7 +10,9 @@
 namespace Arcella\Application\Handlers;
 
 use Arcella\Domain\Command\RegisterUser;
+use Arcella\Domain\Event\UserRegisteredEvent;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
@@ -31,6 +33,11 @@ class RegisterUserHandler
     private $validator;
 
     /**
+     * @var $eventDispatcher EventDispatcher
+     */
+    private $eventDispatcher;
+
+    /**
      * @var $saltLength int
      */
     private $saltLength;
@@ -45,13 +52,15 @@ class RegisterUserHandler
      *
      * @param EntityRepository   $userRepository
      * @param ValidatorInterface $validator
+     * @param EventDispatcher    $eventDispatcher
      * @param int                $saltLength
      * @param string             $saltKeyspace
      */
-    public function __construct(EntityRepository $userRepository, ValidatorInterface $validator, $saltLength, $saltKeyspace)
+    public function __construct(EntityRepository $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, $saltLength, $saltKeyspace)
     {
         $this->userRepository = $userRepository;
         $this->validator = $validator;
+        $this->eventDispatcher = $eventDispatcher;
         $this->saltLength = $saltLength;
         $this->saltKeyspace = $saltKeyspace;
     }
@@ -81,6 +90,9 @@ class RegisterUserHandler
         $user->setSalt($this->generateSalt());
 
         $this->userRepository->add($user);
+
+        $event = new UserRegisteredEvent($user);
+        $this->eventDispatcher->dispatch(UserRegisteredEvent::NAME, $event);
     }
 
     /**
