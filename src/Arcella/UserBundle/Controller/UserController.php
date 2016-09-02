@@ -40,21 +40,24 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $user = $form->getData();
+            try {
+                $user = $form->getData();
 
-            $command = new RegisterUser($user);
+                $command = new RegisterUser($user);
+                $this->get('command_bus')->handle($command);
 
-            $this->get('command_bus')->handle($command);
+                $this->addFlash('success', 'Welcome '.$user->getEmail());
 
-            $this->addFlash('success', 'Welcome '.$user->getEmail());
-
-            return $this->get('security.authentication.guard_handler')
-                ->authenticateUserAndHandleSuccess(
-                    $user,
-                    $request,
-                    $this->get('arcella.security.login_form_authenticator'),
-                    'main'
-                );
+                return $this->get('security.authentication.guard_handler')
+                    ->authenticateUserAndHandleSuccess(
+                        $user,
+                        $request,
+                        $this->get('arcella.security.login_form_authenticator'),
+                        'main'
+                    );
+            } catch (\Exception $e) {
+                $this->addFlash('warning', $e->getMessage());
+            }
         }
 
         return $this->render('user/register.html.twig', [
