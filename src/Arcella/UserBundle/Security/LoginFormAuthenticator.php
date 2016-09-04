@@ -9,7 +9,7 @@
 
 namespace Arcella\UserBundle\Security;
 
-use Arcella\UserBundle\Form\LoginForm;
+use Arcella\UserBundle\Form\Type\LoginForm;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;

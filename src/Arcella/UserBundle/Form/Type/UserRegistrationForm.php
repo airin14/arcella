@@ -7,9 +7,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\UserBundle\Form;
+namespace Arcella\UserBundle\Form\Type;
 
-use Arcella\Application\Commands\RegisterUser;
 use Arcella\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;

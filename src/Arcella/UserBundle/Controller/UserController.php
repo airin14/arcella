@@ -10,8 +10,7 @@
 namespace Arcella\UserBundle\Controller;
 
 use Arcella\Domain\Command\RegisterUser;
-use Arcella\UserBundle\Entity\User;
-use Arcella\UserBundle\Form\UserRegistrationForm;
+use Arcella\UserBundle\Form\Type\UserRegistrationForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

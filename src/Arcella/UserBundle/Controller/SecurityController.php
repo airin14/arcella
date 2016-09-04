@@ -9,9 +9,9 @@
 
 namespace Arcella\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Arcella\UserBundle\Form\Type\LoginForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Arcella\UserBundle\Form\LoginForm;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
