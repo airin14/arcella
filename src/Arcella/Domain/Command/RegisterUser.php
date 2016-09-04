@@ -29,9 +29,9 @@ class RegisterUser
 
     /**
      * RegisterUser constructor.
-     * @param $username
-     * @param $email
-     * @param $password
+     * @param string $username
+     * @param string $email
+     * @param string $password
      */
     public function __construct($username, $email, $password)
     {
