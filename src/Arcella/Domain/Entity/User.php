@@ -12,38 +12,41 @@ namespace Arcella\Domain\Entity;
 use Arcella\Domain\Exception\DomainException;
 
 /**
- * Class User
+ * This class is an Entity and represents a User inside the Domain.
+ *
  * @package Arcella\Domain\Entity
  */
 class User
 {
     /**
-     * @var
+     * @var string $username The name of the user.
      */
     protected $username;
 
     /**
-     * @var
+     * @var string $email The email of the user.
      */
     protected $email;
 
     /**
-     * @var
+     * @var array $roles The roles of the user.
      */
     protected $roles = array();
 
     /**
-     * @var
+     * @var string $password The password of the user.
      */
     protected $password;
 
     /**
-     * @var
+     * @var string $salt The custom salt of the user.
      */
     protected $salt;
 
     /**
-     * @return mixed
+     * Returns the $username of the entity.
+     *
+     * @return string $username
      */
     public function getUsername()
     {
@@ -51,7 +54,9 @@ class User
     }
 
     /**
-     * @param mixed $username
+     * Set the $username of the entity.
+     *
+     * @param string $username
      */
     public function setUsername($username)
     {
@@ -61,7 +66,7 @@ class User
     /**
      * Returns the $email of the entity.
      *
-     * @return mixed
+     * @return string $email
      */
     public function getEmail()
     {
@@ -79,7 +84,9 @@ class User
     }
 
     /**
-     * @return mixed
+     * Returns the $roles of the entity.
+     *
+     * @return array $roles
      */
     public function getRoles()
     {
@@ -87,7 +94,11 @@ class User
     }
 
     /**
-     * @param mixed $roles
+     * Set the $roles of the entity. Please note that when using this function all previous roles of this entity will be
+     * overridden.
+     *
+     * @param array $roles
+     *
      * @throws DomainException If $roles is not an array
      */
     public function setRoles($roles)
@@ -100,7 +111,9 @@ class User
     }
 
     /**
-     * @return mixed
+     * Returns the $password of the entity.
+     *
+     * @return string $password
      */
     public function getPassword()
     {
@@ -108,7 +121,9 @@ class User
     }
 
     /**
-     * @param mixed $password
+     * Set the $password of the entity.
+     *
+     * @param string $password
      */
     public function setPassword($password)
     {
@@ -116,7 +131,9 @@ class User
     }
 
     /**
-     * @return mixed
+     * Returns the $salt of the entity.
+     *
+     * @return string $salt
      */
     public function getSalt()
     {
@@ -124,7 +141,9 @@ class User
     }
 
     /**
-     * @param mixed $salt
+     * Set the $salt of the entity.
+     *
+     * @param string $salt
      */
     public function setSalt($salt)
     {

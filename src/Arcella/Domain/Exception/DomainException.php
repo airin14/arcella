@@ -10,7 +10,7 @@
 namespace Arcella\Domain\Exception;
 
 /**
- * The Domain Exception is a general exception thrown just by domain objects.
+ * The Domain Exception is like a general exception thrown just by domain objects.
  *
  * @package Arcella\Domain\Exception
  */

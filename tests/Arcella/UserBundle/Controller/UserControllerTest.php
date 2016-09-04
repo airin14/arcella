@@ -9,6 +9,8 @@
 
 namespace Test\Arcella\UserBundle\Controller;
 
+use Nelmio\Alice\Fixtures;
+use Faker\Provider\Internet as FakerProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
@@ -36,7 +38,7 @@ class UserControllerTest extends WebTestCase
         // Fill in and submit the form
         $form = $crawler->filter('form[name=user_registration_form]')->form();
         $crawler = $this->client->submit($form, array(
-            'user_registration_form[username]' => 'foobar',
+            'user_registration_form[username]' => 'foo',
             'user_registration_form[email]' => 'foo@bar.com',
             'user_registration_form[plainPassword][first]' => 'arcella',
             'user_registration_form[plainPassword][second]' => 'arcella',

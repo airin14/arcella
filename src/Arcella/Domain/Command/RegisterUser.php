@@ -12,19 +12,21 @@ namespace Arcella\Domain\Command;
 use Arcella\Domain\Entity\User;
 
 /**
- * Class RegisterUser
- * @package Arcella\Application\Commands
+ * This class is a Command that is used to register a new User to the system.
+ *
+ * @package Arcella\Application\Command
  */
 class RegisterUser
 {
     /**
-     * @var string The new user
+     * @var string The new user entity.
      */
     private $user;
 
     /**
      * RegisterUser constructor.
-     * @param string $user The new user
+     *
+     * @param User $user The new user entity
      */
     public function __construct(User $user)
     {
@@ -32,7 +34,9 @@ class RegisterUser
     }
 
     /**
-     * @return string The new users name
+     * Returns the $user entity.
+     *
+     * @return string $user
      */
     public function user()
     {

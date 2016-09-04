@@ -10,7 +10,7 @@
 namespace Arcella\UserBundle\Repository;
 
 use Arcella\Domain\Repository\UserRepositoryInterface;
-use Arcella\UserBundle\Entity\User;
+use Arcella\Domain\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 /**

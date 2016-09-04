@@ -9,10 +9,19 @@
 
 namespace Arcella\Domain\Repository;
 
+use Arcella\Domain\Entity\User;
+
 /**
- * Interface UserRepository
+ * This is the Interface for the UserRepository
+ *
  * @package Arcella\Domain\Repository
  */
 interface UserRepositoryInterface
 {
+    /**
+     * Add a User entity to the repository.
+     *
+     * @param User $user The entity to be added.
+     */
+    public function add(User $user);
 }

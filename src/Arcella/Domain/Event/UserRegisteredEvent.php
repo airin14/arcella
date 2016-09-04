@@ -9,27 +9,29 @@
 
 namespace Arcella\Domain\Event;
 
-use Symfony\Component\EventDispatcher\Event;
 use Arcella\Domain\Entity\User;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserRegisteredEvent
+ * This class is an Event that is fired whenever a new User has been registered to the system.
+ *
  * @package Arcella\Domain\Event
  */
 class UserRegisteredEvent extends Event
 {
     /**
-     *
+     * @const NAME Caption of the event.
      */
     const NAME = 'user.registered';
 
     /**
-     * @var User
+     * @var User $user The newly created user.
      */
     protected $user;
 
     /**
      * UserRegisteredEvent constructor.
+     *
      * @param User $user
      */
     public function __construct(User $user)
@@ -38,7 +40,9 @@ class UserRegisteredEvent extends Event
     }
 
     /**
-     * @return User
+     * Returns the new $user entity.
+     *
+     * @return User $user
      */
     public function getUser()
     {
