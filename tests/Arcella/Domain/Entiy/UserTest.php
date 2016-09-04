@@ -7,57 +7,70 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\Domain\Entity;
+namespace Test\Arcella\Domain\Entity;
+
+use Arcella\Domain\Entity\User;
+use Arcella\Domain\Exception\DomainException;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
-    public function testSetUsername()
+    /**
+     * @var User $user
+     */
+    private $user;
+
+    public function setUp()
+    {
+        $this->user = new User();
+    }
+
+    public function testUsername()
     {
         $username = "TestUser";
+        $this->user->setUsername($username);
 
-        $user = new User();
-        $user->setUsername($username);
-
-        $this->assertEquals($username, $user->getUsername());
+        $this->assertEquals($username, $this->user->getUsername());
     }
 
-    public function testSetRoles()
+    public function testValidRoles()
     {
         $roles = array('ROLE_ADMIN', 'ROLE_USER');
+        $this->user->setRoles($roles);
 
-        $user = new User();
-        $user->setRoles($roles);
-
-        $this->assertEquals($roles, $user->getRoles());
+        $this->assertEquals($roles, $this->user->getRoles());
     }
 
-    public function testSetPassword()
+    public function testInvalidRoles()
+    {
+        try {
+            $roles = "IamNotAnArray";
+            $this->user->setRoles($roles);
+        } catch (DomainException $e) {
+            $this->assertEquals($e->getMessage(), "Roles must be an array");
+        }
+    }
+
+    public function testPassword()
     {
         $password = "foobar";
+        $this->user->setPassword($password);
 
-        $user = new User();
-        $user->setPassword($password);
-
-        $this->assertEquals($password, $user->getPassword());
+        $this->assertEquals($password, $this->user->getPassword());
     }
 
-    public function testSetSalt()
+    public function testSalt()
     {
         $salt = "salt";
+        $this->user->setSalt($salt);
 
-        $user = new User();
-        $user->setSalt($salt);
-
-        $this->assertEquals($salt, $user->getSalt());
+        $this->assertEquals($salt, $this->user->getSalt());
     }
 
-    public function testSetEmail()
+    public function testEmail()
     {
         $email = "foo@bar.tld";
+        $this->user->setEmail($email);
 
-        $user = new User();
-        $user->setEmail($email);
-
-        $this->assertEquals($email, $user->getEmail());
+        $this->assertEquals($email, $this->user->getEmail());
     }
 }

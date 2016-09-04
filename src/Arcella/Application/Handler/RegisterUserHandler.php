@@ -11,6 +11,7 @@ namespace Arcella\Application\Handler;
 
 use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Event\UserRegisteredEvent;
+use Arcella\Domain\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -50,13 +51,13 @@ class RegisterUserHandler
     /**
      * RegisterUserHandler constructor.
      *
-     * @param EntityRepository   $userRepository
-     * @param ValidatorInterface $validator
-     * @param EventDispatcher    $eventDispatcher
-     * @param int                $saltLength
-     * @param string             $saltKeyspace
+     * @param UserRepositoryInterface  $userRepository
+     * @param ValidatorInterface       $validator
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param int                      $saltLength
+     * @param string                   $saltKeyspace
      */
-    public function __construct(EntityRepository $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, $saltLength, $saltKeyspace)
+    public function __construct(UserRepositoryInterface $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, $saltLength, $saltKeyspace)
     {
         $this->userRepository = $userRepository;
         $this->validator = $validator;
@@ -96,6 +97,7 @@ class RegisterUserHandler
     }
 
     /**
+     * Borrowed from http://stackoverflow.com/questions/4356289/php-random-string-generator/31107425#31107425
      * @return string
      */
     private function generateSalt()

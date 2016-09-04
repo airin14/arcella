@@ -8,6 +8,7 @@
  */
 
 namespace Arcella\Domain\Entity;
+use Arcella\Domain\Exception\DomainException;
 
 /**
  * Class User
@@ -86,9 +87,15 @@ class User
 
     /**
      * @param mixed $roles
+     * @throws DomainException If $roles is not an array
      */
     public function setRoles($roles)
     {
+        if (!is_array($roles))
+        {
+            throw new DomainException("Roles must be an array");
+        }
+
         $this->roles = $roles;
     }
 
