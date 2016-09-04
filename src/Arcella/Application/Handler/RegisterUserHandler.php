@@ -12,6 +12,7 @@ namespace Arcella\Application\Handler;
 use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Event\UserRegisteredEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
+use Arcella\UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -74,7 +75,13 @@ class RegisterUserHandler
      */
     public function handle(RegisterUser $command)
     {
-        $user = $command->user();
+        $user = new User();
+
+        $user->setUsername($command->username());
+        $user->setEmail($command->email());
+        $user->setPlainPassword($command->password());
+        $user->setRoles(array("ROLE_USER"));
+        $user->setSalt($this->generateSalt());
 
         // Validate the user entity
         $errors = $this->validator->validate($user);
@@ -88,12 +95,6 @@ class RegisterUserHandler
 
             throw new ValidatorException($errorsString);
         }
-
-        // Set default role for the new user
-        $user->setRoles(array("ROLE_USER"));
-
-        // Generate salt via internal function
-        $user->setSalt($this->generateSalt());
 
         // Add the user to the repository
         $this->userRepository->add($user);

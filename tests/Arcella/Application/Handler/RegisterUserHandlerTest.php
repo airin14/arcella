@@ -23,7 +23,7 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
 {
     public function testRegisterUserHandlerWithInvalidEntity()
     {
-        $command = new RegisterUser($this->createUserEntity());
+        $command = new RegisterUser("bar", "bar@foo.com", "arcella");
 
         try {
             $handler = $this->createHandler(false);
@@ -35,7 +35,7 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisterUserHandlerWithValidEntity()
     {
-        $command = new RegisterUser($this->createUserEntity());
+        $command = new RegisterUser("foo", "foo@bar.com", "arcella");
 
         $handler = $this->createHandler();
         $handler->handle($command);
@@ -71,15 +71,5 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $handler = new RegisterUserHandler($mockUserRepository, $stubValidator, $mockEventDispatcher, $salt_length, $salt_keyspace);
 
         return $handler;
-    }
-
-    private function createUserEntity()
-    {
-        $user = new User();
-        $user->setUsername("testuser");
-        $user->setEmail("foo@bar.com");
-        $user->setPassword("password");
-
-        return $user;
     }
 }

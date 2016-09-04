@@ -42,11 +42,16 @@ class UserController extends Controller
             try {
                 $user = $form->getData();
 
-                $command = new RegisterUser($user);
+                $command = new RegisterUser($user->getUsername(), $user->getEmail(), $user->getPlainPassword());
                 $this->get('command_bus')->handle($command);
 
                 $this->addFlash('success', 'Welcome '.$user->getEmail());
 
+                // Fetch the acutal new user from the database
+                $user = $this->getDoctrine()->getRepository('ArcellaUserBundle:User')
+                    ->findOneByUsername($command->username());
+
+                // Auto-login the new user
                 return $this->get('security.authentication.guard_handler')
                     ->authenticateUserAndHandleSuccess(
                         $user,

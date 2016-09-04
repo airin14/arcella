@@ -19,27 +19,50 @@ use Arcella\Domain\Entity\User;
 class RegisterUser
 {
     /**
-     * @var string The new user entity.
+     * @var string The new users name.
      */
-    private $user;
+    private $username;
+
+    private $email;
+
+    private $password;
 
     /**
      * RegisterUser constructor.
-     *
-     * @param User $user The new user entity
+     * @param $username
+     * @param $email
+     * @param $password
      */
-    public function __construct(User $user)
+    public function __construct($username, $email, $password)
     {
-        $this->user = $user;
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     /**
-     * Returns the $user entity.
+     * Returns the $username.
      *
-     * @return string $user
+     * @return string $username
      */
-    public function user()
+    public function username()
     {
-        return $this->user;
+        return $this->username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function email()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function password()
+    {
+        return $this->password;
     }
 }
