@@ -130,16 +130,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
-     * Get the URL to the UserController:loginAction
-     *
-     * @return string
-     */
-    protected function getLoginUrl()
-    {
-        return $this->router->generate('security_login');
-    }
-
-    /**
      * What happens after successful authentication?
      *
      * @param Request        $request
@@ -163,5 +153,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         return new RedirectResponse($targetPath);
+    }
+    
+    /**
+     * Get the URL to the UserController:loginAction
+     *
+     * @return string
+     */
+    protected function getLoginUrl()
+    {
+        return $this->router->generate('security_login');
     }
 }
