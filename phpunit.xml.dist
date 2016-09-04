@@ -27,6 +27,13 @@
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
             </exclude>
         </whitelist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>src</directory>
+            <exclude>
+                <directory>src/Arcella/*Bundle/DataFixtures</directory>
+                <directory>src/Arcella/*Bundle/DependencyInjection</directory>
+            </exclude>
+        </whitelist>
     </filter>
 
     <logging>
