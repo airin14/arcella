@@ -101,7 +101,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         $username = $credentials['_username'];
 
-        return $this->em->getRepository('UserBundle:User')
+        return $this->em->getRepository('ArcellaUserBundle:User')
             ->findOneBy(['username' => $username]);
     }
 
