@@ -154,7 +154,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         return new RedirectResponse($targetPath);
     }
-    
+
     /**
      * Get the URL to the UserController:loginAction
      *
