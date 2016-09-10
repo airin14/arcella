@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="global" datatype="plaintext" source-language="en" target-language="en">
+        <body>
+            <trans-unit id="link.login">
+                <source>link.login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="link.logout">
+                <source>link.logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="link.register">
+                <source>link.register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="navbar.logged_in_as">
+                <source>navbar.logged_in_as</source>
+                <target>Logged in as: %username%</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
