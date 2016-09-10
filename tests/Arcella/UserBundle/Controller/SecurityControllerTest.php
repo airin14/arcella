@@ -31,7 +31,7 @@ class SecurityControllerTest extends WebTestCase
     {
         // Check if the login form can be accessed
         $crawler = $this->client->request('GET', '/login');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Login!")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Login")')->count());
 
         // Fill in and submit the form
         $form = $crawler->filter('form[name=login_form]')->form();

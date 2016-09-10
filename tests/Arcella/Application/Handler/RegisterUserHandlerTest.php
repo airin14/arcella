@@ -11,7 +11,6 @@ namespace Tests\Arcella\Application\Handler;
 
 use Arcella\Application\Handler\RegisterUserHandler;
 use Arcella\Domain\Command\RegisterUser;
-use Arcella\Domain\Entity\User;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Exception\ValidatorException;
