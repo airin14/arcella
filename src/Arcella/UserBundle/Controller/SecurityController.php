@@ -10,6 +10,7 @@
 namespace Arcella\UserBundle\Controller;
 
 use Arcella\UserBundle\Form\Type\LoginForm;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,8 @@ class SecurityController extends Controller
      * Manages the login of users.
      *
      * @Route("/login", name="security_login")
+     * @Method({"POST","GET"})
+     *
      * @return Response The response to be rendered
      */
     public function loginAction()
@@ -57,6 +60,8 @@ class SecurityController extends Controller
      * implemented by Symfony itself.)
      *
      * @Route("/logout", name="security_logout")
+     * @Method("GET")
+     *
      * @throws \Exception When reached, because this is implemented by Symfony itself.
      */
     public function logoutAction()

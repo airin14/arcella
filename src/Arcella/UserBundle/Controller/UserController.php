@@ -11,6 +11,7 @@ namespace Arcella\UserBundle\Controller;
 
 use Arcella\Domain\Command\RegisterUser;
 use Arcella\UserBundle\Form\Type\UserRegistrationForm;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,6 +29,8 @@ class UserController extends Controller
      * Manages the registration of users.
      *
      * @Route("/register", name="user_register")
+     * @Method({"POST","GET"})
+     *
      * @param Request $request
      *
      * @return Response The response to be rendered

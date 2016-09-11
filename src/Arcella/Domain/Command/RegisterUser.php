@@ -9,8 +9,6 @@
 
 namespace Arcella\Domain\Command;
 
-use Arcella\Domain\Entity\User;
-
 /**
  * This class is a Command that is used to register a new User to the system.
  *
