@@ -36,12 +36,14 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="{{ path('homepage') }}">{{ "link.homepage"|trans }}</a>
-                    </li>
-                </ul>
+                {% block navbar_menu %}
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ path('homepage') }}">{{ "link.homepage"|trans }}</a>
+                        </li>
+                    </ul>
 
+                {% endblock %}
                 {% block navbar_user %}
                     <ul class="nav navbar-nav navbar-right">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -67,6 +69,7 @@
         </div>
     </nav>
 </div>
+
 <div class="container">
     {% for msg in app.session.flashBag.get('success') %}
         <div class="alert alert-success">
@@ -81,6 +84,7 @@
 
     {% block body %}{% endblock %}
 </div>
+
 <footer>
     <div class="container">
         <p>Powered by Arcella</p>
