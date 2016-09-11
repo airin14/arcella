@@ -4,19 +4,8 @@
 {% block body %}
     <div class="container">
         <h1>{{ ("messages." ~ exception.getStatusCode ~ ".title")|trans({}) }} ({{ exception.getStatusCode }})</h1>
-        <h2 class="h3">{{ ("title")|trans({}) }}</h2>
+        <h3 class="h3">{{ ("title")|trans({}) }}</h3>
         <p> {{ ("messages." ~ exception.getStatusCode ~ ".description")|trans({})|nl2br }}</p>
-
-        <h2 class="h3">{{ "alternatives.title"|trans({}) }}</h2>
-        <p>{{ "alternatives.description"|trans({}) }}</p>
-        <ul class="bulleted">
-            {% set link %}<a href="#" onclick="window.history.back(); return false;">{% endset %}
-            {% set endlink %}</a>{% endset %}
-            <li>{{ "alternatives.action.back"|trans({'%link%':link, '%endlink%': endlink})|raw }}</li>
-            {% set link %}<a href="{{ path('homepage') }}">{% endset %}
-            {% set endlink %}</a>{% endset %}
-            <li>{{ "alternatives.action.home"|trans({'%link%':link, '%endlink%': endlink})|raw }}</li>
-        </ul>
 
         <strong>{{ ("description")|trans({})|nl2br }}</strong>
     </div>

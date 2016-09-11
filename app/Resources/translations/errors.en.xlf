@@ -10,22 +10,6 @@
                 <source>description</source>
                 <target>We apologize for the inconvenience.</target>
             </trans-unit>
-            <trans-unit id="alternatives.title">
-                <source>alternatives.title</source>
-                <target>Where to go from here?</target>
-            </trans-unit>
-            <trans-unit id="alternatives.description">
-                <source>alternatives.description</source>
-                <target>You may want to</target>
-            </trans-unit>
-            <trans-unit id="alternatives.action.back">
-                <source>alternatives.action.back</source>
-                <target>go back to the %link%previous%endlink% page,</target>
-            </trans-unit>
-            <trans-unit id="alternatives.action.home">
-                <source>alternatives.action.home</source>
-                <target>or start over at our %link%home page%endlink%.</target>
-            </trans-unit>
             <trans-unit id="messages.403.title">
                 <source>messages.403.title</source>
                 <target>Access denied</target>
