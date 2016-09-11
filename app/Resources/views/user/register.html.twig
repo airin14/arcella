@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1>{{ "form_register.title"|trans({}) }}</h1>
+                <h1>{{ "register.title"|trans({}, "forms") }}</h1>
 
                 {{ form_start(form) }}
                 {{ form_row(form.username) }}
@@ -12,7 +12,7 @@
                 {{ form_row(form.plainPassword.first) }}
                 {{ form_row(form.plainPassword.second) }}
 
-                <button type="submit" class="btn btn-primary" formnovalidate>{{ "form_register.btn.submit"|trans({}) }}</button>
+                <button type="submit" class="btn btn-primary" formnovalidate>{{ "register.btn.submit"|trans({}, "forms") }}</button>
                 {{ form_end(form) }}
             </div>
         </div>

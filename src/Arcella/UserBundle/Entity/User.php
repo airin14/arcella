@@ -35,7 +35,7 @@ class User extends BaseUser implements UserInterface
     /**
      * The name of the user.
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message = "user.name.not_blank")
      * @ORM\Column(type="string", unique=true)
      */
     protected $username;
@@ -43,8 +43,8 @@ class User extends BaseUser implements UserInterface
      /**
       * The email address of the user.
       *
-      * @Assert\NotBlank()
-      * @Assert\Email()
+      * @Assert\NotBlank(message = "user.email.not_blank")
+      * @Assert\Email(message = "user.email.invalid")
       * @ORM\Column(type="string", unique=true)
       */
     protected $email;
@@ -73,7 +73,7 @@ class User extends BaseUser implements UserInterface
     /**
      * A non-persisted field that's used to create the users encoded password.
      *
-     * @Assert\NotBlank(groups={"Registration"})
+     * @Assert\NotBlank(message = "user.password.not_blank", groups={"Registration"})
      * @var string
      */
     protected $plainPassword;

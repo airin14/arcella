@@ -36,12 +36,13 @@ class UserRegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class, array('label' => 'form.label.username'))
-            ->add('email', EmailType::class, array('label' => 'form.label.email'))
+            ->add('username', TextType::class, array('label' => 'label.username'))
+            ->add('email', EmailType::class, array('label' => 'label.email'))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'form.label.password'),
-                'second_options' => array('label' => 'form.label.password_repeat'),
+                'first_options'  => array('label' => 'label.password'),
+                'second_options' => array('label' => 'label.password_repeat'),
+                'invalid_message' => 'user.password.mismatch',
             ));
     }
 
@@ -55,6 +56,7 @@ class UserRegistrationForm extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
             'validation_groups' => ['Default', 'Registration'],
+            'translation_domain' => 'forms',
         ]);
     }
 }
