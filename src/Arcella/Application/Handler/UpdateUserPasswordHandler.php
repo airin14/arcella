@@ -12,7 +12,6 @@ namespace Arcella\Application\Handler;
 use Arcella\Domain\Command\UpdateUserPassword;
 use Arcella\Domain\Event\UserUpdatedPasswordEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
-use Arcella\UserBundle\Entity\User;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -44,16 +43,6 @@ class UpdateUserPasswordHandler
     private $eventDispatcher;
 
     /**
-     * @var $saltLength int
-     */
-    private $saltLength;
-
-    /**
-     * @var $saltKeyspace string
-     */
-    private $saltKeyspace;
-
-    /**
      * @var UserPasswordEncoder
      */
     private $passwordEncoder;
@@ -64,17 +53,13 @@ class UpdateUserPasswordHandler
      * @param UserRepositoryInterface  $userRepository
      * @param ValidatorInterface       $validator
      * @param EventDispatcherInterface $eventDispatcher
-     * @param int                      $saltLength
-     * @param string                   $saltKeyspace
      * @param UserPasswordEncoder      $passwordEncoder
      */
-    public function __construct(UserRepositoryInterface $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, $saltLength, $saltKeyspace, UserPasswordEncoder $passwordEncoder)
+    public function __construct(UserRepositoryInterface $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, UserPasswordEncoder $passwordEncoder)
     {
         $this->userRepository = $userRepository;
         $this->validator = $validator;
         $this->eventDispatcher = $eventDispatcher;
-        $this->saltLength = $saltLength;
-        $this->saltKeyspace = $saltKeyspace;
         $this->passwordEncoder = $passwordEncoder;
     }
 

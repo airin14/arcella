@@ -9,7 +9,6 @@
 
 namespace Arcella\UserBundle\Form\Type;
 
-use Arcella\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
