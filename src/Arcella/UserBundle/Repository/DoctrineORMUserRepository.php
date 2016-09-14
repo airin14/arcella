@@ -27,6 +27,16 @@ class DoctrineORMUserRepository extends EntityRepository implements UserReposito
      */
     public function add(User $user)
     {
+        $this->save($user);
+    }
+
+    /**
+     * Saves a User entity in the repository.
+     *
+     * @param User $user The entity to be saved.
+     */
+    public function save(User $user)
+    {
         $this->_em->persist($user);
         $this->_em->flush();
     }

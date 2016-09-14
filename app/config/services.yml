@@ -10,6 +10,13 @@ services:
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\RegisterUser }
 
+    update_user_password_handler:
+        class: Arcella\Application\Handler\UpdateUserPasswordHandler
+        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher', '%arcella.security.salt_length%', '%arcella.security.salt_keyspace%', '@security.password_encoder']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserPassword }
+
+
     arcella.userbundle.doctrine.hash_password_listener:
         class: Arcella\UserBundle\Doctrine\HashPasswordListener
         autowire: true

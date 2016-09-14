@@ -18,41 +18,9 @@
                 <source>navbar.logged_in_as</source>
                 <target>Logged in as: %username%</target>
             </trans-unit>
-            <trans-unit id="form_login.title">
-                <source>form_login.title</source>
-                <target>Login</target>
-            </trans-unit>
-            <trans-unit id="form_login.btn.submit">
-                <source>form_login.btn.submit</source>
-                <target>Login</target>
-            </trans-unit>
-            <trans-unit id="form_login.link.register">
-                <source>form_login.link.register</source>
-                <target>I don't have an account</target>
-            </trans-unit>
-            <trans-unit id="form_register.title">
-                <source>form_register.title</source>
-                <target>Register</target>
-            </trans-unit>
-            <trans-unit id="form_register.btn.submit">
-                <source>form_register.btn.submit</source>
-                <target>Register</target>
-            </trans-unit>
-            <trans-unit id="form.label.username">
-                <source>form.label.username</source>
-                <target>Username</target>
-            </trans-unit>
-            <trans-unit id="form.label.password">
-                <source>form.label.password</source>
-                <target>Password</target>
-            </trans-unit>
-            <trans-unit id="form.label.password_repeat">
-                <source>form.label.password_repeat</source>
-                <target>Repeat Password</target>
-            </trans-unit>
-            <trans-unit id="form.label.email">
-                <source>form.label.email</source>
-                <target>E-Mail</target>
+            <trans-unit id="user.password.update.success">
+                <source>user.password.update.success</source>
+                <target>Your password has been updated successfully.</target>
             </trans-unit>
         </body>
     </file>
