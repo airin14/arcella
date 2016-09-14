@@ -54,6 +54,14 @@
                 <source>label.password_new</source>
                 <target>New password</target>
             </trans-unit>
+            <trans-unit id="user.update.email.title">
+                <source>user.update.email.title</source>
+                <target>Change your email address</target>
+            </trans-unit>
+            <trans-unit id="user.update.email.btn.submit">
+                <source>user.update.email.btn.submit</source>
+                <target>Update email address</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -13,16 +13,16 @@ use Arcella\Domain\Entity\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * This class is an Event that is fired whenever a user has changed it's password.
+ * This class is an Event that is fired whenever a user has changed it's email address.
  *
  * @package Arcella\Domain\Event
  */
-class UserUpdatedPasswordEvent extends Event
+class UserUpdatedEmailEvent extends Event
 {
     /**
      * @const NAME Caption of the event.
      */
-    const NAME = 'user.updated.password';
+    const NAME = 'user.updated.email';
 
     /**
      * @var User $user The newly created user.
@@ -30,7 +30,7 @@ class UserUpdatedPasswordEvent extends Event
     protected $user;
 
     /**
-     * UserUpdatedPasswordEvent constructor.
+     * UserUpdatedEmailEvent constructor.
      *
      * @param User $user
      */

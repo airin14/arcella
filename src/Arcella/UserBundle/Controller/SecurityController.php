@@ -75,7 +75,7 @@ class SecurityController extends Controller
     /**
      * Manages the change of a users password.
      *
-     * @Route("/_settings/updatepassword", name="security_update_password")
+     * @Route("/_settings/password", name="security_update_password")
      * @Method({"POST","GET"})
      *
      * @param Request $request

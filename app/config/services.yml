@@ -16,6 +16,11 @@ services:
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserPassword }
 
+    update_user_email_handler:
+        class: Arcella\Application\Handler\UpdateUserEmailHandler
+        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserEmail }
 
     arcella.userbundle.doctrine.hash_password_listener:
         class: Arcella\UserBundle\Doctrine\HashPasswordListener

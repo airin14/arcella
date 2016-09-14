@@ -16,14 +16,12 @@
             </div>
         </div>
         <div class="col-md-8">
-            <h1>{{ "user.update.password.title"|trans({}, "forms") }}</h1>
+            <h1>{{ "user.update.email.title"|trans({}, "forms") }}</h1>
 
             {{ form_start(form) }}
-            {{ form_row(form.oldPassword) }}
-            {{ form_row(form.newPassword.first) }}
-            {{ form_row(form.newPassword.second) }}
+            {{ form_row(form.email) }}
 
-            <button type="submit" class="btn btn-primary" formnovalidate>{{ "user.update.password.btn.submit"|trans({}, "forms") }}</button>
+            <button type="submit" class="btn btn-primary" formnovalidate>{{ "user.update.email.btn.submit"|trans({}, "forms") }}</button>
             {{ form_end(form) }}
         </div>
     </div>
