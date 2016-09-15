@@ -28,6 +28,14 @@ services:
         tags:
             - { name: doctrine.event_subscriber }
 
+    arcella.userbundle.email_validation_listener:
+        class: Arcella\UserBundle\EventListener\UserEmailValidationListener
+        arguments:
+            templating: "@twig"
+            mailer: "@mailer"
+        tags:
+            - { name: kernel.event_listener, event: user.updated.email }
+
     arcella.userbundle.user_repository:
         class: Arcella\UserBundle\Repository\DoctrineORMUserRepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
@@ -37,3 +45,7 @@ services:
     arcella.security.login_form_authenticator:
         class: Arcella\UserBundle\Security\LoginFormAuthenticator
         autowire: true
+
+    swiftmailer.mailer.default.transport:
+        class: Swift_SendmailTransport
+        arguments: ['/usr/sbin/sendmail -t']
