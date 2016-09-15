@@ -36,8 +36,8 @@ class SecurityControllerTest extends WebTestCase
         // Fill in and submit the form
         $form = $crawler->filter('form[name=login_form]')->form();
         $crawler = $this->client->submit($form, array(
-            'login_form[_username]' => 'monty93',
-            'login_form[_password]' => 'arcella',
+            'login_form[username]' => 'monty93',
+            'login_form[password]' => 'arcella',
         ));
 
         // Fetch the response

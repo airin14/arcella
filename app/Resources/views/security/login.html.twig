@@ -13,8 +13,8 @@
                 {% endif %}
 
                 {{ form_start(form) }}
-                {{ form_row(form._username) }}
-                {{ form_row(form._password) }}
+                {{ form_row(form.username) }}
+                {{ form_row(form.password) }}
                 <button type="submit" class="btn btn-success">{{ "login.btn.submit"|trans({}, "forms") }} <span class="fa fa-lock"></span></button>
                 &nbsp;
                 <a href="{{ path('user_register') }}">{{ "login.link.register"|trans({}, "forms") }}</a>

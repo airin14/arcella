@@ -90,7 +90,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $data = $form->getData();
         $request->getSession()->set(
             Security::LAST_USERNAME,
-            $data['_username']
+            $data['username']
         );
 
         return $data;
@@ -105,7 +105,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        $username = $credentials['_username'];
+        $username = $credentials['username'];
 
         return $this->em->getRepository('ArcellaUserBundle:User')
             ->findOneBy(['username' => $username]);
@@ -120,7 +120,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
-        $password = $credentials['_password'];
+        $password = $credentials['password'];
 
         if ($this->passwordEncoder->isPasswordValid($user, $password)) {
             return true;
