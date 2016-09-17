@@ -13,9 +13,8 @@ use Arcella\Domain\Entity\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * This class is an Event that is fired whenever a user has changed it's password.
- *
- * @package Arcella\Domain\Event
+ * This class is an Event that is fired whenever the password of a user has
+ * been changed.
  */
 class UserUpdatedPasswordEvent extends Event
 {

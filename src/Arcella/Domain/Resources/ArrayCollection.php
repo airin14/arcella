@@ -12,10 +12,9 @@ namespace Arcella\Domain\Resources;
 use Doctrine\Common\Collections\ArrayCollection as DoctrineArrayCollection;
 
 /**
- * This ArrayCollection is used as a decorator for the Doctrine ArrayCollection to make a cleaner separation between the
- * Domain and the other layers of Arcella.
- *
- * @package Arcella\Domain\Resources
+ * This ArrayCollection is used as a decorator for the Doctrine ArrayCollection
+ * to make a cleaner separation between the Domain and the other layers of
+ * Arcella.
  */
 class ArrayCollection extends DoctrineArrayCollection
 {

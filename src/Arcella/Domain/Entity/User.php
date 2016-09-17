@@ -13,8 +13,6 @@ use Arcella\Domain\Exception\DomainException;
 
 /**
  * This class is an Entity and represents a User inside the Domain.
- *
- * @package Arcella\Domain\Entity
  */
 class User
 {
@@ -94,8 +92,8 @@ class User
     }
 
     /**
-     * Set the $roles of the entity. Please note that when using this function all previous roles of this entity will be
-     * overridden.
+     * Set the $roles of the entity. Please note that when using this function
+     * all previous roles of this entity will be overridden.
      *
      * @param array $roles
      *

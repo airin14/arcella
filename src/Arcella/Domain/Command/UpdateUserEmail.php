@@ -10,14 +10,15 @@
 namespace Arcella\Domain\Command;
 
 /**
- * This class is a Command that is used to change the password of a user.
- *
- * @package Arcella\Application\Command
+ * This class is a Command that is used to change the email address of a given
+ * user Entity.
  */
 class UpdateUserEmail
 {
     /**
-     * @var string $username The username where the password should be updated.
+     * The username of the User entity where the email should be updated.
+     *
+     * @var string $username
      */
     private $username;
 
@@ -27,9 +28,10 @@ class UpdateUserEmail
     private $email;
 
     /**
-     * UpdateUserPassword constructor.
-     * @param string $username
-     * @param string $email
+     * UpdateUserPassword constructor
+     *
+     * @param string $username The username of the User entity
+     * @param string $email    The new Users email address
      */
     public function __construct($username, $email)
     {
@@ -38,8 +40,6 @@ class UpdateUserEmail
     }
 
     /**
-     * Returns the $username.
-     *
      * @return string $username
      */
     public function username()
@@ -48,7 +48,7 @@ class UpdateUserEmail
     }
 
     /**
-     * @return string
+     * @return string $email
      */
     public function email()
     {

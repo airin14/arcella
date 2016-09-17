@@ -11,31 +11,36 @@ namespace Arcella\Domain\Command;
 
 /**
  * This class is a Command that is used to change the password of a user.
- *
- * @package Arcella\Application\Command
  */
 class UpdateUserPassword
 {
     /**
-     * @var string $username The username where the password should be updated.
+     * The username of the User entity where the password should be updated
+     *
+     * @var string $username
      */
     private $username;
 
     /**
-     * @var string $oldPassword The old password of the user.
+     * The old password of the user entity
+     *
+     * @var string $oldPassword
      */
     private $oldPassword;
 
     /**
-     * @var string $newPassword The new password of the user.
+     * The new password for the User entity
+     *
+     * @var string $newPassword
      */
     private $newPassword;
 
     /**
      * UpdateUserPassword constructor.
-     * @param string $username
-     * @param string $oldPassword
-     * @param string $newPassword
+     *
+     * @param string $username    The username of the User entity
+     * @param string $oldPassword The current password of the User entity
+     * @param string $newPassword The new password for the User entity
      */
     public function __construct($username, $oldPassword, $newPassword)
     {
@@ -45,8 +50,6 @@ class UpdateUserPassword
     }
 
     /**
-     * Returns the $username.
-     *
      * @return string $username
      */
     public function username()
@@ -55,7 +58,7 @@ class UpdateUserPassword
     }
 
     /**
-     * @return string
+     * @return string $oldPassword
      */
     public function oldPassword()
     {
@@ -63,7 +66,7 @@ class UpdateUserPassword
     }
 
     /**
-     * @return string
+     * @return string $newPassword
      */
     public function newPassword()
     {

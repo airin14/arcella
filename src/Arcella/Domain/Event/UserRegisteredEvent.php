@@ -13,9 +13,8 @@ use Arcella\Domain\Entity\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * This class is an Event that is fired whenever a new User has been registered to the system.
- *
- * @package Arcella\Domain\Event
+ * This class is an Event that is fired whenever a new User entity has been
+ * added.
  */
 class UserRegisteredEvent extends Event
 {

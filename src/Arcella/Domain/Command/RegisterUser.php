@@ -11,25 +11,30 @@ namespace Arcella\Domain\Command;
 
 /**
  * This class is a Command that is used to register a new User to the system.
- *
- * @package Arcella\Application\Command
  */
 class RegisterUser
 {
     /**
-     * @var string The new users name.
+     * @var string The new Users name
      */
     private $username;
 
+    /**
+     * @var string $email The new Users email address
+     */
     private $email;
 
+    /**
+     * @var string $password The new Users password in plaintext
+     */
     private $password;
 
     /**
-     * RegisterUser constructor.
-     * @param string $username
-     * @param string $email
-     * @param string $password
+     * RegisterUser constructor
+     *
+     * @param string $username The new Users name
+     * @param string $email    The new Users email address
+     * @param string $password The new Users password in plaintext
      */
     public function __construct($username, $email, $password)
     {
@@ -39,8 +44,6 @@ class RegisterUser
     }
 
     /**
-     * Returns the $username.
-     *
      * @return string $username
      */
     public function username()
@@ -49,7 +52,7 @@ class RegisterUser
     }
 
     /**
-     * @return mixed
+     * @return string $email
      */
     public function email()
     {
@@ -57,7 +60,7 @@ class RegisterUser
     }
 
     /**
-     * @return mixed
+     * @return string $password
      */
     public function password()
     {

@@ -13,9 +13,8 @@ use Arcella\Domain\Entity\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * This class is an Event that is fired whenever a user has changed it's email address.
- *
- * @package Arcella\Domain\Event
+ * This class is an Event that is fired whenever the email address of a user
+ * has been changed.
  */
 class UserUpdatedEmailEvent extends Event
 {

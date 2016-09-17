@@ -13,8 +13,6 @@ use Arcella\Domain\Entity\User;
 
 /**
  * This is the Interface for the UserRepository
- *
- * @package Arcella\Domain\Repository
  */
 interface UserRepositoryInterface
 {
