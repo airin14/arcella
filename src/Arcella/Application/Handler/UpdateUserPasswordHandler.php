@@ -20,10 +20,8 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * This class is a Handler and for handling a UpdateUserPassword command, which is used to change the password of a
- * given user.
- *
- * @package Arcella\Application\Handler
+ * This class is responsible for handling a UpdateUserPassword command, which
+ * is used to change the password of a given user.
  */
 class UpdateUserPasswordHandler
 {
@@ -64,14 +62,17 @@ class UpdateUserPasswordHandler
     }
 
     /**
-     * Handles the UpdateUserPassword command and changes the password of a user.
+     * Handles the UpdateUserPassword command and changes the password of a User
+     * entity.
      *
      * @param UpdateUserPassword $command
      *
      * @throws EntityNotFoundException
+     * @throws ValidatorException
      */
     public function handle(UpdateUserPassword $command)
     {
+        // Fetch User entity
         $user = $this->userRepository->findOneBy(['username' => $command->username()]);
 
         if (!$user) {
@@ -80,28 +81,25 @@ class UpdateUserPasswordHandler
             );
         }
 
+        // Checks if the credentials are valid
         if (!$this->passwordEncoder->isPasswordValid($user, $command->oldPassword())) {
             throw new ValidatorException(
                 'Cannot update password for user, because of invalid credentials'
             );
         }
 
+        // Set the new password
         $user->setPlainPassword($command->newPassword());
 
         // Validate the user entity
         $errors = $this->validator->validate($user);
         if (count($errors) > 0) {
-            /*
-             * Uses a __toString method on the $errors variable which is a
-             * ConstraintViolationList object. This gives us a nice string
-             * for debugging.
-             */
             $errorsString = (string) $errors;
 
             throw new ValidatorException($errorsString);
         }
 
-        // Add the user to the repository
+        // Add the User Entity to the UserRepository
         $this->userRepository->save($user);
 
         // Dispatch UserUpdatedPasswordEvent

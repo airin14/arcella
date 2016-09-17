@@ -19,9 +19,8 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * This class is a Handler and for handling a RegisterUser command, which is used to register a new User to the system.
- *
- * @package Arcella\Application\Handler
+ * This class is responsible for handling the RegisterUser command, which is
+ * used to add a new User entity to the system.
  */
 class RegisterUserHandler
 {
@@ -41,12 +40,12 @@ class RegisterUserHandler
     private $eventDispatcher;
 
     /**
-     * @var $saltLength int
+     * @var $saltLength int Length of the salt.
      */
     private $saltLength;
 
     /**
-     * @var $saltKeyspace string
+     * @var $saltKeyspace string Keyspace that is used while creating the salt.
      */
     private $saltKeyspace;
 
@@ -69,12 +68,16 @@ class RegisterUserHandler
     }
 
     /**
-     * Handles the RegisterUser command and creates a new user.
+     * Handles the RegisterUser command, adds a new User entity to the
+     * UserRepository and dispatches the UserRegistered event.
      *
      * @param RegisterUser $command
+     *
+     * @throws ValidatorException
      */
     public function handle(RegisterUser $command)
     {
+        // Create User entity and set some data
         $user = new User();
 
         $user->setUsername($command->username());
@@ -83,20 +86,14 @@ class RegisterUserHandler
         $user->setRoles(array("ROLE_USER"));
         $user->setSalt($this->generateSalt());
 
-        // Validate the user entity
+        // Validate the User entity
         $errors = $this->validator->validate($user);
         if (count($errors) > 0) {
-            /*
-             * Uses a __toString method on the $errors variable which is a
-             * ConstraintViolationList object. This gives us a nice string
-             * for debugging.
-             */
             $errorsString = (string) $errors;
-
             throw new ValidatorException($errorsString);
         }
 
-        // Add the user to the repository
+        // Add the User to the UserRepository
         $this->userRepository->add($user);
 
         // Dispatch UserRegisteredEvent
@@ -105,9 +102,9 @@ class RegisterUserHandler
     }
 
     /**
-     * Generates a custom salt for the new user entity.
+     * Generates a custom salt for the new user entity. This code was borrowed from
+     * http://stackoverflow.com/questions/4356289/php-random-string-generator/31107425#31107425
      *
-     * Borrowed from http://stackoverflow.com/questions/4356289/php-random-string-generator/31107425#31107425
      * @return string
      */
     private function generateSalt()

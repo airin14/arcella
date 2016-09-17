@@ -19,10 +19,8 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * This class is a Handler and for handling a UpdateUserEmail command, which is used to change the email address of a
- * given user.
- *
- * @package Arcella\Application\Handler
+ * This class is responsible for handling the UpdateUserEmail command, which is
+ * used to change the email address of a given User entity.
  */
 class UpdateUserEmailHandler
 {
@@ -56,7 +54,8 @@ class UpdateUserEmailHandler
     }
 
     /**
-     * Handles the UpdateUserPassword command and changes the password of a user.
+     * Handles the UpdateUserEmail command and changes the email address of a
+     * User entity.
      *
      * @param UpdateUserEmail $command
      *
@@ -64,30 +63,26 @@ class UpdateUserEmailHandler
      */
     public function handle(UpdateUserEmail $command)
     {
+        // Fetch User entity
         $user = $this->userRepository->findOneBy(['username' => $command->username()]);
 
         if (!$user) {
             throw new EntityNotFoundException(
-                'No user found for username '.$command->username()
+                'No entity found for username '.$command->username()
             );
         }
 
+        // Set the new email address
         $user->setEmail($command->email());
 
-        // Validate the user entity
+        // Validate the User entity
         $errors = $this->validator->validate($user);
         if (count($errors) > 0) {
-            /*
-             * Uses a __toString method on the $errors variable which is a
-             * ConstraintViolationList object. This gives us a nice string
-             * for debugging.
-             */
             $errorsString = (string) $errors;
-
             throw new ValidatorException($errorsString);
         }
 
-        // Add the user to the repository
+        // Add the User entity to the UserRepository
         $this->userRepository->save($user);
 
         // Dispatch UserUpdatedEmailEvent
