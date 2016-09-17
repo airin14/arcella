@@ -30,9 +30,7 @@ services:
 
     arcella.userbundle.email_validation_listener:
         class: Arcella\UserBundle\EventListener\UserEmailValidationListener
-        arguments:
-            templating: "@twig"
-            mailer: "@mailer"
+        arguments: ['@twig', '@mailer']
         tags:
             - { name: kernel.event_listener, event: user.updated.email }
 
@@ -45,7 +43,3 @@ services:
     arcella.security.login_form_authenticator:
         class: Arcella\UserBundle\Security\LoginFormAuthenticator
         autowire: true
-
-    swiftmailer.mailer.default.transport:
-        class: Swift_SendmailTransport
-        arguments: ['/usr/sbin/sendmail -t']
