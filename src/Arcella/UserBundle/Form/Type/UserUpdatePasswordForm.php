@@ -16,16 +16,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class UserRegistrationForm
- *
- * The Form used for updating a users password.
- *
- * @package Arcella\UserBundle\Form
+ * The UserRegistrationForm is used for updating a users password.
  */
 class UserUpdatePasswordForm extends AbstractType
 {
     /**
-     * Building the actual Form.
+     * Build the actual Form.
      *
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -36,8 +32,8 @@ class UserUpdatePasswordForm extends AbstractType
             ->add('oldPassword', PasswordType::class, array('label' => 'label.password_old'))
             ->add('newPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'label.password_new'),
-                'second_options' => array('label' => 'label.password_repeat'),
+                'first_options'   => array('label' => 'label.password_new'),
+                'second_options'  => array('label' => 'label.password_repeat'),
                 'invalid_message' => 'user.password.mismatch',
             ));
     }

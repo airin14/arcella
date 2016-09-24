@@ -13,7 +13,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class UserBundle
- * @package Arcella\UserBundle
  */
 class ArcellaUserBundle extends Bundle
 {

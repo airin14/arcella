@@ -12,18 +12,17 @@ namespace Arcella\UserBundle\Controller;
 use Arcella\Domain\Command\UpdateUserPassword;
 use Arcella\UserBundle\Form\Type\LoginForm;
 use Arcella\UserBundle\Form\Type\UserUpdatePasswordForm;
+use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
- * Class SecurityController
- *
- * Used for security relevant routes, such as login and logout of users.
- *
- * @package Arcella\UserBundle\Controller
+ * The SecurityController is Used for security relevant routes, such as login
+ * and logout of users.
  */
 class SecurityController extends Controller
 {
@@ -33,43 +32,37 @@ class SecurityController extends Controller
      * @Route("/login", name="security_login")
      * @Method({"POST","GET"})
      *
-     * @return Response The response to be rendered
+     * @return Response The http-response
      */
     public function loginAction()
     {
         $authenticationUtils = $this->get('security.authentication_utils');
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
         $form = $this->createForm(LoginForm::class, [
-            '_username' => $lastUsername,
+            'username' => $authenticationUtils->getLastUsername(),
         ]);
 
         return $this->render(
             'security/login.html.twig',
             array(
-                'form' => $form->createView(),
-                'error' => $error,
+                'form'  => $form->createView(),
+                'error' => $authenticationUtils->getLastAuthenticationError(),
             )
         );
     }
 
     /**
-     * Manages the logout of users. (In truth this is just a dummy function, because the logout process of users is
-     * implemented by Symfony itself.)
+     * Manages the logout of users. (In truth this is just a dummy because the
+     * actual process is done by Symfony itself...)
      *
      * @Route("/logout", name="security_logout")
      * @Method("GET")
      *
-     * @throws \Exception When reached, because this is implemented by Symfony itself.
+     * @throws \Exception
      */
     public function logoutAction()
     {
-        throw new \Exception('this should not be reached!');
+        throw new \Exception('This should not be reached!');
     }
 
     /**
@@ -80,7 +73,7 @@ class SecurityController extends Controller
      *
      * @param Request $request
      *
-     * @return Response The response to be rendered
+     * @return Response The http-response
      */
     public function updatePasswordAction(Request $request)
     {
@@ -89,18 +82,19 @@ class SecurityController extends Controller
         }
 
         $form = $this->createForm(UserUpdatePasswordForm::class);
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             try {
                 $user = $this->getUser();
-                $data = $form->getData();
+                $input = $form->getData();
 
-                $command = new UpdateUserPassword($user->getUsername(), $data['oldPassword'], $data['newPassword']);
+                $command = new UpdateUserPassword($user->getUsername(), $input['oldPassword'], $input['newPassword']);
                 $this->get('command_bus')->handle($command);
 
                 $this->addFlash('success', $this->get('translator')->trans('user.password.update.success'));
+            } catch (ValidatorException) {
+                $this->addFlash('warning', $e->getMessage());
             } catch (\Exception $e) {
                 $this->addFlash('warning', $e->getMessage());
             }

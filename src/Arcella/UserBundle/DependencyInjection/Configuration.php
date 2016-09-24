@@ -14,7 +14,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Class Configuration
- * @package Arcella\UserBundle\DependencyInjection
  */
 class Configuration implements ConfigurationInterface
 {

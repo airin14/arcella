@@ -12,17 +12,29 @@ namespace Arcella\UserBundle\EventListener;
 use Arcella\Domain\Event\UserUpdatedEmailEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
+/**
+ * Class UserEmailValidationListener
+ * @package Arcella\UserBundle\EventListener
+ */
 class UserEmailValidationListener
 {
     protected $twig;
     protected $mailer;
 
+    /**
+     * UserEmailValidationListener constructor.
+     * @param \Twig_Environment $twig
+     * @param \Swift_Mailer     $mailer
+     */
     public function __construct(\Twig_Environment $twig, \Swift_Mailer $mailer)
     {
         $this->twig = $twig;
         $this->mailer = $mailer;
     }
 
+    /**
+     * @param UserUpdatedEmailEvent $event
+     */
     public function onUserUpdatedEmail(UserUpdatedEmailEvent $event)
     {
         $user = $event->getUser();
@@ -36,7 +48,7 @@ class UserEmailValidationListener
                     'Emails/email_validation.html.twig',
                     array('name' => $user->getUsername())
                 ),
-                'text/html'2
+                'text/html'
             );
 
         $this->mailer->send($message);

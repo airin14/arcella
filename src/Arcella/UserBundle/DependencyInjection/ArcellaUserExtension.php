@@ -14,7 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Class ArcellaUserExtension
- * @package Arcella\UserBundle\DependencyInjection
  */
 class ArcellaUserExtension extends Extension
 {
