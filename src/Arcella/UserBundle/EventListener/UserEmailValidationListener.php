@@ -12,7 +12,6 @@ namespace Arcella\UserBundle\EventListener;
 use Arcella\Domain\Event\UserRegisteredEvent;
 use Arcella\Domain\Event\UserUpdatedEmailEvent;
 use Arcella\UserBundle\Utils\TokenValidator;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
  * Class UserEmailValidationListener
@@ -56,7 +55,7 @@ class UserEmailValidationListener
             ->setTo($user->getEmail())
             ->setBody(
                 $this->twig->render(
-                    'Emails/email_validation.html.twig',
+                    'emails/email_validation.html.twig',
                     $twigParams
                 ),
                 'text/html'
@@ -85,7 +84,7 @@ class UserEmailValidationListener
             ->setTo($user->getEmail())
             ->setBody(
                 $this->twig->render(
-                    'Emails/email_welcome.html.twig',
+                    'emails/email_welcome.html.twig',
                     $twigParams
                 ),
                 'text/html'

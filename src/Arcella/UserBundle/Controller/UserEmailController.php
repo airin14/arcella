@@ -9,10 +9,8 @@
 
 namespace Arcella\UserBundle\Controller;
 
-use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Command\UpdateUserEmail;
 use Arcella\Domain\Command\ValidateUserEmail;
-use Arcella\UserBundle\Form\Type\UserRegistrationForm;
 use Arcella\UserBundle\Form\Type\UserUpdateEmailForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -92,8 +90,7 @@ class UserEmailController extends Controller
 
             $this->addFlash('success', $this->get('translator')->trans('user.email.validate.success'));
         } catch (\Exception $e) {
-            $this->addFlash('warning', $e->getMessage());
-            //$this->addFlash('warning', $this->get('translator')->trans('user.email.validate.failure'));
+            $this->addFlash('warning', $this->get('translator')->trans('user.email.validate.failure'));
         }
 
         return $this->redirectToRoute('user_settings');

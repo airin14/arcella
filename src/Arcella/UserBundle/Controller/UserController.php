@@ -10,9 +10,7 @@
 namespace Arcella\UserBundle\Controller;
 
 use Arcella\Domain\Command\RegisterUser;
-use Arcella\Domain\Command\UpdateUserEmail;
 use Arcella\UserBundle\Form\Type\UserRegistrationForm;
-use Arcella\UserBundle\Form\Type\UserUpdateEmailForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

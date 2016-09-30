@@ -12,7 +12,6 @@ namespace Arcella\UserBundle\Controller;
 use Arcella\Domain\Command\UpdateUserPassword;
 use Arcella\UserBundle\Form\Type\LoginForm;
 use Arcella\UserBundle\Form\Type\UserUpdatePasswordForm;
-use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

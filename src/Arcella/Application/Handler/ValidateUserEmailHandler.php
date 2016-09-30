@@ -10,12 +10,10 @@
 namespace Arcella\Application\Handler;
 
 use Arcella\Domain\Command\ValidateUserEmail;
-use Arcella\Domain\Event\UserUpdatedEmailEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
 use Arcella\UserBundle\Utils\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
