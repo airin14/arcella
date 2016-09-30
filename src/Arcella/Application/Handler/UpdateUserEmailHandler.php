@@ -12,6 +12,7 @@ namespace Arcella\Application\Handler;
 use Arcella\Domain\Command\UpdateUserEmail;
 use Arcella\Domain\Event\UserUpdatedEmailEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
+use Arcella\UserBundle\Utils\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -40,7 +41,7 @@ class UpdateUserEmailHandler
     private $eventDispatcher;
 
     /**
-     * RegisterUserHandler constructor.
+     * UpdateUserEmailHandler constructor.
      *
      * @param UserRepositoryInterface  $userRepository
      * @param ValidatorInterface       $validator
@@ -74,6 +75,7 @@ class UpdateUserEmailHandler
 
         // Set the new email address
         $user->setEmail($command->email());
+        $user->setEmailIsVerified(false);
 
         // Validate the User entity
         $errors = $this->validator->validate($user);

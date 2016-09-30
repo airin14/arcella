@@ -71,8 +71,11 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Arcella UserBundle
 arcella_user:
-    security:
-        salt_length:   16
-        salt_keyspace: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    salt:
+        length:     16
+        keyspace:  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    token:
+        lifetime: 1800000
+        length:   10
+        keyspace: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"

@@ -93,7 +93,7 @@ class SecurityController extends Controller
                 $this->get('command_bus')->handle($command);
 
                 $this->addFlash('success', $this->get('translator')->trans('user.password.update.success'));
-            } catch (ValidatorException) {
+            } catch (ValidatorException $e) {
                 $this->addFlash('warning', $e->getMessage());
             } catch (\Exception $e) {
                 $this->addFlash('warning', $e->getMessage());

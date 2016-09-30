@@ -1,0 +1,8 @@
+<h3>Welcome!</h3>
+
+<p>Hi {{ name }}, welcome to this website. Please validate your email address
+    by clicking on the link below</p>
+
+<p>Validate token: <a href="{{ url('user_validate_email', {'token': token}) }}">{{ token }}</a>.</p>
+
+<p>Thanks!</p>

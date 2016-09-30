@@ -9,7 +9,9 @@
 
 namespace Arcella\UserBundle\EventListener;
 
+use Arcella\Domain\Event\UserRegisteredEvent;
 use Arcella\Domain\Event\UserUpdatedEmailEvent;
+use Arcella\UserBundle\Utils\TokenValidator;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
@@ -25,11 +27,13 @@ class UserEmailValidationListener
      * UserEmailValidationListener constructor.
      * @param \Twig_Environment $twig
      * @param \Swift_Mailer     $mailer
+     * @param TokenValidator    $tokenValidator
      */
-    public function __construct(\Twig_Environment $twig, \Swift_Mailer $mailer)
+    public function __construct(\Twig_Environment $twig, \Swift_Mailer $mailer, TokenValidator $tokenValidator)
     {
-        $this->twig = $twig;
-        $this->mailer = $mailer;
+        $this->twig           = $twig;
+        $this->mailer         = $mailer;
+        $this->tokenValidator = $tokenValidator;
     }
 
     /**
@@ -39,14 +43,50 @@ class UserEmailValidationListener
     {
         $user = $event->getUser();
 
+        $token = $this->tokenValidator->generateToken();
+
+        $twigParams = array(
+            'name' => $user->getUsername(),
+            'token' => $token,
+        );
+
         $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom('send@example.com')
-            ->setTo('recipient@example.com')
+            ->setSubject('Please validate your email address')
+            ->setFrom('noreply@arcella.dev')
+            ->setTo($user->getEmail())
             ->setBody(
                 $this->twig->render(
                     'Emails/email_validation.html.twig',
-                    array('name' => $user->getUsername())
+                    $twigParams
+                ),
+                'text/html'
+            );
+
+        $this->mailer->send($message);
+    }
+
+    /**
+     * @param UserRegisteredEvent $event
+     */
+    public function onUserRegistered(UserRegisteredEvent $event)
+    {
+        $user = $event->getUser();
+
+        $token = $this->tokenValidator->generateToken();
+
+        $twigParams = array(
+            'name' => $user->getUsername(),
+            'token' => $token,
+        );
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Welcome to arcella.dev!')
+            ->setFrom('noreply@arcella.dev')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->twig->render(
+                    'Emails/email_welcome.html.twig',
+                    $twigParams
                 ),
                 'text/html'
             );

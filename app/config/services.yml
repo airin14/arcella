@@ -6,7 +6,7 @@ parameters:
 services:
     register_user_handler:
         class: Arcella\Application\Handler\RegisterUserHandler
-        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher', '%arcella.security.salt_length%', '%arcella.security.salt_keyspace%']
+        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher', '%arcella.user.salt.length%', '%arcella.user.salt.keyspace%']
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\RegisterUser }
 
@@ -22,6 +22,12 @@ services:
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserEmail }
 
+    validate_user_email_handler:
+        class: Arcella\Application\Handler\ValidateUserEmailHandler
+        arguments: ['@arcella.userbundle.user_repository', '@arcella.userbundle.token_validator']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\ValidateUserEmail }
+
     arcella.userbundle.doctrine.hash_password_listener:
         class: Arcella\UserBundle\Doctrine\HashPasswordListener
         autowire: true
@@ -30,9 +36,10 @@ services:
 
     arcella.userbundle.email_validation_listener:
         class: Arcella\UserBundle\EventListener\UserEmailValidationListener
-        arguments: ['@twig', '@mailer']
+        arguments: ['@twig', '@mailer', '@arcella.userbundle.token_validator']
         tags:
             - { name: kernel.event_listener, event: user.updated.email }
+            - { name: kernel.event_listener, event: user.registered }
 
     arcella.userbundle.user_repository:
         class: Arcella\UserBundle\Repository\DoctrineORMUserRepository
@@ -40,6 +47,16 @@ services:
         arguments:
             - Arcella\UserBundle\Entity\User
 
+    arcella.userbundle.token_repository:
+        class: Arcella\UserBundle\Repository\TokenRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Arcella\UserBundle\Entity\Token
+
     arcella.security.login_form_authenticator:
         class: Arcella\UserBundle\Security\LoginFormAuthenticator
         autowire: true
+
+    arcella.userbundle.token_validator:
+        class: Arcella\UserBundle\Utils\TokenValidator
+        arguments: ['@arcella.userbundle.token_repository', '%arcella.user.token.length%', '%arcella.user.token.keyspace%', '%arcella.user.token.lifetime%']

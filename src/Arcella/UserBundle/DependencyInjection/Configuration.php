@@ -27,11 +27,17 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('security')
+                ->arrayNode('salt')
                     ->children()
-                        ->scalarNode('salt_length')->end()
-                        ->scalarNode('salt_keyspace')->end()
+                        ->scalarNode('length')->end()
+                        ->scalarNode('keyspace')->end()
                     ->end()
+                ->end()
+                ->arrayNode('token')
+                    ->children()
+                        ->scalarNode('lifetime')->end()
+                        ->scalarNode('length')->end()
+                        ->scalarNode('keyspace')->end()
                 ->end()
             ->end();
 

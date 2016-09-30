@@ -82,6 +82,7 @@ class RegisterUserHandler
 
         $user->setUsername($command->username());
         $user->setEmail($command->email());
+        $user->setEmailIsVerified(false);
         $user->setPlainPassword($command->password());
         $user->setRoles(array("ROLE_USER"));
         $user->setSalt($this->generateSalt());

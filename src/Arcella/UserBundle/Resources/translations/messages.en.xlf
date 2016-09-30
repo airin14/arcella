@@ -38,6 +38,14 @@
                 <source>user.email.update.success</source>
                 <target>Your email address has been updated successfully.</target>
             </trans-unit>
+            <trans-unit id="user.email.validate.success">
+                <source>user.email.validate.success</source>
+                <target>Your email address has been successfully validated!</target>
+            </trans-unit>
+            <trans-unit id="user.email.validate.failure">
+                <source>user.email.validate.failure</source>
+                <target>Something went wrong: Could not validate your email address.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

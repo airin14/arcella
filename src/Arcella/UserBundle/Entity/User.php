@@ -50,6 +50,11 @@ class User extends BaseUser implements UserInterface
     protected $email;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $emailIsVerified;
+
+    /**
      * The roles of the user.
      *
      * @ORM\Column(type="array")
@@ -84,6 +89,26 @@ class User extends BaseUser implements UserInterface
     public function eraseCredentials()
     {
         $this->plainPassword = null;
+    }
+
+    /**
+     * Set the $emailIsVerified of the entity.
+     *
+     * @param string $emailIsVerified
+     */
+    public function setEmailIsVerified($emailIsVerified)
+    {
+        $this->emailIsVerified = $emailIsVerified;
+    }
+
+    /**
+     * Returns the $emailIsVerified of the entity.
+     *
+     * @return string $emailIsVerified
+     */
+    public function getEmailIsVerified()
+    {
+        return $this->emailIsVerified;
     }
 
     /**

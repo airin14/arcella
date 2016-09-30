@@ -26,7 +26,10 @@ class ArcellaUserExtension extends Extension
         $configuration = new Configuration();
         $processedConfig = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('arcella.security.salt_length', $processedConfig['security']['salt_length']);
-        $container->setParameter('arcella.security.salt_keyspace', $processedConfig['security']['salt_keyspace']);
+        $container->setParameter('arcella.user.salt.length', $processedConfig['salt']['length']);
+        $container->setParameter('arcella.user.salt.keyspace', $processedConfig['salt']['keyspace']);
+        $container->setParameter('arcella.user.token.length', $processedConfig['token']['length']);
+        $container->setParameter('arcella.user.token.keyspace', $processedConfig['token']['keyspace']);
+        $container->setParameter('arcella.user.token.lifetime', $processedConfig['token']['lifetime']);
     }
 }
