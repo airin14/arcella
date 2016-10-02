@@ -17,10 +17,11 @@ use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
 {
-    use \Mockery\Adapter\PHPUnit\MockeryPHPUnitIntegration;
+    use MockeryPHPUnitIntegration;
 
     public function testRegisterUserHandlerWithInvalidEntity()
     {
@@ -74,7 +75,10 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
         $userRepository->shouldReceive('add')->once();
 
-            // Prepare Validation Violations
+            /*
+             * Prepare Validation Violations (which is in this case an empty
+             * array because there are none...)
+             * */
             $violations = new ConstraintViolationList(array());
 
         $validator = \Mockery::mock(ValidatorInterface::class);
