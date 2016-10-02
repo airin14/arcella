@@ -12,7 +12,7 @@ services:
 
     update_user_password_handler:
         class: Arcella\Application\Handler\UpdateUserPasswordHandler
-        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher', '@security.password_encoder']
+        arguments: ['@arcella.userbundle.user_repository', '@event_dispatcher', '@security.password_encoder']
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserPassword }
 

@@ -12,16 +12,47 @@ namespace Tests\Arcella\Application\Handler;
 use Arcella\Application\Handler\RegisterUserHandler;
 use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Repository\UserRepositoryInterface;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
 {
     use MockeryPHPUnitIntegration;
+
+    public function testRegisterUserHandler()
+    {
+        $username = "Username";
+        $email = "foo@bar.com";
+        $password = "Password";
+
+        $command = new RegisterUser($username, $email, $password);
+
+        $userRepository = \Mockery::mock(UserRepositoryInterface::class);
+        $userRepository->shouldReceive('add')->once();
+
+        /*
+         * Prepare Validation Violations (which is in this case an empty
+         * array because there are none...)
+         * */
+        $violations = new ConstraintViolationList(array());
+
+        $validator = \Mockery::mock(ValidatorInterface::class);
+        $validator->shouldReceive('validate')->once()->andReturn($violations);
+
+        $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
+        $eventDispatcher->shouldReceive('dispatch')->once();
+
+        $salt_length = 6;
+        $salt_keyspace = "0123456789";
+
+        $handler = new RegisterUserHandler($userRepository, $validator, $eventDispatcher, $salt_length, $salt_keyspace);
+
+        $handler->handle($command);
+    }
 
     public function testRegisterUserHandlerWithInvalidEntity()
     {
@@ -32,7 +63,6 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $command = new RegisterUser($username, $email, $password);
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-
         $userRepository->shouldReceive('add')->never();
 
             // Prepare Validation Violations
@@ -42,7 +72,8 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
                 array(),
                 $email,
                 "email",
-                $email);
+                $email
+            );
 
             $violations = new ConstraintViolationList(array($messages));
 
@@ -62,36 +93,5 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         } catch (ValidatorException $e) {
             $this->assertContains("Email is not a valid address", $e->getMessage());
         }
-    }
-
-    public function testRegisterUserHandlerWithValidEntity()
-    {
-        $username = "Username";
-        $email = "foo@bar.com";
-        $password = "Password";
-
-        $command = new RegisterUser($username, $email, $password);
-
-        $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('add')->once();
-
-            /*
-             * Prepare Validation Violations (which is in this case an empty
-             * array because there are none...)
-             * */
-            $violations = new ConstraintViolationList(array());
-
-        $validator = \Mockery::mock(ValidatorInterface::class);
-        $validator->shouldReceive('validate')->once()->andReturn($violations);
-
-        $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
-        $eventDispatcher->shouldReceive('dispatch')->once();
-
-        $salt_length = 6;
-        $salt_keyspace = "0123456789";
-
-        $handler = new RegisterUserHandler($userRepository, $validator, $eventDispatcher, $salt_length, $salt_keyspace);
-
-        $handler->handle($command);
     }
 }

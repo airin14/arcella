@@ -31,11 +31,6 @@ class UpdateUserPasswordHandler
     private $userRepository;
 
     /**
-     * @var $validator ValidatorInterface
-     */
-    private $validator;
-
-    /**
      * @var $eventDispatcher EventDispatcherInterface
      */
     private $eventDispatcher;
@@ -49,14 +44,12 @@ class UpdateUserPasswordHandler
      * RegisterUserHandler constructor.
      *
      * @param UserRepositoryInterface  $userRepository
-     * @param ValidatorInterface       $validator
      * @param EventDispatcherInterface $eventDispatcher
      * @param UserPasswordEncoder      $passwordEncoder
      */
-    public function __construct(UserRepositoryInterface $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, UserPasswordEncoder $passwordEncoder)
+    public function __construct(UserRepositoryInterface $userRepository, EventDispatcherInterface $eventDispatcher, UserPasswordEncoder $passwordEncoder)
     {
         $this->userRepository = $userRepository;
-        $this->validator = $validator;
         $this->eventDispatcher = $eventDispatcher;
         $this->passwordEncoder = $passwordEncoder;
     }
@@ -77,7 +70,7 @@ class UpdateUserPasswordHandler
 
         if (!$user) {
             throw new EntityNotFoundException(
-                'No user found for username '.$command->username()
+                'No entity found for username '.$command->username()
             );
         }
 
@@ -90,14 +83,6 @@ class UpdateUserPasswordHandler
 
         // Set the new password
         $user->setPlainPassword($command->newPassword());
-
-        // Validate the user entity
-        $errors = $this->validator->validate($user);
-        if (count($errors) > 0) {
-            $errorsString = (string) $errors;
-
-            throw new ValidatorException($errorsString);
-        }
 
         // Add the User Entity to the UserRepository
         $this->userRepository->save($user);
