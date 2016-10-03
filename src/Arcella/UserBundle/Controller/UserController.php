@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
  * Class UserController
@@ -62,7 +63,7 @@ class UserController extends Controller
                         $this->get('arcella.security.login_form_authenticator'),
                         'main'
                     );
-            } catch (\Exception $e) {
+            } catch (ValidatorException $e) {
                 $this->addFlash('warning', $e->getMessage());
             }
         }

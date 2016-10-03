@@ -16,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
  * The UserEmailController implements everything related to the email address
@@ -55,7 +56,7 @@ class UserEmailController extends Controller
                 $this->get('command_bus')->handle($command);
 
                 $this->addFlash('success', $this->get('translator')->trans('user.email.update.success'));
-            } catch (\Exception $e) {
+            } catch (ValidatorException $e) {
                 $this->addFlash('warning', $e->getMessage());
             }
         }
