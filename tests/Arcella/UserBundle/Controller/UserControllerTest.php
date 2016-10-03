@@ -51,4 +51,17 @@ class UserControllerTest extends WebTestCase
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertContains('Logged in as', $response);
     }
+
+    public function testSettingsAction()
+    {
+        // Check if the settings page can be accessed
+        $crawler = $this->client->request('GET', '/_settings');
+
+        // Fetch the response
+        $response = $this->client->getResponse()->getContent();
+
+        // Assertions
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $this->assertContains('Settings', $response);
+    }
 }

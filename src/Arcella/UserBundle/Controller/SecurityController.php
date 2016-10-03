@@ -63,44 +63,4 @@ class SecurityController extends Controller
     {
         throw new \Exception('This should not be reached!');
     }
-
-    /**
-     * Manages the change of a users password.
-     *
-     * @Route("/_settings/password", name="security_update_password")
-     * @Method({"POST","GET"})
-     *
-     * @param Request $request
-     *
-     * @return Response The http-response
-     */
-    public function updatePasswordAction(Request $request)
-    {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
-
-        $form = $this->createForm(UserUpdatePasswordForm::class);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            try {
-                $user = $this->getUser();
-                $input = $form->getData();
-
-                $command = new UpdateUserPassword($user->getUsername(), $input['oldPassword'], $input['newPassword']);
-                $this->get('command_bus')->handle($command);
-
-                $this->addFlash('success', $this->get('translator')->trans('user.password.update.success'));
-            } catch (ValidatorException $e) {
-                $this->addFlash('warning', $e->getMessage());
-            } catch (\Exception $e) {
-                $this->addFlash('warning', $e->getMessage());
-            }
-        }
-
-        return $this->render('user/update_password.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 }
