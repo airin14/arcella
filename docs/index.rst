@@ -6,12 +6,6 @@ The web is all about publishing and distributing content. Unfortunately most of 
 content management system, rather than enjoying your content. The idea behind Arcella is to provide an easy to use
 environment that allows the user to focus on publishing and distributing their content.
 
-The main documentation for Arcella is organized into some sections:
-
-* :ref:`basics`
-* :ref:`guides`
-* :ref:`contributing`
-
 .. _basics:
 
 

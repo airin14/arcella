@@ -10,7 +10,7 @@ However you should follow these simple guidelines for your contribution to be pr
 * Arcella uses the `GitFlow branching model`_ for the process from development to release.
 * Because of GitFlow we accept contributions only via pull requests on `Github`_.
 * Please keep in mind, that Arcella tries to follow `SemVer`_ v2.0.0.
-* In order to foster an inclusive, kind, harassment-free, and cooperative community, you should follow our :doc:`contributing/code_of_conduct`.
+* In order to foster an inclusive, kind, harassment-free, and cooperative community, you should follow our :doc:`code_of_conduct`.
 * Also you should make sure to follow the `PHP Standards Recommendations`_ and the `Symfony best practices`_.
 
 .. _GitFlow branching model: http://nvie.com/posts/a-successful-git-branching-model/
