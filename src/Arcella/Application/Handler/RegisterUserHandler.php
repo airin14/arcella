@@ -98,22 +98,4 @@ class RegisterUserHandler
         $event = new UserRegisteredEvent($user);
         $this->eventDispatcher->dispatch(UserRegisteredEvent::NAME, $event);
     }
-
-    /**
-     * Generates a custom salt for the new user entity. This code was borrowed from
-     * http://stackoverflow.com/questions/4356289/php-random-string-generator/31107425#31107425
-     *
-     * @return string
-     */
-    private function generateSalt()
-    {
-        $str = '';
-        $max = mb_strlen($this->saltKeyspace, '8bit') - 1;
-
-        for ($i = 0; $i < $this->saltLength; ++$i) {
-            $str .= $this->saltKeyspace[random_int(0, $max)];
-        }
-
-        return $str;
-    }
 }
