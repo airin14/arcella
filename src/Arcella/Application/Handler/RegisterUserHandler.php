@@ -13,6 +13,7 @@ use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Event\UserRegisteredEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
 use Arcella\UserBundle\Entity\User;
+use Arcella\UserBundle\Utils\TokenValidator;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -77,15 +78,13 @@ class RegisterUserHandler
      */
     public function handle(RegisterUser $command)
     {
-        // Create User entity and set some data
         $user = new User();
-
         $user->setUsername($command->username());
         $user->setEmail($command->email());
         $user->setEmailIsVerified(false);
         $user->setPlainPassword($command->password());
         $user->setRoles(array("ROLE_USER"));
-        $user->setSalt($this->generateSalt());
+        $user->setSalt(TokenValidator::createSalt($this->saltKeyspace, $this->saltLength));
 
         // Validate the User entity
         $errors = $this->validator->validate($user);
@@ -94,10 +93,8 @@ class RegisterUserHandler
             throw new ValidatorException($errorsString);
         }
 
-        // Add the User to the UserRepository
         $this->userRepository->add($user);
 
-        // Dispatch UserRegisteredEvent
         $event = new UserRegisteredEvent($user);
         $this->eventDispatcher->dispatch(UserRegisteredEvent::NAME, $event);
     }

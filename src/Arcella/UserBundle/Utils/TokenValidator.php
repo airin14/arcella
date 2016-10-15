@@ -42,17 +42,22 @@ class TokenValidator
     }
 
     /**
-     * Create a individual $salt for the $token.
+     * Create a individual $salt, which is a static function to be accessible
+     * throughout the application.
+     *
+     * @param string  $keyspace Includes all characters, numbers and special
+     *                          signs that can be used to create the token.
+     * @param integer $length   Total length of the token.
      *
      * @return string $token The individual $salt of the $token.
      */
-    public function createSalt()
+    public static function createSalt($keyspace, $length)
     {
         $token = '';
-        $max = mb_strlen($this->keyspace, '8bit') - 1;
+        $max = mb_strlen($keyspace, '8bit') - 1;
 
-        for ($i = 0; $i < $this->length; ++$i) {
-            $token .= $this->keyspace[random_int(0, $max)];
+        for ($i = 0; $i < $length; ++$i) {
+            $token .= $keyspace[random_int(0, $max)];
         }
 
         return $token;
@@ -76,7 +81,7 @@ class TokenValidator
         $date->add($expiration);
 
         $token = new Token();
-        $token->setKey($this->createSalt());
+        $token->setKey(self::createSalt($this->keyspace, $this->length));
         $token->setExpiration($date);
 
         $this->em->save($token);
