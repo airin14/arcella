@@ -24,7 +24,6 @@ Basics
    basics/what-is-arcella
    basics/requirements
    basics/install
-   basics/code_of_conduct
    basics/license
 
 Guides
@@ -48,12 +47,6 @@ Contributing
    :caption: Contributing
 
    contributing/contribute
+   contributing/code_of_conduct
    contributing/pull_requests
    contributing/quality_assurance
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`search`

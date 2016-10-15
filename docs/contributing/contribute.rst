@@ -16,6 +16,6 @@ However you should follow these simple guidelines for your contribution to be pr
 .. _GitFlow branching model: http://nvie.com/posts/a-successful-git-branching-model/
 .. _Github: https://github.com/nplhse/arcella
 .. _SemVer: http://semver.org/
-.. _Code of Conduct: https://github.com/nplhse/arcella/blob/master/CODE_OF_CONDUCT.md
+.. _Code of Conduct: :doc:`contributing/code_of_conduct`
 .. _PHP Standards Recommendations: http://www.php-fig.org/psr/
 .. _Symfony best practices: http://symfony.com/doc/current/best_practices/index.html
