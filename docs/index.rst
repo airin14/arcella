@@ -1,3 +1,4 @@
+=====================
 Arcella Documentation
 =====================
 
@@ -15,8 +16,10 @@ Basics
 ------
 
 .. _basics:
+
 .. toctree::
    :maxdepth: 1
+   :caption: Basics
 
    basics/what-is-arcella
    basics/requirements
@@ -28,8 +31,10 @@ Guides
 ------
 
 .. _guides:
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :caption: Guides
 
    guides/architecture
 
@@ -37,8 +42,10 @@ Contributing
 ------------
 
 .. _contributing:
+
 .. toctree::
    :maxdepth: 1
+   :caption: Contributing
 
    contributing/contribute
    contributing/pull_requests
