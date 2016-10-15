@@ -1,6 +1,5 @@
-===================================
-Welcome to Arcella's documentation!
-===================================
+Arcella Documentation
+=====================
 
 The web is all about publishing and distributing content. Unfortunately most of the time you end up fighting against a
 content management system, rather than enjoying your content. The idea behind Arcella is to provide an easy to use
@@ -8,15 +7,16 @@ environment that allows the user to focus on publishing and distributing their c
 
 The main documentation for Arcella is organized into some sections:
 
-* :ref:`basic-docs`
-* :ref:`concept-docs`
-* :ref:`dev-docs`
-* :ref:`code-docs`
+* :ref:`basics`
+* :ref:`guides`
+* :ref:`contributing`
 
-.. _basic-docs:
+Basics
+------
+
+.. _basics:
 .. toctree::
-   :maxdepth: 2
-   :caption: Basic Documentation
+   :maxdepth: 1
 
    basics/what-is-arcella
    basics/requirements
@@ -24,32 +24,25 @@ The main documentation for Arcella is organized into some sections:
    basics/code_of_conduct
    basics/license
 
-.. _concept-docs:
+Guides
+------
+
+.. _guides:
 .. toctree::
    :maxdepth: 2
-   :caption: Concept Documentation
 
-   concept/architecture
-   concept/building_blocks
+   guides/architecture
 
+Contributing
+------------
 
-.. _dev-docs:
+.. _contributing:
 .. toctree::
-   :maxdepth: 2
-   :caption: Developer Documentation
+   :maxdepth: 1
 
-   dev/contribute
-   dev/pull_requests
-   dev/quality_assurance
-
-
-.. _code-docs:
-.. toctree::
-   :maxdepth: 2
-   :caption: Source Documentation
-
-   code/AppBundle/index
-   code/Arcella/Domain/index
+   contributing/contribute
+   contributing/pull_requests
+   contributing/quality_assurance
 
 
 Indices and tables
