@@ -12,10 +12,8 @@ The main documentation for Arcella is organized into some sections:
 * :ref:`guides`
 * :ref:`contributing`
 
-Basics
-------
-
 .. _basics:
+
 
 .. toctree::
    :maxdepth: 1
@@ -26,8 +24,6 @@ Basics
    basics/install
    basics/license
 
-Guides
-------
 
 .. _guides:
 
@@ -37,8 +33,6 @@ Guides
 
    guides/architecture
 
-Contributing
-------------
 
 .. _contributing:
 
