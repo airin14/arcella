@@ -10,7 +10,6 @@
 namespace Arcella\UserBundle\Controller;
 
 use Arcella\Domain\Command\UpdateUserPassword;
-use Arcella\UserBundle\Form\Type\LoginForm;
 use Arcella\UserBundle\Form\Type\UserUpdatePasswordForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

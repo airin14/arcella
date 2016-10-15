@@ -29,7 +29,10 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $email = "foo@bar.com";
         $password = "Password";
 
-        $command = new RegisterUser($username, $email, $password);
+        $command = \Mockery::mock(RegisterUser::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('email')->once()->andReturn($email);
+        $command->shouldReceive('password')->once()->andReturn($password);
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
         $userRepository->shouldReceive('add')->once();
@@ -60,10 +63,13 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $email = "invalidEmail";
         $password = "Password";
 
-        $command = new RegisterUser($username, $email, $password);
+        $command = \Mockery::mock(RegisterUser::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('email')->once()->andReturn($email);
+        $command->shouldReceive('password')->once()->andReturn($password);
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('add')->never();
+        $userRepository->shouldNotReceive('add');
 
             // Prepare Validation Violations
             $messages = new ConstraintViolation(
@@ -81,7 +87,7 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('validate')->once()->andReturn($violations);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
-        $eventDispatcher->shouldReceive('dispatch')->never();
+        $eventDispatcher->shouldNotReceive('dispatch');
 
         $salt_length = 6;
         $salt_keyspace = "0123456789";

@@ -19,7 +19,7 @@ class ArcellaWebTestCase extends WebTestCase
     /**
      * @var $client
      */
-    protected $client;
+    public $client;
 
     /**
      * Creates the Goutte\Client.

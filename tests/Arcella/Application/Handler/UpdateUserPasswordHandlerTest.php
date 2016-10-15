@@ -29,7 +29,10 @@ class UpdateUserPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $oldPassword = "Password";
         $newPassword = "NewPassword";
 
-        $command = new UpdateUserPassword($username, $oldPassword, $newPassword);
+        $command = \Mockery::mock(UpdateUserPassword::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('oldPassword')->once()->andReturn($oldPassword);
+        $command->shouldReceive('newPassword')->once()->andReturn($newPassword);
 
         $user = \Mockery::mock(User::class);
         $user->shouldReceive('setPlainPassword')->once()->with($newPassword);
@@ -55,17 +58,20 @@ class UpdateUserPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $oldPassword = "";
         $newPassword = "NewPassword";
 
-        $command = new UpdateUserPassword($username, $oldPassword, $newPassword);
+        $command = \Mockery::mock(UpdateUserPassword::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('oldPassword')->once()->andReturn($oldPassword);
+        $command->shouldNotReceive('newPassword');
 
         $user = \Mockery::mock(User::class);
-        $user->shouldReceive('setPlainPassword')->never();
+        $user->shouldNotReceive('setPlainPassword');
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('save')->never();
+        $userRepository->shouldNotReceive('save');
         $userRepository->shouldReceive('findOneBy')->once()->andReturn($user);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
-        $eventDispatcher->shouldReceive('dispatch')->never();
+        $eventDispatcher->shouldNotReceive('dispatch');
 
         $encoder = \Mockery::mock(UserPasswordEncoder::class);
         $encoder->shouldReceive('isPasswordValid')->once()->andReturn(false);
@@ -85,20 +91,23 @@ class UpdateUserPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $oldPassword = "Password";
         $newPassword = "NewPassword";
 
-        $command = new UpdateUserPassword($username, $oldPassword, $newPassword);
+        $command = \Mockery::mock(UpdateUserPassword::class);
+        $command->shouldReceive('username')->twice()->andReturn($username);
+        $command->shouldNotReceive('oldPassword');
+        $command->shouldNotReceive('newPassword');
 
         $user = \Mockery::mock(User::class);
-        $user->shouldReceive('setPlainPassword')->never();
+        $user->shouldNotReceive('setPlainPassword');
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('save')->never();
+        $userRepository->shouldNotReceive('save');
         $userRepository->shouldReceive('findOneBy')->once()->andReturn(false);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
-        $eventDispatcher->shouldReceive('dispatch')->never();
+        $eventDispatcher->shouldNotReceive('dispatch');
 
         $encoder = \Mockery::mock(UserPasswordEncoder::class);
-        $encoder->shouldReceive('isPasswordValid')->never();
+        $encoder->shouldNotReceive('isPasswordValid');
 
         $handler = new UpdateUserPasswordHandler($userRepository, $eventDispatcher, $encoder);
 

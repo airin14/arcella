@@ -7,24 +7,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Test\Arcella\UserBundle\Controller;
+namespace Tests\Arcella\UserBundle\Controller;
 
 use Arcella\Test\ArcellaWebTestCase;
 
 class SecurityControllerTest extends ArcellaWebTestCase
 {
+    use UserLoginTrait;
+
     public function testLoginAction()
     {
-        // Check if the login form can be accessed
-        $crawler = $this->client->request('GET', '/login');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Login")')->count());
+        $username = "monty93";
+        $password = "arcella";
 
-        // Fill in and submit the form
-        $form = $crawler->filter('form[name=login_form]')->form();
-        $crawler = $this->client->submit($form, array(
-            'login_form[username]' => 'monty93',
-            'login_form[password]' => 'arcella',
-        ));
+        $this->doLogin($username, $password);
 
         // Fetch the response
         $response = $this->client->getResponse()->getContent();

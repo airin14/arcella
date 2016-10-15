@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Test\Arcella\UserBundle\Controller;
+namespace Tests\Arcella\UserBundle\Controller;
 
 use Arcella\Test\ArcellaWebTestCase;
 use Nelmio\Alice\Fixtures;

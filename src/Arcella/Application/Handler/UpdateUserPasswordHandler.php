@@ -17,7 +17,6 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Validator\Exception\ValidatorException;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * This class is responsible for handling a UpdateUserPassword command, which
@@ -65,7 +64,6 @@ class UpdateUserPasswordHandler
      */
     public function handle(UpdateUserPassword $command)
     {
-        // Fetch User entity
         $user = $this->userRepository->findOneBy(['username' => $command->username()]);
 
         if (!$user) {
@@ -74,20 +72,16 @@ class UpdateUserPasswordHandler
             );
         }
 
-        // Checks if the credentials are valid
         if (!$this->passwordEncoder->isPasswordValid($user, $command->oldPassword())) {
             throw new ValidatorException(
                 'Cannot update password for user, because of invalid credentials'
             );
         }
 
-        // Set the new password
         $user->setPlainPassword($command->newPassword());
 
-        // Add the User Entity to the UserRepository
         $this->userRepository->save($user);
 
-        // Dispatch UserUpdatedPasswordEvent
         $event = new UserUpdatedPasswordEvent($user);
         $this->eventDispatcher->dispatch(UserUpdatedPasswordEvent::NAME, $event);
     }

@@ -63,7 +63,6 @@ class UpdateUserEmailHandler
      */
     public function handle(UpdateUserEmail $command)
     {
-        // Fetch User entity
         $user = $this->userRepository->findOneBy(['username' => $command->username()]);
 
         if (!$user) {
@@ -72,7 +71,6 @@ class UpdateUserEmailHandler
             );
         }
 
-        // Set the new email address
         $user->setEmail($command->email());
         $user->setEmailIsVerified(false);
 
@@ -83,10 +81,8 @@ class UpdateUserEmailHandler
             throw new ValidatorException($errorsString);
         }
 
-        // Add the User entity to the UserRepository
         $this->userRepository->save($user);
 
-        // Dispatch UserUpdatedEmailEvent
         $event = new UserUpdatedEmailEvent($user);
         $this->eventDispatcher->dispatch(UserUpdatedEmailEvent::NAME, $event);
     }

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\UserBundle\Controller;
+namespace Tests\Arcella\UserBundle\Controller;
 
 use Arcella\Test\ArcellaWebTestCase;
 

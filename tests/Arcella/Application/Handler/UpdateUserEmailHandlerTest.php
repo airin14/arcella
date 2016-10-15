@@ -30,7 +30,9 @@ class UpdateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
         $username = "Username";
         $email = "foo@bar.com";
 
-        $command = new UpdateUserEmail($username, $email);
+        $command = \Mockery::mock(UpdateUserEmail::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('email')->once()->andReturn($email);
 
         $user = \Mockery::mock(User::class);
         $user->shouldReceive('setEmail')->once();
@@ -62,14 +64,16 @@ class UpdateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
         $username = "Username";
         $email = "invalidEmailAddress";
 
-        $command = new UpdateUserEmail($username, $email);
+        $command = \Mockery::mock(UpdateUserEmail::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('email')->once()->andReturn($email);
 
         $user = \Mockery::mock(User::class);
         $user->shouldReceive('setEmail')->once();
         $user->shouldReceive('setEmailIsVerified')->once();
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('save')->never();
+        $userRepository->shouldNotReceive('save');
         $userRepository->shouldReceive('findOneBy')->once()->andReturn($user);
 
             // Prepare Validation Violations
@@ -88,7 +92,7 @@ class UpdateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('validate')->once()->andReturn($violations);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
-        $eventDispatcher->shouldReceive('dispatch')->never();
+        $eventDispatcher->shouldNotReceive('dispatch');
 
         $handler = new UpdateUserEmailHandler($userRepository, $validator, $eventDispatcher);
 
@@ -104,10 +108,12 @@ class UpdateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
         $username = "Username";
         $email = "invalidEmailAddress";
 
-        $command = new UpdateUserEmail($username, $email);
+        $command = \Mockery::mock(UpdateUserEmail::class);
+        $command->shouldReceive('username')->twice()->andReturn($username);
+        $command->shouldNotReceive('email');
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('save')->never();
+        $userRepository->shouldNotReceive('save');
         $userRepository->shouldReceive('findOneBy')->once()->andReturn(false);
 
             /*
@@ -117,10 +123,10 @@ class UpdateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
             $violations = new ConstraintViolationList(array());
 
         $validator = \Mockery::mock(ValidatorInterface::class);
-        $validator->shouldReceive('validate')->never();
+        $validator->shouldNotReceive('validate');
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
-        $eventDispatcher->shouldReceive('dispatch')->never();
+        $eventDispatcher->shouldNotReceive('dispatch');
 
         $handler = new UpdateUserEmailHandler($userRepository, $validator, $eventDispatcher);
 

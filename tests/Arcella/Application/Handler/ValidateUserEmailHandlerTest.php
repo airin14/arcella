@@ -25,9 +25,11 @@ class ValidateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
     public function testValidateUserEmailHandler()
     {
         $username = "Username";
-        $email = "foo@bar.com";
+        $token = "validToken";
 
-        $command = new ValidateUserEmail($username, $email);
+        $command = \Mockery::mock(ValidateUserEmail::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('token')->twice()->andReturn($token);
 
         $user = \Mockery::mock(User::class);
         $user->shouldReceive('setEmailIsVerified')->once();
@@ -48,17 +50,18 @@ class ValidateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
     public function testValidateUserEmailHandlerWithNonexistentUser()
     {
         $username = "Username123";
-        $email = "foo@bar.com";
 
-        $command = new ValidateUserEmail($username, $email);
+        $command = \Mockery::mock(ValidateUserEmail::class);
+        $command->shouldReceive('username')->twice()->andReturn($username);
+        $command->shouldNotReceive('token');
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('save')->never();
+        $userRepository->shouldNotReceive('save');
         $userRepository->shouldReceive('findOneBy')->once()->andReturn(false);
 
         $validator = \Mockery::mock(TokenValidator::class);
-        $validator->shouldReceive('validateToken')->never();
-        $validator->shouldReceive('removeToken')->never();
+        $validator->shouldNotReceive('validateToken');
+        $validator->shouldNotReceive('removeToken');
 
         $handler = new ValidateUserEmailHandler($userRepository, $validator);
 
@@ -73,19 +76,22 @@ class ValidateUserEmailHandlerTest extends \PHPUnit_Framework_TestCase
     {
         $username = "Username123";
         $email = "foo@bar.com";
+        $token = "invalidToken";
 
-        $command = new ValidateUserEmail($username, $email);
+        $command = \Mockery::mock(ValidateUserEmail::class);
+        $command->shouldReceive('username')->once()->andReturn($username);
+        $command->shouldReceive('token')->twice()->andReturn($token);
 
         $user = \Mockery::mock(User::class);
-        $user->shouldReceive('setEmailIsVerified')->never();
+        $user->shouldNotReceive('setEmailIsVerified');
 
         $userRepository = \Mockery::mock(UserRepositoryInterface::class);
-        $userRepository->shouldReceive('save')->never();
+        $userRepository->shouldNotReceive('save');
         $userRepository->shouldReceive('findOneBy')->once()->andReturn($user);
 
         $validator = \Mockery::mock(TokenValidator::class);
         $validator->shouldReceive('validateToken')->once()->andReturn(false);
-        $validator->shouldReceive('removeToken')->never();
+        $validator->shouldNotReceive('removeToken');
 
         $handler = new ValidateUserEmailHandler($userRepository, $validator);
 

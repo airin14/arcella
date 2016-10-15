@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Test\Arcella\Domain\Event;
+namespace Tests\Arcella\Domain\Event;
 
 use Arcella\Domain\Entity\User;
 use Arcella\Domain\Event\UserUpdatedPasswordEvent;

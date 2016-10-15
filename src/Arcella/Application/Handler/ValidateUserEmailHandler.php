@@ -54,7 +54,6 @@ class ValidateUserEmailHandler
      */
     public function handle(ValidateUserEmail $command)
     {
-        // Fetch User entity
         $user = $this->userRepository->findOneBy(['username' => $command->username()]);
 
         if (!$user) {
@@ -70,7 +69,6 @@ class ValidateUserEmailHandler
         $user->setEmailIsVerified(true);
         $this->tokenValidator->removeToken($command->token());
 
-        // Add the User entity to the UserRepository
         $this->userRepository->save($user);
     }
 }

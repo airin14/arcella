@@ -51,7 +51,7 @@ class UserController extends Controller
 
                 $this->addFlash('success', 'Welcome '.$user->getEmail());
 
-                // Fetch the acutal new user from the database
+                // Fetch the actual new user from the database
                 $user = $this->getDoctrine()->getRepository('ArcellaUserBundle:User')
                     ->findOneByUsername($command->username());
 

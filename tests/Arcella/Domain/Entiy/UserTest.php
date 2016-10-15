@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Test\Arcella\Domain\Entity;
+namespace Tests\Arcella\Domain\Entity;
 
 use Arcella\Domain\Entity\User;
 use Arcella\Domain\Exception\DomainException;
