@@ -9,26 +9,12 @@
 
 namespace Test\Arcella\UserBundle\Controller;
 
+use Arcella\Test\ArcellaWebTestCase;
 use Nelmio\Alice\Fixtures;
 use Faker\Provider\Internet as FakerProvider;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class UserControllerTest extends WebTestCase
+class UserControllerTest extends ArcellaWebTestCase
 {
-    protected $client;
-
-    /**
-     * Creates the Goutte\Client.
-     *
-     * This library manages all the http stuff and brings the crawler to this testsuite. See also:
-     * https://github.com/FriendsOfPHP/Goutte
-     */
-    protected function setUp()
-    {
-        $this->client = static::createClient();
-        $this->client->followRedirects();
-    }
-
     public function testRegisterAction()
     {
         // Check if the login form can be accessed

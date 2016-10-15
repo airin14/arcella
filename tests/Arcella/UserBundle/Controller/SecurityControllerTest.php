@@ -9,24 +9,10 @@
 
 namespace Test\Arcella\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Arcella\Test\ArcellaWebTestCase;
 
-class SecurityControllerTest extends WebTestCase
+class SecurityControllerTest extends ArcellaWebTestCase
 {
-    protected $client;
-
-    /**
-     * Creates the Goutte\Client.
-     *
-     * This library manages all the http stuff and brings the crawler to this testsuite. See also:
-     * https://github.com/FriendsOfPHP/Goutte
-     */
-    protected function setUp()
-    {
-        $this->client = static::createClient();
-        $this->client->followRedirects();
-    }
-
     public function testLoginAction()
     {
         // Check if the login form can be accessed
