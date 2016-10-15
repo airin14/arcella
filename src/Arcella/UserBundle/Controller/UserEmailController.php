@@ -27,8 +27,34 @@ class UserEmailController extends Controller
     /**
      * Manages the change of a users email address.
      *
+     * @Route("/_settings/email", name="user_update_email_form")
+     * @Method({"GET"})
+     *
+     * @param Request $request
+     *
+     * @return Response The response to be rendered
+     */
+    public function updateEmailFormAction(Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $user = $this->getUser();
+        $form = $this->createForm(UserUpdateEmailForm::class, [
+            'email' => $user->getEmail(),
+        ]);
+
+        return $this->render('user/update_email.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Manages the change of a users email address.
+     *
      * @Route("/_settings/email", name="user_update_email")
-     * @Method({"POST","GET"})
+     * @Method({"POST"})
      *
      * @param Request $request
      *
@@ -61,16 +87,14 @@ class UserEmailController extends Controller
             }
         }
 
-        return $this->render('user/update_email.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->redirectToRoute('user_update_email_form');
     }
 
     /**
      * Manages the validation users email address.
      *
      * @Route("/validate/email/{token}", name="user_validate_email")
-     * @Method({"POST","GET"})
+     * @Method({"GET"})
      *
      * @param Request $request
      * @param string  $token

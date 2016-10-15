@@ -25,7 +25,7 @@ class SecurityController extends Controller
      * Manages the login of users.
      *
      * @Route("/login", name="security_login")
-     * @Method({"POST","GET"})
+     * @Method({"GET", "POST"})
      *
      * @return Response The http-response
      */
