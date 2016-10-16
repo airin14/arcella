@@ -12,6 +12,7 @@ namespace Tests\Arcella\Application\Handler;
 use Arcella\Application\Handler\RegisterUserHandler;
 use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Repository\UserRepositoryInterface;
+use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolation;
@@ -49,10 +50,13 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldReceive('dispatch')->once();
 
+        $tokenValidator = \Mockery::mock(TokenValidator::class);
+        $tokenValidator->shouldReceive('createSalt')->once()->andReturn('Salt');
+
         $salt_length = 6;
         $salt_keyspace = "0123456789";
 
-        $handler = new RegisterUserHandler($userRepository, $validator, $eventDispatcher, $salt_length, $salt_keyspace);
+        $handler = new RegisterUserHandler($userRepository, $validator, $eventDispatcher, $tokenValidator, $salt_length, $salt_keyspace);
 
         $handler->handle($command);
     }
@@ -89,10 +93,13 @@ class RegisterUserHandlerTest extends \PHPUnit_Framework_TestCase
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldNotReceive('dispatch');
 
+        $tokenValidator = \Mockery::mock(TokenValidator::class);
+        $tokenValidator->shouldReceive('createSalt')->once()->andReturn('Salt');
+
         $salt_length = 6;
         $salt_keyspace = "0123456789";
 
-        $handler = new RegisterUserHandler($userRepository, $validator, $eventDispatcher, $salt_length, $salt_keyspace);
+        $handler = new RegisterUserHandler($userRepository, $validator, $eventDispatcher, $tokenValidator, $salt_length, $salt_keyspace);
 
         try {
             $handler->handle($command);

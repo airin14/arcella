@@ -13,7 +13,7 @@ use Arcella\Domain\Command\RegisterUser;
 use Arcella\Domain\Event\UserRegisteredEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
 use Arcella\UserBundle\Entity\User;
-use Arcella\UserBundle\Utils\TokenValidator;
+use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -41,6 +41,11 @@ class RegisterUserHandler
     private $eventDispatcher;
 
     /**
+     * @var $tokenValidator TokenValidator
+     */
+    private $tokenValidator;
+
+    /**
      * @var $saltLength int Length of the salt.
      */
     private $saltLength;
@@ -56,14 +61,16 @@ class RegisterUserHandler
      * @param UserRepositoryInterface  $userRepository
      * @param ValidatorInterface       $validator
      * @param EventDispatcherInterface $eventDispatcher
+     * @param TokenValidator           $tokenValidator
      * @param int                      $saltLength
      * @param string                   $saltKeyspace
      */
-    public function __construct(UserRepositoryInterface $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, $saltLength, $saltKeyspace)
+    public function __construct(UserRepositoryInterface $userRepository, ValidatorInterface $validator, EventDispatcherInterface $eventDispatcher, TokenValidator $tokenValidator, $saltLength, $saltKeyspace)
     {
         $this->userRepository = $userRepository;
         $this->validator = $validator;
         $this->eventDispatcher = $eventDispatcher;
+        $this->tokenValidator = $tokenValidator;
         $this->saltLength = $saltLength;
         $this->saltKeyspace = $saltKeyspace;
     }
@@ -84,7 +91,7 @@ class RegisterUserHandler
         $user->setEmailIsVerified(false);
         $user->setPlainPassword($command->password());
         $user->setRoles(array("ROLE_USER"));
-        $user->setSalt(TokenValidator::createSalt($this->saltKeyspace, $this->saltLength));
+        $user->setSalt($this->tokenValidator->createSalt($this->saltLength, $this->saltKeyspace));
 
         // Validate the User entity
         $errors = $this->validator->validate($user);

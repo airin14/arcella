@@ -11,7 +11,7 @@ namespace Arcella\UserBundle\EventListener;
 
 use Arcella\Domain\Event\UserRegisteredEvent;
 use Arcella\Domain\Event\UserUpdatedEmailEvent;
-use Arcella\UserBundle\Utils\TokenValidator;
+use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 
 /**
  * Class UserEmailValidationListener
@@ -24,6 +24,7 @@ class UserEmailValidationListener
 
     /**
      * UserEmailValidationListener constructor.
+     *
      * @param \Twig_Environment $twig
      * @param \Swift_Mailer     $mailer
      * @param TokenValidator    $tokenValidator

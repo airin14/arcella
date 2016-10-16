@@ -39,7 +39,6 @@ class UserController extends Controller
     public function registerAction(Request $request)
     {
         $form = $this->createForm(UserRegistrationForm::class);
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {

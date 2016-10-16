@@ -13,7 +13,7 @@ use Arcella\Application\Handler\ValidateUserEmailHandler;
 use Arcella\Domain\Command\ValidateUserEmail;
 use Arcella\Domain\Entity\User;
 use Arcella\Domain\Repository\UserRepositoryInterface;
-use Arcella\UserBundle\Utils\TokenValidator;
+use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Symfony\Component\Validator\Exception\ValidatorException;

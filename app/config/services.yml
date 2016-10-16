@@ -6,7 +6,7 @@ parameters:
 services:
     register_user_handler:
         class: Arcella\Application\Handler\RegisterUserHandler
-        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher', '%arcella.user.salt.length%', '%arcella.user.salt.keyspace%']
+        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher', '@arcella.utilitybundle.token_validator', '%arcella.user.salt.length%', '%arcella.user.salt.keyspace%']
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\RegisterUser }
 
@@ -16,6 +16,12 @@ services:
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserPassword }
 
+    recover_password_handler:
+        class: Arcella\Application\Handler\RecoverPasswordHandler
+        arguments: ['@arcella.userbundle.user_repository', '@mailer', '@twig', '@arcella.utilitybundle.token_validator', '@event_dispatcher']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\RecoverPassword }
+
     update_user_email_handler:
         class: Arcella\Application\Handler\UpdateUserEmailHandler
         arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher']
@@ -24,7 +30,7 @@ services:
 
     validate_user_email_handler:
         class: Arcella\Application\Handler\ValidateUserEmailHandler
-        arguments: ['@arcella.userbundle.user_repository', '@arcella.userbundle.token_validator']
+        arguments: ['@arcella.userbundle.user_repository', '@arcella.utilitybundle.token_validator']
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\ValidateUserEmail }
 
@@ -36,7 +42,7 @@ services:
 
     arcella.userbundle.email_validation_listener:
         class: Arcella\UserBundle\EventListener\UserEmailValidationListener
-        arguments: ['@twig', '@mailer', '@arcella.userbundle.token_validator']
+        arguments: ['@twig', '@mailer', '@arcella.utilitybundle.token_validator']
         tags:
             - { name: kernel.event_listener, event: user.updated.email }
             - { name: kernel.event_listener, event: user.registered }
@@ -47,16 +53,16 @@ services:
         arguments:
             - Arcella\UserBundle\Entity\User
 
-    arcella.userbundle.token_repository:
-        class: Arcella\UserBundle\Repository\TokenRepository
-        factory: ['@doctrine.orm.default_entity_manager', getRepository]
-        arguments:
-            - Arcella\UserBundle\Entity\Token
-
     arcella.security.login_form_authenticator:
         class: Arcella\UserBundle\Security\LoginFormAuthenticator
         autowire: true
 
-    arcella.userbundle.token_validator:
-        class: Arcella\UserBundle\Utils\TokenValidator
-        arguments: ['@arcella.userbundle.token_repository', '%arcella.user.token.length%', '%arcella.user.token.keyspace%', '%arcella.user.token.lifetime%']
+    arcella.utilitybundle.token_repository:
+        class: Arcella\UtilityBundle\Repository\TokenRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Arcella\UtilityBundle\Entity\Token
+
+    arcella.utilitybundle.token_validator:
+        class: Arcella\UtilityBundle\TokenValidator\TokenValidator
+        arguments: ['@arcella.utilitybundle.token_repository', '%arcella.user.token.length%', '%arcella.user.token.keyspace%', '%arcella.user.token.lifetime%']

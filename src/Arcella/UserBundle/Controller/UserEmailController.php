@@ -67,7 +67,6 @@ class UserEmailController extends Controller
         }
 
         $user = $this->getUser();
-
         $form = $this->createForm(UserUpdateEmailForm::class, [
             'email' => $user->getEmail(),
         ]);

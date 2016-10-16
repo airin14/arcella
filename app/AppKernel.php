@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
             new Arcella\UserBundle\ArcellaUserBundle(),
+            new Arcella\UtilityBundle\ArcellaUtilityBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -11,7 +11,7 @@ namespace Arcella\Application\Handler;
 
 use Arcella\Domain\Command\ValidateUserEmail;
 use Arcella\Domain\Repository\UserRepositoryInterface;
-use Arcella\UserBundle\Utils\TokenValidator;
+use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Exception\ValidatorException;

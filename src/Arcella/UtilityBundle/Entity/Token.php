@@ -1,6 +1,6 @@
 <?php
 
-namespace Arcella\UserBundle\Entity;
+namespace Arcella\UtilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Token
  *
  * @ORM\Table(name="token")
- * @ORM\Entity(repositoryClass="Arcella\UserBundle\Repository\TokenRepository")
+ * @ORM\Entity(repositoryClass="Arcella\UtilityBundle\Repository\TokenRepository")
  */
 class Token
 {
@@ -34,6 +34,13 @@ class Token
      * @ORM\Column(name="expiration", type="time")
      */
     private $expiration;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="params", type="json_array")
+     */
+    private $params = array();
 
 
     /**
@@ -84,5 +91,15 @@ class Token
     public function getExpiration()
     {
         return $this->expiration;
+    }
+
+    public function setParams(array $params)
+    {
+        $this->params = $params;
+    }
+
+    public function getParams()
+    {
+        return $this->params;
     }
 }

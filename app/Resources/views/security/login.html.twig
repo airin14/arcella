@@ -17,7 +17,7 @@
                 {{ form_row(form.password) }}
                 <button type="submit" class="btn btn-success">{{ "login.btn.submit"|trans({}, "forms") }} <span class="fa fa-lock"></span></button>
                 &nbsp;
-                <a href="{{ path('user_register') }}">{{ "login.link.register"|trans({}, "forms") }}</a>
+                <a href="{{ path('user_register') }}">{{ "login.link.register"|trans({}, "forms") }}</a>, <a href="{{ path('user_recover_password_form') }}">{{ "login.link.password.recover"|trans({}, "forms") }}</a>
                 {{ form_end(form) }}
             </div>
         </div>

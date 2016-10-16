@@ -46,6 +46,14 @@
                 <source>user.email.validate.failure</source>
                 <target>Something went wrong: Could not validate your email address.</target>
             </trans-unit>
+            <trans-unit id="user.password.recovery.sent">
+                <source>user.password.recovery.sent</source>
+                <target>Please check your emails, we sent you an email to reset your password.</target>
+            </trans-unit>
+            <trans-unit id="user.password.recovery.failure">
+                <source>user.password.recovery.failure</source>
+                <target>Something went wrong: Could not find a user matching this email address.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
