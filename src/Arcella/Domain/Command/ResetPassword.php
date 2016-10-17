@@ -15,13 +15,6 @@ namespace Arcella\Domain\Command;
 class ResetPassword
 {
     /**
-     * The username of the User entity where the password should be updated
-     *
-     * @var string $username
-     */
-    private $username;
-
-    /**
      * The new password for the User entity
      *
      * @var string $newPassword
@@ -36,23 +29,13 @@ class ResetPassword
     /**
      * UpdateUserPassword constructor.
      *
-     * @param string $username    The username of the User entity
      * @param string $newPassword The new password for the User entity
-     * @param string $token    The token that is to be validated
+     * @param string $token       The token that is to be validated
      */
-    public function __construct($username, $newPassword, $token)
+    public function __construct($newPassword, $token)
     {
-        $this->username = $username;
         $this->newPassword = $newPassword;
         $this->token = $token;
-    }
-
-    /**
-     * @return string $username
-     */
-    public function username()
-    {
-        return $this->username;
     }
 
     /**

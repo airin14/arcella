@@ -56,6 +56,7 @@ class ResetPasswordController extends Controller
      * @Method({"POST"})
      *
      * @param Request $request
+     * @param string  $token
      *
      * @return Response The response to be rendered
      */
@@ -68,7 +69,7 @@ class ResetPasswordController extends Controller
             try {
                 $data = $form->getData();
 
-                $command = new ResetPassword($data['username'], $data['newPassword'], $token);
+                $command = new ResetPassword($data['newPassword'], $token);
                 $this->get('command_bus')->handle($command);
 
                 $this->addFlash('success', $this->get('translator')->trans('user.password.reset.success'));

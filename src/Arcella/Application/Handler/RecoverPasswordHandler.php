@@ -12,7 +12,7 @@ namespace Arcella\Application\Handler;
 use Arcella\Domain\Command\RecoverPassword;
 use Arcella\Domain\Event\RecoverPasswordEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
-use Arcella\UserBundle\Utils\TokenValidator;
+use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -78,7 +78,11 @@ class RecoverPasswordHandler
             );
         }
 
-        $token = $this->tokenValidator->generateToken();
+        $params = array(
+            'username' => $user->getUsername(),
+        );
+
+        $token = $this->tokenValidator->generateToken($params);
 
         $twigParams = array(
             'name' => $user->getUsername(),

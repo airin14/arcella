@@ -74,6 +74,14 @@
                 <source>user.password.recover.btn.submit</source>
                 <target>Send email to reset password</target>
             </trans-unit>
+            <trans-unit id="user.password.reset.title">
+                <source>user.password.reset.title</source>
+                <target>Reset your password</target>
+            </trans-unit>
+            <trans-unit id="user.password.reset.btn.submit">
+                <source>user.password.reset.btn.submit</source>
+                <target>Reset password now</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

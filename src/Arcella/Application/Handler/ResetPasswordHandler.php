@@ -9,9 +9,11 @@
 
 namespace Arcella\Application\Handler;
 
-use Arcella\Domain\Command\UpdateUserPassword;
+use Arcella\Domain\Command\ResetPassword;
 use Arcella\Domain\Event\UserUpdatedPasswordEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
+use Arcella\UtilityBundle\Repository\TokenRepository;
+use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -34,6 +36,16 @@ class ResetPasswordHandler
     private $eventDispatcher;
 
     /**
+     * @var TokenRepository
+     */
+    private $tokenRepository;
+
+    /**
+     * @var $tokenValidator TokenValidator
+     */
+    private $tokenValidator;
+
+    /**
      * @var UserPasswordEncoder
      */
     private $passwordEncoder;
@@ -43,36 +55,41 @@ class ResetPasswordHandler
      *
      * @param UserRepositoryInterface  $userRepository
      * @param EventDispatcherInterface $eventDispatcher
+     * @param TokenRepository          $tokenRepository
+     * @param TokenValidator           $tokenValidator
      * @param UserPasswordEncoder      $passwordEncoder
      */
-    public function __construct(UserRepositoryInterface $userRepository, EventDispatcherInterface $eventDispatcher, UserPasswordEncoder $passwordEncoder)
+    public function __construct(UserRepositoryInterface $userRepository, EventDispatcherInterface $eventDispatcher, TokenRepository $tokenRepository, TokenValidator $tokenValidator, UserPasswordEncoder $passwordEncoder)
     {
         $this->userRepository = $userRepository;
         $this->eventDispatcher = $eventDispatcher;
+        $this->tokenRepository = $tokenRepository;
+        $this->tokenValidator = $tokenValidator;
         $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
      * Handles the ResetPassword command.
      *
-     * @param ResetPasswordHandler $command
+     * @param ResetPassword $command
      *
      * @throws EntityNotFoundException
      * @throws ValidatorException
      */
-    public function handle(ResetPasswordHandler $command)
+    public function handle(ResetPassword $command)
     {
-        $user = $this->userRepository->findOneBy(['email' => $command->email()]);
+        if (!$this->tokenValidator->validateToken($command->token())) {
+            throw new ValidatorException('Could not validate token: '.$command->token());
+        }
+
+        $token = $this->tokenRepository->findOneBy(['key' => $command->token()]);
+        $params = $token->getParams();
+
+        $user = $this->userRepository->findOneBy(['username' => $params['username']]);
 
         if (!$user) {
             throw new EntityNotFoundException(
                 'No entity found for username '.$command->username()
-            );
-        }
-
-        if (!$this->passwordEncoder->isPasswordValid($user, $command->oldPassword())) {
-            throw new ValidatorException(
-                'Cannot update password for user, because of invalid credentials'
             );
         }
 
