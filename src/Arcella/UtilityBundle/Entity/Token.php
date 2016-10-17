@@ -93,11 +93,17 @@ class Token
         return $this->expiration;
     }
 
+    /**
+     * @param array $params
+     */
     public function setParams(array $params)
     {
         $this->params = $params;
     }
 
+    /**
+     * @return array $params
+     */
     public function getParams()
     {
         return $this->params;
