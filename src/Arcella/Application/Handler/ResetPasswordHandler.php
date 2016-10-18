@@ -10,6 +10,7 @@
 namespace Arcella\Application\Handler;
 
 use Arcella\Domain\Command\ResetPassword;
+use Arcella\Domain\Event\ResetPasswordEvent;
 use Arcella\Domain\Event\UserUpdatedPasswordEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
 use Arcella\UtilityBundle\Repository\TokenRepository;
@@ -46,26 +47,19 @@ class ResetPasswordHandler
     private $tokenValidator;
 
     /**
-     * @var UserPasswordEncoder
-     */
-    private $passwordEncoder;
-
-    /**
      * RegisterUserHandler constructor.
      *
      * @param UserRepositoryInterface  $userRepository
      * @param EventDispatcherInterface $eventDispatcher
      * @param TokenRepository          $tokenRepository
      * @param TokenValidator           $tokenValidator
-     * @param UserPasswordEncoder      $passwordEncoder
      */
-    public function __construct(UserRepositoryInterface $userRepository, EventDispatcherInterface $eventDispatcher, TokenRepository $tokenRepository, TokenValidator $tokenValidator, UserPasswordEncoder $passwordEncoder)
+    public function __construct(UserRepositoryInterface $userRepository, EventDispatcherInterface $eventDispatcher, TokenRepository $tokenRepository, TokenValidator $tokenValidator)
     {
         $this->userRepository = $userRepository;
         $this->eventDispatcher = $eventDispatcher;
         $this->tokenRepository = $tokenRepository;
         $this->tokenValidator = $tokenValidator;
-        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -89,15 +83,16 @@ class ResetPasswordHandler
 
         if (!$user) {
             throw new EntityNotFoundException(
-                'No entity found for username '.$command->username()
+                'No entity found for username '.$params['username']
             );
         }
 
         $user->setPlainPassword($command->newPassword());
-
         $this->userRepository->save($user);
 
-        $event = new UserUpdatedPasswordEvent($user);
-        $this->eventDispatcher->dispatch(UserUpdatedPasswordEvent::NAME, $event);
+        $this->tokenValidator->removeToken($command->token());
+
+        $event = new ResetPasswordEvent($user);
+        $this->eventDispatcher->dispatch(ResetPasswordEvent::NAME, $event);
     }
 }
