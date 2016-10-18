@@ -10,26 +10,28 @@
 namespace Tests\Arcella\Domain\Event;
 
 use Arcella\Domain\Entity\User;
+use Arcella\Domain\Event\RecoverPasswordEvent;
+use Arcella\Domain\Event\ResetPasswordEvent;
 use Arcella\Domain\Event\UserRegisteredEvent;
 
-class UserRegisteredEventTest extends \PHPUnit_Framework_TestCase
+class ResetPasswordEventTest extends \PHPUnit_Framework_TestCase
 {
-    public function testonUserRegistered()
+    public function testonResetPassword()
     {
         $username = "Username";
 
         $user = new User();
         $user->setUsername($username);
 
-        $event = new UserRegisteredEvent($user);
+        $event = new ResetPasswordEvent($user);
 
         $this->assertEquals($username, $event->getUser()->getUsername());
     }
 
     public function testEventName()
     {
-        $obj = new \ReflectionClass(UserRegisteredEvent::class);
+        $obj = new \ReflectionClass(ResetPasswordEvent::class);
 
-        $this->assertEquals("user.registered", $obj->getConstant("NAME"));
+        $this->assertEquals("user.password.reset", $obj->getConstant("NAME"));
     }
 }
