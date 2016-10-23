@@ -24,6 +24,11 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $newPassword = "arcella";
 
         $this->requestRecoveryMail($email);
+
+        // Assertions
+        $response = $this->client->getResponse()->getContent();
+        $this->assertContains("Please check your emails, we sent you an email to reset your password", $response);
+
         $this->getEmailFromProfiler();
 
         // Asserting email data
