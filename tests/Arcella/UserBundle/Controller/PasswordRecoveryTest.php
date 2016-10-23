@@ -23,8 +23,6 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $email       = 'fschmeler@gmail.com';
         $newPassword = "arcella";
 
-        $this->client->enableProfiler();
-
         $this->requestRecoveryMail($email);
         $this->getEmailFromProfiler();
 
@@ -51,9 +49,11 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $crawler = $this->client->request('GET', '/password_recovery');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Recover your password")')->count());
 
+        $this->client->enableProfiler();
+
         // Fill in and submit the form
         $form = $crawler->filter('form[name=recover_password_form]')->form();
-        $crawler = $this->client->submit($form, array(
+        $this->client->submit($form, array(
             'recover_password_form[email]' => $email,
         ));
     }
@@ -66,9 +66,9 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
 
         // Fill in and submit the form
         $form = $crawler->filter('form[name=reset_password_form]')->form();
-        $crawler = $this->client->submit($form, array(
-            'reset_password_form[newPassword][first]' => $email,
-            'reset_password_form[newPassword][second]' => $email,
+        $this->client->submit($form, array(
+            'reset_password_form[newPassword][first]' => $newPassword,
+            'reset_password_form[newPassword][second]' => $newPassword,
         ));
     }
 
@@ -76,7 +76,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
     {
         $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
 
-        if(preg_match_all("/$regexp/siU", $messageBody, $matches, PREG_SET_ORDER)) {
+        if(preg_match_all("/$regexp/siU", $body, $matches, PREG_SET_ORDER)) {
             $token = $matches[3];
             return $token;
         }
@@ -86,8 +86,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
 
     private function getEmailFromProfiler()
     {
-        $profiler = $this->client->getProfile();
-        $mailCollector = $profiler->getCollector('swiftmailer');
+        $mailCollector = $this->client->getProfile()->getCollector('swiftmailer');
         $this->assertEquals(1, $mailCollector->getMessageCount());
 
         $collectedMessages = $mailCollector->getMessages();
