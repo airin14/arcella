@@ -15,22 +15,15 @@ use Faker\Provider\Internet as FakerProvider;
 
 class UserControllerTest extends ArcellaWebTestCase
 {
+    use UserBackendTrait, UserRegistrationTrait;
+
     public function testRegisterAction()
     {
-        // Check if the login form can be accessed
-        $crawler = $this->client->request('GET', '/register');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Register")')->count());
+        $username = 'foo' . rand();
+        $email    = 'foo@bar' . rand() . '.com';
+        $password = 'arcella';
 
-        // Fill in and submit the form
-        $form = $crawler->filter('form[name=user_registration_form]')->form();
-        $crawler = $this->client->submit($form, array(
-            'user_registration_form[username]' => 'foo' . rand(),
-            'user_registration_form[email]' => 'foo@bar' . rand() . '.com',
-            'user_registration_form[plainPassword][first]' => 'arcella',
-            'user_registration_form[plainPassword][second]' => 'arcella',
-        ));
-
-        // Fetch the response
+        $this->doRegister($username, $email, $password);
         $response = $this->client->getResponse()->getContent();
 
         // Assertions
@@ -40,10 +33,7 @@ class UserControllerTest extends ArcellaWebTestCase
 
     public function testSettingsAction()
     {
-        // Check if the settings page can be accessed
-        $crawler = $this->client->request('GET', '/_settings');
-
-        // Fetch the response
+        $this->accessBackend();
         $response = $this->client->getResponse()->getContent();
 
         // Assertions

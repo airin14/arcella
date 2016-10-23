@@ -13,6 +13,7 @@ trait UserLoginTrait
 {
     public function doLogin($username, $password)
     {
+        // Check if the login form can be accessed
         $crawler = $this->client->request('GET', '/login');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Login")')->count());
 

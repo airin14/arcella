@@ -21,11 +21,8 @@ class SecurityControllerTest extends ArcellaWebTestCase
         $password = "arcella";
 
         $this->doLogin($username, $password);
-
-        // Fetch the response
         $response = $this->client->getResponse()->getContent();
 
-        // Assertions
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertContains('Logged in as', $response);
     }
@@ -33,6 +30,7 @@ class SecurityControllerTest extends ArcellaWebTestCase
     public function testLogoutAction()
     {
         $crawler = $this->client->request('GET', '/logout');
+
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Login")')->count());
     }
 }

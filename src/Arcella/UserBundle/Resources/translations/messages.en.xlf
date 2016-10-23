@@ -54,6 +54,14 @@
                 <source>user.password.recovery.failure</source>
                 <target>Something went wrong: Could not find a user matching this email address.</target>
             </trans-unit>
+            <trans-unit id="user.password.reset.success">
+                <source>user.password.reset.success</source>
+                <target>Your password has been updated successfully.</target>
+            </trans-unit>
+            <trans-unit id="user.password.reset.failure">
+                <source>user.password.reset.failure</source>
+                <target>Something went wrong: Could not update your password.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

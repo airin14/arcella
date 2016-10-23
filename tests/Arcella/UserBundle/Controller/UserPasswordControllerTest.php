@@ -13,21 +13,17 @@ use Arcella\Test\ArcellaWebTestCase;
 
 class UserPasswordControllerTest extends ArcellaWebTestCase
 {
+    use UserLoginTrait;
+
     public function testUpdatePasswordAction()
     {
-        $this->loginAsUser();
+        $username    = "monty93";
+        $password    = "arcella";
+        $oldPassword = $password;
+        $newPassword = "arcella";
 
-        // Check if the login form can be accessed
-        $crawler = $this->client->request('GET', '/_settings/password');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Change your password")')->count());
-
-        // Fill in and submit the form
-        $form = $crawler->filter('form[name=user_update_password_form]')->form();
-        $crawler = $this->client->submit($form, array(
-            'user_update_password_form[oldPassword]' => 'arcella',
-            'user_update_password_form[newPassword][first]' => 'arcella',
-            'user_update_password_form[newPassword][second]' => 'arcella',
-        ));
+        $this->doLogin($username, $password);
+        $this->doPasswordUpdate($oldPassword, $newPassword);
 
         // Fetch the response
         $response = $this->client->getResponse()->getContent();
@@ -37,24 +33,45 @@ class UserPasswordControllerTest extends ArcellaWebTestCase
         $this->assertContains('Your password has been updated successfully.', $response);
     }
 
-    private function loginAsUser()
+    public function testUpdatePasswordActionWithInvalidCredentials()
     {
-        // Check if the login form can be accessed
-        $crawler = $this->client->request('GET', '/login');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Login")')->count());
+        $username    = "monty93";
+        $password    = "arcella";
+        $oldPassword = "invalid";
+        $newPassword = "arcella";
 
-        // Fill in and submit the form
-        $form = $crawler->filter('form[name=login_form]')->form();
-        $crawler = $this->client->submit($form, array(
-            'login_form[username]' => 'monty93',
-            'login_form[password]' => 'arcella',
-        ));
+        $this->doLogin($username, $password);
+        $this->doPasswordUpdate($oldPassword, $newPassword);
 
         // Fetch the response
         $response = $this->client->getResponse()->getContent();
 
         // Assertions
         $this->assertTrue($this->client->getResponse()->isSuccessful());
-        $this->assertContains('Logged in as', $response);
+        $this->assertContains("Cannot update password for user, because of invalid credentials", $response);
+    }
+
+    public function testAccessToUpdatePasswordAction()
+    {
+        $this->client->followRedirects();
+
+        $crawler = $this->client->request('GET', '/_settings/password');
+
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Login")')->count());
+    }
+
+    private function doPasswordUpdate($oldPassword, $newPassword)
+    {
+        // Check if the update form can be accessed
+        $crawler = $this->client->request('GET', '/_settings/password');
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Change your password")')->count());
+
+        // Fill in and submit the form
+        $form = $crawler->filter('form[name=user_update_password_form]')->form();
+        $crawler = $this->client->submit($form, array(
+            'user_update_password_form[oldPassword]' => $oldPassword,
+            'user_update_password_form[newPassword][first]' => $newPassword,
+            'user_update_password_form[newPassword][second]' => $newPassword,
+        ));
     }
 }
