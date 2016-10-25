@@ -27,6 +27,8 @@ class TokenValidator
 
     private $lifespan;
 
+    private $tokenParams;
+
     /**
      * TokenValidator constructor.
      *
@@ -125,7 +127,24 @@ class TokenValidator
             return false;
         }
 
+        $this->tokenParams = $token->getParams();
+
         return true;
+    }
+
+    /**
+     * Returns the $tokenParams if any are set, after a Token has been
+     * validated.
+     *
+     * @return $tokenParams
+     */
+    public function getTokenParams()
+    {
+        if (empty($this->tokenParams)) {
+            return null;
+        }
+
+        return $this->tokenParams;
     }
 
     /**

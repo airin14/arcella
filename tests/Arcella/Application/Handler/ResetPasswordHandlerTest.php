@@ -37,7 +37,7 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $params = array('username' => $username);
 
         $command = \Mockery::mock(ResetPassword::class);
-        $command->shouldReceive('token')->times(3)->andReturn($token);
+        $command->shouldReceive('token')->twice()->andReturn($token);
         $command->shouldReceive('newPassword')->once()->andReturn($newPassword);
 
         $user = \Mockery::mock(User::class);
@@ -50,17 +50,12 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $validator = \Mockery::mock(TokenValidator::class);
         $validator->shouldReceive('validateToken')->once()->andReturn(true);
         $validator->shouldReceive('removeToken')->once();
-
-        $token = \Mockery::mock(Token::class);
-        $token->shouldReceive('getParams')->once()->andReturn($params);
-
-        $tokenRepository = \Mockery::mock(TokenRepository::class);
-        $tokenRepository->shouldReceive('findOneBy')->once()->andReturn($token);
+        $validator->shouldReceive('getParams')->once()->andReturn($params);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldReceive('dispatch')->once();
 
-        $handler = new ResetPasswordHandler($userRepository, $eventDispatcher, $tokenRepository, $validator);
+        $handler = new ResetPasswordHandler($userRepository, $eventDispatcher, $validator);
 
         $handler->handle($command);
     }
@@ -82,17 +77,12 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
 
         $validator = \Mockery::mock(TokenValidator::class);
         $validator->shouldReceive('validateToken')->once()->andReturn(false);
-
-        $token = \Mockery::mock(Token::class);
-        $token->shouldNotReceive('getParams');
-
-        $tokenRepository = \Mockery::mock(TokenRepository::class);
-        $tokenRepository->shouldNotReceive('findOneBy');
+        $validator->shouldNotReceive('getParams');
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldNotReceive('dispatch');
 
-        $handler = new ResetPasswordHandler($userRepository, $eventDispatcher, $tokenRepository, $validator);
+        $handler = new ResetPasswordHandler($userRepository, $eventDispatcher, $validator);
 
         try {
             $handler->handle($command);
@@ -108,7 +98,7 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $params = array('username' => $username);
 
         $command = \Mockery::mock(ResetPassword::class);
-        $command->shouldReceive('token')->twice()->andReturn($token);
+        $command->shouldReceive('token')->once()->andReturn($token);
         $command->shouldNotReceive('newPassword');
 
         $user = \Mockery::mock(User::class);
@@ -121,17 +111,12 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $validator = \Mockery::mock(TokenValidator::class);
         $validator->shouldReceive('validateToken')->once()->andReturn(true);
         $validator->shouldNotReceive('removeToken');
-
-        $token = \Mockery::mock(Token::class);
-        $token->shouldReceive('getParams')->once()->andReturn($params);
-
-        $tokenRepository = \Mockery::mock(TokenRepository::class);
-        $tokenRepository->shouldReceive('findOneBy')->once()->andReturn($token);
+        $validator->shouldReceive('getParams')->once()->andReturn($params);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldNotReceive('dispatch');
 
-        $handler = new ResetPasswordHandler($userRepository, $eventDispatcher, $tokenRepository, $validator);
+        $handler = new ResetPasswordHandler($userRepository, $eventDispatcher, $validator);
 
         try {
             $handler->handle($command);

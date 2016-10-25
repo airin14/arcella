@@ -12,7 +12,6 @@ namespace Arcella\Application\Handler;
 use Arcella\Domain\Command\ResetPassword;
 use Arcella\Domain\Event\ResetPasswordEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
-use Arcella\UtilityBundle\Repository\TokenRepository;
 use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
@@ -35,33 +34,27 @@ class ResetPasswordHandler
     private $eventDispatcher;
 
     /**
-     * @var TokenRepository
-     */
-    private $tokenRepository;
-
-    /**
      * @var $tokenValidator TokenValidator
      */
     private $tokenValidator;
 
     /**
-     * RegisterUserHandler constructor.
+     * ResetPasswordHandler constructor.
      *
      * @param UserRepositoryInterface  $userRepository
      * @param EventDispatcherInterface $eventDispatcher
-     * @param TokenRepository          $tokenRepository
      * @param TokenValidator           $tokenValidator
      */
-    public function __construct(UserRepositoryInterface $userRepository, EventDispatcherInterface $eventDispatcher, TokenRepository $tokenRepository, TokenValidator $tokenValidator)
+    public function __construct(UserRepositoryInterface $userRepository, EventDispatcherInterface $eventDispatcher, TokenValidator $tokenValidator)
     {
         $this->userRepository = $userRepository;
         $this->eventDispatcher = $eventDispatcher;
-        $this->tokenRepository = $tokenRepository;
         $this->tokenValidator = $tokenValidator;
     }
 
     /**
-     * Handles the ResetPassword command.
+     * Handles the ResetPassword command, which does the actual reset of a
+     * given User entity.
      *
      * @param ResetPassword $command
      *
@@ -70,13 +63,13 @@ class ResetPasswordHandler
      */
     public function handle(ResetPassword $command)
     {
+        // Validate the Token
         if (!$this->tokenValidator->validateToken($command->token())) {
             throw new ValidatorException('Could not validate token: '.$command->token());
         }
 
-        $token = $this->tokenRepository->findOneBy(['key' => $command->token()]);
-        $params = $token->getParams();
-
+        // Get User entity from the Tokens params
+        $params = $this->tokenValidator->getParams();
         $user = $this->userRepository->findOneBy(['username' => $params['username']]);
 
         if (!$user) {
@@ -85,11 +78,14 @@ class ResetPasswordHandler
             );
         }
 
+        // Set new PlainPassword
         $user->setPlainPassword($command->newPassword());
         $this->userRepository->save($user);
 
+        // Remove Token from tokenRepository
         $this->tokenValidator->removeToken($command->token());
 
+        // Trigger ResetPasswordEvent
         $event = new ResetPasswordEvent($user);
         $this->eventDispatcher->dispatch(ResetPasswordEvent::NAME, $event);
     }

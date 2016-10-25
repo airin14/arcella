@@ -24,10 +24,9 @@ services:
 
     reset_password_handler:
         class: Arcella\Application\Handler\ResetPasswordHandler
-        arguments: ['@arcella.userbundle.user_repository', '@event_dispatcher', '@arcella.utilitybundle.token_repository', '@arcella.utilitybundle.token_validator']
+        arguments: ['@arcella.userbundle.user_repository', '@event_dispatcher', '@arcella.utilitybundle.token_validator']
         tags:
             - { name: command_handler, handles: Arcella\Domain\Command\ResetPassword }
-
 
     update_user_email_handler:
         class: Arcella\Application\Handler\UpdateUserEmailHandler
