@@ -61,8 +61,8 @@ class RecoverPasswordHandler
     }
 
     /**
-     * Handles the RecoverPassword command and is used to reset the password
-     * of a user entity.
+     * Handles the RecoverPassword command and is used in the first step of
+     * resetting the password of a given User entity.
      *
      * @param RecoverPassword $command
      *
@@ -70,6 +70,7 @@ class RecoverPasswordHandler
      */
     public function handle(RecoverPassword $command)
     {
+        // Get user from userRepository
         $user = $this->userRepository->findOneBy(['email' => $command->email()]);
 
         if (!$user) {
@@ -78,17 +79,20 @@ class RecoverPasswordHandler
             );
         }
 
+        // Set some parameters for the Token
         $params = array(
             'username' => $user->getUsername(),
         );
 
         $token = $this->tokenValidator->generateToken($params);
 
+        // Set some parameters for the email
         $twigParams = array(
             'name' => $user->getUsername(),
             'token' => $token,
         );
 
+        // Create \Swift_Message object for email
         $message = \Swift_Message::newInstance()
             ->setSubject('Password recovery')
             ->setFrom('noreply@arcella.dev')
@@ -101,8 +105,10 @@ class RecoverPasswordHandler
                 'text/html'
             );
 
+        // Send the email
         $this->mailer->send($message);
 
+        // Trigger RecoverPasswordEvent
         $event = new RecoverPasswordEvent($user);
         $this->eventDispatcher->dispatch(RecoverPasswordEvent::NAME, $event);
     }

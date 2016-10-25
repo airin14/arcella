@@ -85,6 +85,7 @@ class RegisterUserHandler
      */
     public function handle(RegisterUser $command)
     {
+        // Create User entity
         $user = new User();
         $user->setUsername($command->username());
         $user->setEmail($command->email());
@@ -100,8 +101,10 @@ class RegisterUserHandler
             throw new ValidatorException($errorsString);
         }
 
+        // Add User entity to the userRepository
         $this->userRepository->add($user);
 
+        // Trigger UserRegisteredEvent
         $event = new UserRegisteredEvent($user);
         $this->eventDispatcher->dispatch(UserRegisteredEvent::NAME, $event);
     }
