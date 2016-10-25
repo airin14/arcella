@@ -11,14 +11,12 @@ namespace Arcella\Application\Handler;
 
 use Arcella\Domain\Command\ResetPassword;
 use Arcella\Domain\Event\ResetPasswordEvent;
-use Arcella\Domain\Event\UserUpdatedPasswordEvent;
 use Arcella\Domain\Repository\UserRepositoryInterface;
 use Arcella\UtilityBundle\Repository\TokenRepository;
 use Arcella\UtilityBundle\TokenValidator\TokenValidator;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**

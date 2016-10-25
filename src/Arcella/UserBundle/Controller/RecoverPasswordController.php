@@ -10,17 +10,12 @@
 namespace Arcella\UserBundle\Controller;
 
 use Arcella\Domain\Command\RecoverPassword;
-use Arcella\Domain\Command\UpdateUserEmail;
-use Arcella\Domain\Command\ValidateUserEmail;
-use Arcella\Domain\Event\RecoverPasswordEvent;
 use Arcella\UserBundle\Form\Type\RecoverPasswordForm;
-use Arcella\UserBundle\Form\Type\UserUpdateEmailForm;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
  * Class RecoverPasswordController
