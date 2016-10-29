@@ -19,7 +19,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
 
     public function testPasswordRecovery()
     {
-        $this->markTestSkipped("Because of Profiler error emails from previous Requests can't be accessed.");
+        $this->markTestSkipped("Because of a Profiler error emails from previous requests can't be accessed.");
 
         $username    = 'ivy.mann';
         $email       = 'fschmeler@gmail.com';
@@ -31,7 +31,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $response = $this->client->getResponse()->getContent();
         $this->assertContains("Please check your emails, we sent you an email to reset your password", $response);
 
-        $this->getEmailFromProfiler();
+        $this->getEmailFromProfiler();s
 
         // Asserting email data
         $this->assertInstanceOf('Swift_Message', $this->message);
