@@ -31,7 +31,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $response = $this->client->getResponse()->getContent();
         $this->assertContains("Please check your emails, we sent you an email to reset your password", $response);
 
-        $this->getEmailFromProfiler();s
+        $this->getEmailFromProfiler();
 
         // Asserting email data
         $this->assertInstanceOf('Swift_Message', $this->message);

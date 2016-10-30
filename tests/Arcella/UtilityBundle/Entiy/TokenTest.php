@@ -7,10 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\Arcella\Domain\Entity;
+namespace Tests\Arcella\UtilityBundle\Entity;
 
 use Arcella\UtilityBundle\Entity\Token;
-use Arcella\Domain\Exception\DomainException;
 
 class TokenTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,6 +21,11 @@ class TokenTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->token = new Token();
+    }
+
+    public function testId()
+    {
+        $this->assertNull($this->token->getId());
     }
 
     public function testKey()

@@ -35,7 +35,7 @@ class TokenValidator
      * @param TokenRepository $em
      * @param integer         $length
      * @param string          $keyspace
-     * @param Time            $lifespan
+     * @param integer         $lifespan
      */
     public function __construct(TokenRepository $em, $length, $keyspace, $lifespan)
     {
@@ -82,14 +82,14 @@ class TokenValidator
      *
      * @return string $token    The key of the token.
      */
-    public function generateToken($params = array(), $lifespan = '')
+    public function generateToken($params = array(), $lifespan = null)
     {
-        if (empty($lifespan)) {
+        if (is_null($lifespan)) {
             $lifespan = $this->lifespan;
         }
 
         $expiration = new \DateInterval('PT'.$lifespan.'M');
-        $date = new \DateTime();
+        $date = new \DateTime("now");
         $date->add($expiration);
 
         $token = new Token();
@@ -123,7 +123,7 @@ class TokenValidator
 
         $now = new \DateTime();
 
-        if ($now <= $token->getExpiration()) {
+        if ($now >= $token->getExpiration()) {
             return false;
         }
 
