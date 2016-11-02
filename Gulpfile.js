@@ -1,9 +1,11 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var exec = require('child_process').exec;
 
 paths = {
-    php:       "src/**/*.php",
-    php_tests: "tests/**/*.php"
+    php:       "src/**/*.åphp",
+    php_tests: "tests/**/*.php",
+    sami:      "app/sami.php"
 }
 
 gulp.task('coverage', function () {
@@ -18,6 +20,14 @@ gulp.task('coverage', function () {
 });
 
 gulp.task('default', ['test', 'validate', 'watch']);
+
+gulp.task('docs', function (cb) {
+    exec('php sami.phar update ' + paths.sami, function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    }).on('error', errorHandler);
+});
 
 gulp.task('test', function () {
     return gulp.src(paths.php_tests)
