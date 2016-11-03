@@ -1,6 +1,6 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+homepage:
+    path:      /
+    defaults:  { _controller: ArcellaUserBundle:Security:login }
 
 arcella_userbundle:
     resource: "@ArcellaUserBundle/Controller/"
