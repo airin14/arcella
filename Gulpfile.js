@@ -6,7 +6,6 @@ paths = {
     php:       "src/**/*.php",
     php_tests: "tests/**/*.php",
     sami:      "app/sami.php",
-    pdepend:   "var/phpdepend"
 };
 
 gulp.task('default', ['test', 'validate', 'watch']);

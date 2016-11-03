@@ -9,8 +9,8 @@ $iterator = Symfony\Component\Finder\Finder::create()
 $options = array(
     'title'               => 'Arcella API',
     'theme'               => 'default',
-    'build_dir'           => 'var/sami/build/',
-    'cache_dir'           => 'var/sami/cache/',
+    'build_dir'           => 'var/reports/sami/',
+    'cache_dir'           => 'var/cache/sami/',
     'include_parent_data' => false,
 );
 
