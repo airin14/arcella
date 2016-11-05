@@ -37,7 +37,10 @@
         "squizlabs/php_codesniffer": "^2.6",
         "escapestudios/symfony2-coding-standard": "^2.9",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "nelmio/alice": "^2.1"
+        "nelmio/alice": "^2.1",
+        "symfony/var-dumper": "^3.1",
+        "mockery/mockery": "^0.9.5",
+        "phpmetrics/phpmetrics": "^1.10"
     },
     "scripts": {
         "post-install-cmd": [

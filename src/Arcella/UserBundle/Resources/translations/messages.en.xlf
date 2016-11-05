@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="global" datatype="plaintext" source-language="en" target-language="en">
+        <body>
+            <trans-unit id="link.login">
+                <source>link.login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="link.logout">
+                <source>link.logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="link.register">
+                <source>link.register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="link.user.settings">
+                <source>link.user.settings</source>
+                <target>Settings</target>
+            </trans-unit>
+            <trans-unit id="link.user.settings.password">
+                <source>link.user.settings.password</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="link.user.settings.email">
+                <source>link.user.settings.email</source>
+                <target>Change email address</target>
+            </trans-unit>
+            <trans-unit id="navbar.logged_in_as">
+                <source>navbar.logged_in_as</source>
+                <target>Logged in as: %username%</target>
+            </trans-unit>
+            <trans-unit id="user.password.update.success">
+                <source>user.password.update.success</source>
+                <target>Your password has been updated successfully.</target>
+            </trans-unit>
+            <trans-unit id="user.email.update.success">
+                <source>user.email.update.success</source>
+                <target>Your email address has been updated successfully.</target>
+            </trans-unit>
+            <trans-unit id="user.email.validate.success">
+                <source>user.email.validate.success</source>
+                <target>Your email address has been successfully validated!</target>
+            </trans-unit>
+            <trans-unit id="user.email.validate.failure">
+                <source>user.email.validate.failure</source>
+                <target>Something went wrong: Could not validate your email address.</target>
+            </trans-unit>
+            <trans-unit id="user.password.recovery.sent">
+                <source>user.password.recovery.sent</source>
+                <target>Please check your emails, we sent you an email to reset your password.</target>
+            </trans-unit>
+            <trans-unit id="user.password.recovery.failure">
+                <source>user.password.recovery.failure</source>
+                <target>Something went wrong: Could not find a user matching this email address.</target>
+            </trans-unit>
+            <trans-unit id="user.password.reset.success">
+                <source>user.password.reset.success</source>
+                <target>Your password has been updated successfully.</target>
+            </trans-unit>
+            <trans-unit id="user.password.reset.failure">
+                <source>user.password.reset.failure</source>
+                <target>Something went wrong: Could not update your password.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

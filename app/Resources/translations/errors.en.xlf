@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="global" datatype="plaintext" source-language="en" target-language="en">
+        <body>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Sorry!</target>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>description</source>
+                <target>We apologize for the inconvenience.</target>
+            </trans-unit>
+            <trans-unit id="messages.403.title">
+                <source>messages.403.title</source>
+                <target>Access denied</target>
+            </trans-unit>
+            <trans-unit id="messages.403.description">
+                <source>messages.403.description</source>
+                <target>You do not have the required permissions to access this page.</target>
+            </trans-unit>
+            <trans-unit id="messages.404.title">
+                <source>messages.404.title</source>
+                <target>Page not found</target>
+            </trans-unit>
+            <trans-unit id="messages.404.description">
+                <source>messages.404.description</source>
+                <target>There is no content at this address.
+                    It appears you followed a broken or outdated link from a search engine.</target>
+            </trans-unit>
+            <trans-unit id="messages.405.title">
+                <source>messages.405.title</source>
+                <target>Request method not supported</target>
+            </trans-unit>
+            <trans-unit id="messages.405.description">
+                <source>messages.405.description</source>
+                <target>The HTTP request method you've used is not supported at this URL.</target>
+            </trans-unit>
+            <trans-unit id="messages.500.title">
+                <source>messages.500.title</source>
+                <target>Internal server error</target>
+            </trans-unit>
+            <trans-unit id="messages.500.description">
+                <source>messages.500.description</source>
+                <target>A error occured while generating the page.
+                    The information necessary to resolve the problem has been recorded and forwarded to the relevant authority.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

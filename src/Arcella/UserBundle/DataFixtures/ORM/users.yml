@@ -1,0 +1,8 @@
+Arcella\UserBundle\Entity\User:
+    user_{1..10}:
+        username: <username()>
+        email: <email()>
+        emailIsVerified: <boolean(75)>
+        roles: <roleUser()>
+        plainPassword: arcella
+        salt: arcella

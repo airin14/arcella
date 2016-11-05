@@ -4,6 +4,71 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    register_user_handler:
+        class: Arcella\Application\Handler\RegisterUserHandler
+        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher', '@arcella.utilitybundle.token_validator', '%arcella.user.salt.length%', '%arcella.user.salt.keyspace%']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\RegisterUser }
+
+    update_user_password_handler:
+        class: Arcella\Application\Handler\UpdateUserPasswordHandler
+        arguments: ['@arcella.userbundle.user_repository', '@event_dispatcher', '@security.password_encoder']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserPassword }
+
+    recover_password_handler:
+        class: Arcella\Application\Handler\RecoverPasswordHandler
+        arguments: ['@arcella.userbundle.user_repository', '@mailer', '@twig', '@arcella.utilitybundle.token_validator', '@event_dispatcher']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\RecoverPassword }
+
+    reset_password_handler:
+        class: Arcella\Application\Handler\ResetPasswordHandler
+        arguments: ['@arcella.userbundle.user_repository', '@event_dispatcher', '@arcella.utilitybundle.token_validator']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\ResetPassword }
+
+    update_user_email_handler:
+        class: Arcella\Application\Handler\UpdateUserEmailHandler
+        arguments: ['@arcella.userbundle.user_repository', '@validator', '@event_dispatcher']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\UpdateUserEmail }
+
+    validate_user_email_handler:
+        class: Arcella\Application\Handler\ValidateUserEmailHandler
+        arguments: ['@arcella.userbundle.user_repository', '@arcella.utilitybundle.token_validator']
+        tags:
+            - { name: command_handler, handles: Arcella\Domain\Command\ValidateUserEmail }
+
+    arcella.userbundle.doctrine.hash_password_listener:
+        class: Arcella\UserBundle\Doctrine\HashPasswordListener
+        autowire: true
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    arcella.userbundle.email_validation_listener:
+        class: Arcella\UserBundle\EventListener\UserEmailValidationListener
+        arguments: ['@twig', '@mailer', '@arcella.utilitybundle.token_validator']
+        tags:
+            - { name: kernel.event_listener, event: user.updated.email }
+            - { name: kernel.event_listener, event: user.registered }
+
+    arcella.userbundle.user_repository:
+        class: Arcella\UserBundle\Repository\DoctrineORMUserRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Arcella\UserBundle\Entity\User
+
+    arcella.security.login_form_authenticator:
+        class: Arcella\UserBundle\Security\LoginFormAuthenticator
+        autowire: true
+
+    arcella.utilitybundle.token_repository:
+        class: Arcella\UtilityBundle\Repository\TokenRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Arcella\UtilityBundle\Entity\Token
+
+    arcella.utilitybundle.token_validator:
+        class: Arcella\UtilityBundle\TokenValidator\TokenValidator
+        arguments: ['@arcella.utilitybundle.token_repository', '%arcella.user.token.length%', '%arcella.user.token.keyspace%', '%arcella.user.token.lifetime%']

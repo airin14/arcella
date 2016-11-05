@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+{% trans_default_domain "errors" %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ ("messages." ~ exception.getStatusCode ~ ".title")|trans({}) }} ({{ exception.getStatusCode }})</h1>
+        <h3 class="h3">{{ ("title")|trans({}) }}</h3>
+        <p> {{ ("messages." ~ exception.getStatusCode ~ ".description")|trans({})|nl2br }}</p>
+
+        <strong>{{ ("description")|trans({})|nl2br }}</strong>
+    </div>
+{% endblock %}

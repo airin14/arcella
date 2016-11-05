@@ -1,0 +1,8 @@
+<h3>Your email address has been changed.</h3>
+
+<p>Hi {{ name }}, your email address has been changed. Please validate your
+    new email address by clicking on the link below</p>
+
+<p>Validate token: <a href="{{ url('user_validate_email', {'token': token}) }}">{{ token }}</a>.</p>
+
+<p>Thanks!</p>
