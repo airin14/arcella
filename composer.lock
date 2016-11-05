@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "38e5c23857b26354602fba764e324ee2",
-    "content-hash": "382186a59127556796892e48fe1d9d3e",
+    "hash": "67aa35b4c3552275a2682e8e27706867",
+    "content-hash": "2e93a25baf52a62a558c92474972559f",
     "packages": [
         {
             "name": "beberlei/assert",
-            "version": "2.6.5",
+            "version": "v2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/assert.git",
-                "reference": "fbadde44717ea3eb98fba35425d49731185bf418"
+                "reference": "f567e3e4bce5419bccb9e9b1faf8d4ca9b2f5055"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/assert/zipball/fbadde44717ea3eb98fba35425d49731185bf418",
-                "reference": "fbadde44717ea3eb98fba35425d49731185bf418",
+                "url": "https://api.github.com/repos/beberlei/assert/zipball/f567e3e4bce5419bccb9e9b1faf8d4ca9b2f5055",
+                "reference": "f567e3e4bce5419bccb9e9b1faf8d4ca9b2f5055",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,7 @@
                 "assertion",
                 "validation"
             ],
-            "time": "2016-10-11 17:13:28"
+            "time": "2016-10-31 12:09:54"
         },
         {
             "name": "doctrine/annotations",
@@ -1152,16 +1152,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.13",
+            "version": "v5.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "7bc47dcfdbde6d567e1a834577d1c04ddb970281"
+                "reference": "e64947de9ebc37732a62f5115164484a9bee7fa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/7bc47dcfdbde6d567e1a834577d1c04ddb970281",
-                "reference": "7bc47dcfdbde6d567e1a834577d1c04ddb970281",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/e64947de9ebc37732a62f5115164484a9bee7fa6",
+                "reference": "e64947de9ebc37732a62f5115164484a9bee7fa6",
                 "shasum": ""
             },
             "require": {
@@ -1200,7 +1200,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-10-08 18:50:33"
+            "time": "2016-10-30 23:18:01"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3008,16 +3008,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.5.4",
+            "version": "1.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "ea74994a3dc7f8d2f65a06009348f2d63c81e61f"
+                "reference": "399c1f9781e222f6eb6cc238796f5200d1b7f108"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/ea74994a3dc7f8d2f65a06009348f2d63c81e61f",
-                "reference": "ea74994a3dc7f8d2f65a06009348f2d63c81e61f",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/399c1f9781e222f6eb6cc238796f5200d1b7f108",
+                "reference": "399c1f9781e222f6eb6cc238796f5200d1b7f108",
                 "shasum": ""
             },
             "require": {
@@ -3046,7 +3046,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2016-09-16 13:37:59"
+            "time": "2016-10-31 17:19:45"
         },
         {
             "name": "nelmio/alice",
@@ -3110,46 +3110,6 @@
                 "test"
             ],
             "time": "2016-07-15 19:50:38"
-        },
-        {
-            "name": "pdepend/pdepend",
-            "version": "2.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pdepend/pdepend.git",
-                "reference": "b086687f3a01dc6bb92d633aef071d2c5dd0db06"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pdepend/pdepend/zipball/b086687f3a01dc6bb92d633aef071d2c5dd0db06",
-                "reference": "b086687f3a01dc6bb92d633aef071d2c5dd0db06",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.7",
-                "symfony/config": "^2.3.0|^3",
-                "symfony/dependency-injection": "^2.3.0|^3",
-                "symfony/filesystem": "^2.3.0|^3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.4.0,<4.8",
-                "squizlabs/php_codesniffer": "^2.0.0"
-            },
-            "bin": [
-                "src/bin/pdepend"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PDepend\\": "src/main/php/PDepend"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Official version of pdepend to be handled with Composer",
-            "time": "2016-03-10 15:15:04"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -3425,16 +3385,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "5f3f7e736d6319d5f1fc402aff8b026da26709a3"
+                "reference": "6cba06ff75a1a63a71033e1a01b89056f3af1e8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5f3f7e736d6319d5f1fc402aff8b026da26709a3",
-                "reference": "5f3f7e736d6319d5f1fc402aff8b026da26709a3",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6cba06ff75a1a63a71033e1a01b89056f3af1e8d",
+                "reference": "6cba06ff75a1a63a71033e1a01b89056f3af1e8d",
                 "shasum": ""
             },
             "require": {
@@ -3484,7 +3444,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-07-26 14:39:29"
+            "time": "2016-11-01 05:06:24"
         },
         {
             "name": "phpunit/php-file-iterator",

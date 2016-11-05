@@ -23,7 +23,7 @@ class HomepageController extends Controller
      * Just the static homepage.
      *
      * @Route("/", name="homepage")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      *
      * @return Response The http-response
      */

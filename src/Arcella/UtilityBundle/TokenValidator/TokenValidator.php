@@ -12,7 +12,6 @@ namespace Arcella\UtilityBundle\TokenValidator;
 use Arcella\UtilityBundle\Entity\Token;
 use Arcella\UtilityBundle\Repository\TokenRepository;
 use Doctrine\ORM\EntityNotFoundException;
-use Symfony\Component\Validator\Constraints\Time;
 
 /**
  * Class TokenValidator
