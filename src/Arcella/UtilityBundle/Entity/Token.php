@@ -5,7 +5,8 @@ namespace Arcella\UtilityBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Token
+ * Token is an entity that is used by the TokenValidator to validate a specific
+ * request from a User.
  *
  * @ORM\Table(name="token")
  * @ORM\Entity(repositoryClass="Arcella\UtilityBundle\Repository\TokenRepository")
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Token
 {
     /**
-     * @var int
+     * @var int $id Used for internal identification of a Entity.
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -22,21 +23,21 @@ class Token
     private $id;
 
     /**
-     * @var string
+     * @var string $key The actual key by which a Entity can be identified.
      *
      * @ORM\Column(name="token", type="string", length=255)
      */
     private $key;
 
     /**
-     * @var \DateTime
+     * @var \DateTime The time when the Entity expires.
      *
-     * @ORM\Column(name="expiration", type="time")
+     * @ORM\Column(name="expiration", type="datetime")
      */
     private $expiration;
 
     /**
-     * @var array
+     * @var array Additional parameters that have been added to the Entity
      *
      * @ORM\Column(name="params", type="json_array")
      */
@@ -44,9 +45,9 @@ class Token
 
 
     /**
-     * Get id
+     * Get the $id of an Entity
      *
-     * @return int
+     * @return int $id
      */
     public function getId()
     {
@@ -54,7 +55,7 @@ class Token
     }
 
     /**
-     * Set key
+     * Set the $key of an Entity
      *
      * @param string $key
      */
@@ -64,9 +65,9 @@ class Token
     }
 
     /**
-     * Get key
+     * Get the $key of an Entity
      *
-     * @return string
+     * @return string $key
      */
     public function getKey()
     {
@@ -74,7 +75,7 @@ class Token
     }
 
     /**
-     * Set expiration
+     * Set the $expiration of an Entity
      *
      * @param \DateTime $expiration
      */
@@ -84,9 +85,9 @@ class Token
     }
 
     /**
-     * Get expiration
+     * Get $expiration of an Entity
      *
-     * @return \DateTime
+     * @return \DateTime $expiration
      */
     public function getExpiration()
     {
@@ -94,6 +95,8 @@ class Token
     }
 
     /**
+     * Set additional $params of an Entity
+     *
      * @param array $params
      */
     public function setParams(array $params)
@@ -102,6 +105,8 @@ class Token
     }
 
     /**
+     * Get the additional $params of en Entity
+     *
      * @return array $params
      */
     public function getParams()

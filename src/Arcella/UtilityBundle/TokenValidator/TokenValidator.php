@@ -88,7 +88,8 @@ class TokenValidator
             $lifespan = $this->lifespan;
         }
 
-        $expiration = new \DateInterval('PT'.$lifespan.'M');
+        $expiration = new \DateInterval('PT'.$lifespan.'S');
+
         $date = new \DateTime("now");
         $date->add($expiration);
 
@@ -121,7 +122,7 @@ class TokenValidator
             );
         }
 
-        $now = new \DateTime();
+        $now = new \DateTime("now");
 
         if ($now >= $token->getExpiration()) {
             return false;
