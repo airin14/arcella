@@ -50,7 +50,7 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $validator = \Mockery::mock(TokenValidator::class);
         $validator->shouldReceive('validateToken')->once()->andReturn(true);
         $validator->shouldReceive('removeToken')->once();
-        $validator->shouldReceive('getParams')->once()->andReturn($params);
+        $validator->shouldReceive('getTokenParams')->once()->andReturn($params);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldReceive('dispatch')->once();
@@ -77,7 +77,7 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
 
         $validator = \Mockery::mock(TokenValidator::class);
         $validator->shouldReceive('validateToken')->once()->andReturn(false);
-        $validator->shouldNotReceive('getParams');
+        $validator->shouldNotReceive('getTokenParams');
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldNotReceive('dispatch');
@@ -111,7 +111,7 @@ class ResetPasswordHandlerTest extends \PHPUnit_Framework_TestCase
         $validator = \Mockery::mock(TokenValidator::class);
         $validator->shouldReceive('validateToken')->once()->andReturn(true);
         $validator->shouldNotReceive('removeToken');
-        $validator->shouldReceive('getParams')->once()->andReturn($params);
+        $validator->shouldReceive('getTokenParams')->once()->andReturn($params);
 
         $eventDispatcher = \Mockery::mock(EventDispatcherInterface::class);
         $eventDispatcher->shouldNotReceive('dispatch');

@@ -19,18 +19,11 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
 
     public function testPasswordRecovery()
     {
-        $this->markTestSkipped("Because of a Profiler error emails from previous requests can't be accessed.");
-
         $username    = 'ivy.mann';
         $email       = 'fschmeler@gmail.com';
         $newPassword = "arcella";
 
         $this->requestRecoveryMail($email);
-
-        // Assertions
-        $response = $this->client->getResponse()->getContent();
-        $this->assertContains("Please check your emails, we sent you an email to reset your password", $response);
-
         $this->getEmailFromProfiler();
 
         // Asserting email data
@@ -40,6 +33,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $this->assertEquals($email, key($this->message->getTo()));
 
         $token = $this->getTokenFromEmailBody($this->message->getBody());
+
         $this->resetPassword($token, $newPassword);
 
         // Fetch the response
@@ -57,6 +51,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Recover your password")')->count());
 
         $this->client->enableProfiler();
+        $this->client->followRedirects(false);
 
         // Fill in and submit the form
         $form = $crawler->filter('form[name=recover_password_form]')->form();
@@ -71,6 +66,8 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $crawler = $this->client->request('GET', '/password_reset/'.$token);
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Reset your password")')->count());
 
+        $this->client->followRedirects(true);
+
         // Fill in and submit the form
         $form = $crawler->filter('form[name=reset_password_form]')->form();
         $this->client->submit($form, array(
@@ -84,8 +81,7 @@ class PasswordRecoveryTest extends ArcellaWebTestCase
         $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
 
         if(preg_match_all("/$regexp/siU", $body, $matches, PREG_SET_ORDER)) {
-            $token = $matches[3];
-            return $token;
+            return $matches[0][3];
         }
 
         return false;

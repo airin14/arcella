@@ -69,7 +69,7 @@ class ResetPasswordHandler
         }
 
         // Get User entity from the Tokens params
-        $params = $this->tokenValidator->getParams();
+        $params = $this->tokenValidator->getTokenParams();
         $user = $this->userRepository->findOneBy(['username' => $params['username']]);
 
         if (!$user) {
