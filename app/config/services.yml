@@ -71,4 +71,4 @@ services:
 
     arcella.utilitybundle.token_validator:
         class: Arcella\UtilityBundle\TokenValidator\TokenValidator
-        arguments: ['@arcella.utilitybundle.token_repository', '%arcella.user.token.length%', '%arcella.user.token.keyspace%', '%arcella.user.token.lifetime%']
+        arguments: ['@arcella.utilitybundle.token_repository', '%arcella.utility.token.length%', '%arcella.utility.token.keyspace%', '%arcella.utility.token.lifetime%']

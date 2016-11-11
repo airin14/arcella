@@ -7,18 +7,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\UserBundle\DependencyInjection;
+namespace Arcella\UtilityBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Adds the configuration parameters for the user bundle into the container.
+ * Adds the configuration parameters for the utility bundle into the container.
  */
-class ArcellaUserExtension extends Extension
+class ArcellaUtilityExtension extends Extension
 {
     /**
-     * Load the configuration of the user bundle and add it to the container.
+     * Load the configuration of the utility bundle and add it to the container.
      *
      * @param array            $configs
      * @param ContainerBuilder $container
@@ -28,7 +28,8 @@ class ArcellaUserExtension extends Extension
         $configuration = new Configuration();
         $processedConfig = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('arcella.user.salt.length', $processedConfig['salt']['length']);
-        $container->setParameter('arcella.user.salt.keyspace', $processedConfig['salt']['keyspace']);
+        $container->setParameter('arcella.utility.token.length', $processedConfig['token']['length']);
+        $container->setParameter('arcella.utility.token.keyspace', $processedConfig['token']['keyspace']);
+        $container->setParameter('arcella.utility.token.lifetime', $processedConfig['token']['lifetime']);
     }
 }
