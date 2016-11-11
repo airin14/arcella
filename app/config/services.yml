@@ -54,7 +54,7 @@ services:
             - { name: kernel.event_listener, event: user.registered }
 
     arcella.userbundle.user_repository:
-        class: Arcella\UserBundle\Repository\DoctrineORMUserRepository
+        class: Arcella\UserBundle\Repository\UserRepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
             - Arcella\UserBundle\Entity\User

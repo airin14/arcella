@@ -14,11 +14,11 @@ use Arcella\Domain\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class DoctrineORMUserRepository
+ * Class UserRepository
  *
  * @package Arcella\UserBundle\Repository
  */
-class DoctrineORMUserRepository extends EntityRepository implements UserRepositoryInterface
+class UserRepository extends EntityRepository implements UserRepositoryInterface
 {
     /**
      * Add a User entity to the repository.
