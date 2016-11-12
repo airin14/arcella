@@ -16,7 +16,7 @@ Inside the main config you can define the following parameters for your Tokens:
 * and the keyspace that will be used during the creation.
 
 ## Usage
-You should always use the TokenValidator as a service via the DI-container which can be realized by calling `@arcella_utility_tokenvalidator`.
+You should always use the TokenValidator as a service via the DI-container which can be accessed via `@arcella_utility_tokenvalidator`.
 
 ### Creating a new Token
 To create a new Token entity you just need to call the `generateToken()` function.
@@ -42,7 +42,7 @@ $token = $this->tokenValidator->generateToken($params, $lifespan);
 ```
 
 ### Validating a Token
-If you`d like to validate a Token you just need to call the `validateToken()` function.
+If you want to validate a Token you just need to call the `validateToken()` function.
 
 ```php
 $this->tokenValidator->validateToken($key);
@@ -55,7 +55,7 @@ If the validation was successful and there are any additional parameters set the
 $params = $this->tokenValidator->getTokenParams();
 ```
 
-#### Removing a Token
+### Removing a Token
 After a successful validation you should remove the Token entity from the TokenRepository.
 
 ```php

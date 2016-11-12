@@ -25,8 +25,7 @@ environment that allows the user to focus on publishing and distributing their c
    :caption: Guides
 
    guides/architecture
-   guides/utilities/index
-   guides/utilities/token_validator
+   guides/utilities
 
 .. _contributing:
 
