@@ -59,7 +59,7 @@ If you want to validate a Token you just need to call the **validateToken()** fu
 
     $this->tokenValidator->validateToken($key);
 
-This function will either return *true* if the provided key represents a valid Token or *false*if this is not the case. If there is no Token entity matching the key this function will throw a *EntityNotFound* Exception.
+This function will either return *true* if the provided key represents a valid Token or *false* if this is not the case. If there is no Token entity matching the key this function will throw a *EntityNotFound* Exception.
 
 If the validation was successful and there are any additional parameters set they can be accessed via the TokenValidator.
 
