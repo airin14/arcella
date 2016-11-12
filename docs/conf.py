@@ -34,7 +34,6 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinxcontrib.phpdomain',
-    'sphinxcontrib_phpautodoc',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -103,7 +102,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'php'
+pygments_style = 'python'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
