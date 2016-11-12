@@ -14,18 +14,37 @@ use Arcella\UtilityBundle\Repository\TokenRepository;
 use Doctrine\ORM\EntityNotFoundException;
 
 /**
- * Class TokenValidator
+ * The TokenValidator is used to validate specific requests made by the users.
+ *
+ * For example it could be used to ensure that a user has provided an email
+ * address that he has access to. Therefore you'd have to create a Token, send
+ * it to the email address and ask the user to tell you what the Token was.
  */
 class TokenValidator
 {
+    /**
+     * @var TokenRepository
+     */
     private $em;
 
+    /**
+     * @var string
+     */
     private $keyspace;
 
+    /**
+     * @var int
+     */
     private $length;
 
+    /**
+     * @var int
+     */
     private $lifespan;
 
+    /**
+     * @var mixed
+     */
     private $tokenParams;
 
     /**
@@ -45,13 +64,12 @@ class TokenValidator
     }
 
     /**
-     * Create a individual $salt, which is a static function to be accessible
-     * throughout the application.
+     * Create a individual $salt.
      *
      * @param int    $length
      * @param string $keyspace
      *
-     * @return string $token The individual $salt of the $token.
+     * @return string $salt The individual $salt.
      */
     public function createSalt($length = 0, $keyspace = "")
     {
@@ -63,23 +81,23 @@ class TokenValidator
             $keyspace = $this->keyspace;
         }
 
-        $token = '';
+        $salt = '';
         $max = mb_strlen($keyspace, '8bit') - 1;
 
         for ($i = 0; $i < $length; ++$i) {
-            $token .= $keyspace[random_int(0, $max)];
+            $salt .= $keyspace[random_int(0, $max)];
         }
 
-        return $token;
+        return $salt;
     }
 
     /**
-     * Generate a $token and store it in the Repository.
+     * Generate a $token and store it in the TokenRepository.
      *
      * @param array  $params   Some parameters for the token
-     * @param string $lifespan The lifespan of the token.
+     * @param string $lifespan The lifespan of the token in seconds.
      *
-     * @return string $token    The key of the token.
+     * @return string $token   The key of the token.
      */
     public function generateToken($params = array(), $lifespan = null)
     {
@@ -103,17 +121,17 @@ class TokenValidator
     }
 
     /**
-     * Validate a $token against the Repository.
+     * Validate a Token entity.
      *
-     * @param string $token The key of the token to be validated.
+     * @param string $key The key of the Token entity to be validated.
      *
-     * @return bool
+     * @return bool Was the validation successful?
      *
      * @throws EntityNotFoundException
      */
-    public function validateToken($token)
+    public function validateToken($key)
     {
-        $token = $this->em->findOneByKey($token);
+        $token = $this->em->findOneByKey($key);
 
         if (!$token) {
             throw new EntityNotFoundException(
@@ -136,7 +154,7 @@ class TokenValidator
      * Returns the $tokenParams if any are set, after a Token has been
      * validated.
      *
-     * @return $tokenParams
+     * @return array|bool Returns false when no $tokenParams are set.
      */
     public function getTokenParams()
     {
@@ -148,15 +166,15 @@ class TokenValidator
     }
 
     /**
-     * Remove a $token from the Repository.
+     * Remove a Token entity from the TokenRepository.
      *
-     * @param string $token The key of the token to be removed.
+     * @param string $key The key of the token entity to be removed.
      *
      * @throws EntityNotFoundException
      */
-    public function removeToken($token)
+    public function removeToken($key)
     {
-        $token = $this->em->findOneByKey($token);
+        $token = $this->em->findOneByKey($key);
 
         if (!$token) {
             throw new EntityNotFoundException(

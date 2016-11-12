@@ -12,7 +12,8 @@ namespace Arcella\UtilityBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class ArcellaUtilityBundle
+ * The ArcellaUtilityBundle includes useful tools and utilities that could be
+ * useful for any part of Arcella.
  */
 class ArcellaUtilityBundle extends Bundle
 {
