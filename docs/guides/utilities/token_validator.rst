@@ -34,8 +34,7 @@ To create a new Token entity you just need to call the **generateToken()** funct
 
     $token = $this->tokenValidator->generateToken();
 
-
-The returned `$token` variable is the key by which the Token entity could be identified.
+The returned value is the key by which the Token entity could be identified.
 
 Optional you could also provide additional parameters or a life time in seconds to be added to the Token entity like this
 
