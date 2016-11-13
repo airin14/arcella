@@ -16,6 +16,7 @@ Configuration
             keyspace: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 Inside the main config you can define the following parameters for your Tokens:
+
 * the lifetime (in seconds) 
 * the length (in characters)
 * and the keyspace that will be used during the creation.
@@ -42,7 +43,7 @@ Optional you could also provide additional parameters or a life time in seconds 
 
     // Parameters need to be stored inside an associative array.
     $params = array(
-    'foo' => $bar,
+        'foo' => $bar,
     );
  
     // The lifespan is set in seconds as integer.
