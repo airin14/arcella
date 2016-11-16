@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Arcella\UserBundle\DependencyInjection;
+namespace Arcella\UtilityBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * Defines the available configuration parameters for the user bundle.
+ * Defines the available configuration parameters for the utility bundle.
  */
 class Configuration implements ConfigurationInterface
 {
@@ -25,15 +25,15 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('arcella_user');
+        $rootNode = $treeBuilder->root('arcella_utility');
 
         $rootNode
             ->children()
-                ->arrayNode('salt')
+                ->arrayNode('token')
                     ->children()
+                        ->scalarNode('lifetime')->end()
                         ->scalarNode('length')->end()
                         ->scalarNode('keyspace')->end()
-                    ->end()
                 ->end()
             ->end();
 

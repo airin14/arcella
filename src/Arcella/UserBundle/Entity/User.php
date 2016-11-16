@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Arcella\UserBundle\Repository\DoctrineORMUserRepository")
+ * @ORM\Entity(repositoryClass="Arcella\UserBundle\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, message="It looks like your already have an account!")
  */
 class User extends BaseUser implements UserInterface

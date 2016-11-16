@@ -8,7 +8,6 @@ environment that allows the user to focus on publishing and distributing their c
 
 .. _basics:
 
-
 .. toctree::
    :maxdepth: 1
    :caption: Basics
@@ -26,7 +25,7 @@ environment that allows the user to focus on publishing and distributing their c
    :caption: Guides
 
    guides/architecture
-
+   guides/utilities
 
 .. _contributing:
 

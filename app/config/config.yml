@@ -75,6 +75,8 @@ arcella_user:
     salt:
         length:     16
         keyspace:  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+arcella_utility:
     token:
         lifetime: 1800000
         length:   10
